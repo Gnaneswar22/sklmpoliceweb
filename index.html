@@ -344,7 +344,7 @@
 
 <section id="initiatives">
     <div class="container">
-      <h1 class="text-center-section-heading">Police Initiatives</h1>
+      <h1 class="text-center-section-heading">Our Initiatives</h1>
     </div>
     <div class="container">
       <div class="swiper initiatives-slider">
@@ -466,63 +466,11 @@
     <script>
           
 
-            let currentIndex = 0;
-        const banners = document.querySelectorAll('.image-container > div');
-        const totalBanners = banners.length;
-
-        function showBanner(index) {
-            banners.forEach((banner, i) => {
-                const textBox = banner.querySelector('.text-box');
-                const backgroundImage = banner.querySelector('.background-image');
-                banner.classList.remove('active');
-                textBox.classList.remove('animate'); // Remove animation class
-                if (i === index) {
-                    banner.classList.add('active');
-                    // Restart the animation
-                    void textBox.offsetWidth; // Trigger reflow
-                    textBox.classList.add('animate'); // Add animation class back
-                }
-            });
-        }
-
-        document.querySelector('.nav-button.left').addEventListener('click', () => {
-            currentIndex = (currentIndex === 0) ? totalBanners - 1 : currentIndex - 1;
-            showBanner(currentIndex);
-        });
-
-        document.querySelector('.nav-button.right').addEventListener('click', () => {
-            currentIndex = (currentIndex === totalBanners - 1) ? 0 : currentIndex + 1;
-            showBanner(currentIndex);
-        });
-
-        showBanner(currentIndex); // Show the first banner initially
     </script>
 
 
 <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        // Next/previous controls
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            if (n > slides.length) { slideIndex = 1 }    
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slides[slideIndex-1].style.display = "block";  
-        }
+       
     </script>
 
 
@@ -530,29 +478,8 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-    <script>
-      var InitiativesSlider = new Swiper('.initiatives-slider', {
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        loop: true,
-        slidesPerView: 'auto',
-        coverflowEffect: {
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }
-      });
-    </script>
+    <script src="banners.js"></script>
+    <script src="slides.js"></script>
+    <script src="initiatives.js"></script>
 </body>
 </html>
