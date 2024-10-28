@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Srikakulam Police Department</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+     body {
+    
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-family: Arial, sans-serif; 
+    
+    background: #fff;
+    font-size: 100%;
+    
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a9396;
+    padding: 0;
+    color: white;
+    position: relative;
+    
+}
+.logo {
+   
+height:auto;
+    width: 100px;
+   padding-top: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+    font-weight: bold;
+}
+nav {
+    display: flex;
+    background-color:#0a9396;
+    justify-content: center;
+    margin-left: auto;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    position: relative;
+    align-items: right;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+    position: relative; /* Allow positioning for the hover effect */
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    border-radius: 5px;
+}
+
+/* Dropdown styles */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; /* Align dropdown to the left of the parent */
+    background-color: whitesmoke;
+    list-style: none;
+    height: auto; /* Remove fixed height */
+    min-width: 160px; /* Set a minimum width for dropdown */
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+}
+
+nav ul li ul li {
+    padding: 10px; /* Add padding for dropdown items */
+}
+
+nav ul li ul li a {
+    padding: 10px; /* Ensure padding for dropdown links */
+    color: black; /* Change text color for dropdown */
+    font-size: 14px;
+}
+
+nav ul li ul li a:hover {
+    background-color: rgba(18, 140, 126, 0.507);
+    border-radius: 5px;
+}
+
+nav ul li:hover ul {
+    display: block; /* Show dropdown on hover */
+}
+
+main {
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+/* Section Styles */
+.history-box, .early-years, .milestone-card, .modern-era {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.milestones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.milestone-date {
+    font-weight: bold;
+    color: #0a9396;
+}
+
+/* Image Gallery */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-gallery img {
+    width: 200px;
+    margin: 10px;
+    border: 2px solid #0a9396;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header, nav, footer {
+        padding: 10px;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+        text-align: center; /* Center the title for smaller screens */
+    }
+
+    .milestones {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        width: 60px; /* Adjust the width for smaller screens */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: center;
+    }
+
+    nav li {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 50px; /* Adjust the width for smaller screens */
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+    }
+}
+
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Vision and Mission Styling */
+.vision-mission {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vision-mission h3 {
+    text-align: center;
+    color: #003366;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.vision-mission h4 {
+    color: #003366;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.vision-mission ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.vision-mission ul li {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.vision-mission ul li strong {
+    color: #0066cc;
+}
+
+.vision-mission ul li::before {
+    content: "•";
+    color: #0066cc;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.vision-mission {
+    transition: all 0.3s ease;
+}
+
+.vision-mission:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .vision-mission h3 {
+        font-size: 24px;
+    }
+
+    .vision-mission h4 {
+        font-size: 20px;
+    }
+
+    .vision-mission ul li {
+        font-size: 16px;
+    }
+}
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.timeline-container {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-icon {
+    background-color: #5bc0de;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: -20px;
+    top: 10px;
+}
+
+.timeline-content {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(100% - 60px); /* Adjusting for the icon */
+    margin-left: 60px; /* Adding margin for the icon */
+    position: relative;
+}
+
+.timeline-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.timeline-date {
+    display: block;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+.timeline-container {
+    position: relative;
+    overflow: hidden; /* Hide overflow for sliding effect */
+    width: 100%; /* Full width */
+}
+
+.timeline-slider {
+    display: flex; /* Display items in a row */
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.timeline-item {
+    flex: 0 0 100%; /* Each item takes full width of the container */
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #31b0d5; /* Darker shade on hover */
+}
+
+
+@media (max-width: 600px) {
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline-icon {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-bottom: 10px;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+footer {
+    text-align: center;
+} 
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+        <h1 class="header-title">Srikakulam Police Department</h1>
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a>
+                <ul>
+                    <li><a href="">History</a></li>
+                    <li><a href="">Organisation Chart</a></li>
+                    <li><a href="">Awards</a></li>
+                </ul>
+            </li>
+            <li><a href="#about">wings</a>
+                <ul>
+                    <li><a href="">Law & order</a></li>
+                    <li><a href="">Traffic</a></li>
+                    <li><a href="">Dail 100</a></li>
+                    <li><a href="">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contacts.html">Contact Us</a></li>
+        </ul>
+    </nav>
+     <!-- Recent Activity Bar -->
+     <div class="recent_activity">
+    
+        <marquee> <p>Sikakulam Police Department <a href="index.html"></a></p></a></marquee>
+    </div>
+
+</section>
+
+    <main>
+        <div class="container">
+            <h2>History of Srikakulam Police Department</h2>
+            
+            <div class="history-box">
+                <p>The Srikakulam Police Department has a rich history that reflects the evolution of law enforcement in India. Established during the British colonial era, the police force was initially formed to maintain order and enforce the laws imposed by the colonial government.</p>
+                <p>After India gained independence in 1947, the Srikakulam Police Department underwent several reforms to align with democratic principles and protect the rights of citizens. The department's primary objectives include maintaining public order, preventing crime, and ensuring the safety and security of the community.</p>
+                <p>Over the years, the Srikakulam Police have adopted modern policing techniques and technologies, focusing on community engagement and proactive crime prevention. The department has also established various wings, such as the Crime Branch, Traffic Police, and Women Safety Units, to address specific issues within the community.</p>
+                <p>Today, the Srikakulam Police Department is committed to upholding the law with integrity and transparency, fostering trust within the community, and adapting to the changing landscape of crime and public safety challenges.</p>
+            </div>
+        </div>
+    
+        <div class="container">
+            <h2>Early Years of Srikakulam Police Department</h2>
+            
+            <div class="early-years">
+                <p>The Srikakulam Police Department was established in the early 20th century during the British Raj. Its formation was part of a broader strategy to maintain law and order in an increasingly complex society. Initially, the police force in Srikakulam was small, comprising a handful of officers responsible for policing the urban and rural areas.</p>
+                <p>In the beginning, the department focused on maintaining public order and enforcing colonial laws, which were often met with resistance from the local populace. Officers were tasked with handling various challenges, including communal riots, land disputes, and the occasional uprising against colonial authority.</p>
+                <p>As the freedom movement gained momentum in India, the role of the police evolved. Srikakulam Police became involved in suppressing protests and maintaining order during strikes and demonstrations. This period was marked by a significant transition as the department started to adapt to the changing political landscape.</p>
+                <p>By the mid-20th century, post-independence reforms began to reshape the Srikakulam Police Department. New strategies and policies were introduced, focusing on community policing and improving relations with the citizens. The early years laid the groundwork for the department's mission to protect and serve the public while upholding the law.</p>
+            </div>
+        </div>
+        <div class="container">
+            <h2>Significant Milestones</h2>
+            
+            <div class="milestones">
+                <div class="milestone-card">
+                    <p class="milestone-date">1947</p>
+                    <p class="milestone-description">Post-independence, the Srikakulam Police Department was restructured to align with democratic principles, focusing on community service and law enforcement integrity.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">1960</p>
+                    <p class="milestone-description">Formation of the Crime Investigation Department (CID) to enhance the investigation capabilities and streamline crime-solving processes.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">1980</p>
+                    <p class="milestone-description">Introduction of the Women Safety Wing, dedicated to addressing crimes against women and promoting their safety and empowerment within the community.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">1991</p>
+                    <p class="milestone-description">Launch of the Traffic Police division to manage increasing vehicle congestion and ensure road safety through awareness and strict enforcement.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">1997</p>
+                    <p class="milestone-description">Inauguration of community policing initiatives, aimed at building trust between the police and local communities through regular outreach programs.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">2005</p>
+                    <p class="milestone-description">Establishment of the Dial-100 emergency response system, providing a quick and efficient way for citizens to report emergencies and receive immediate assistance.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">2010</p>
+                    <p class="milestone-description">Implementation of modern technology and surveillance systems in policing, enhancing the department's ability to respond to crime and ensure public safety.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">2015</p>
+                    <p class="milestone-description">Introduction of the Police Mitra program, fostering partnerships with local residents to address safety concerns and crime prevention.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">2018</p>
+                    <p class="milestone-description">Launch of the Smart Policing initiative, utilizing data analytics and technology to enhance law enforcement strategies and improve public safety outcomes.</p>
+                </div>
+                <div class="milestone-card">
+                    <p class="milestone-date">2020</p>
+                    <p class="milestone-description">Introduction of community policing initiatives to strengthen relationships with citizens, fostering trust and cooperation between the police and the community.</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="modern-era">
+            <h2>Modern Era</h2>
+            <p>
+                The modern era of the Srikakulam Police Department has been characterized by significant technological advancements and an emphasis on community engagement. Since the turn of the 21st century, the department has evolved to meet the challenges of a rapidly changing society, prioritizing public safety, transparency, and efficient law enforcement.
+            </p>
+            
+            <h3>Technological Advancements</h3>
+            <p>
+                With the advent of technology, the Srikakulam Police Department has integrated various modern tools and systems to enhance operational efficiency:
+            </p>
+            <ul>
+                <li><strong>Digital Surveillance Systems:</strong> Installation of CCTV cameras in strategic locations has increased monitoring capabilities and improved crime prevention.</li>
+                <li><strong>Data Analytics:</strong> Utilization of data analytics for crime mapping and analysis has allowed the police to identify hotspots and deploy resources more effectively.</li>
+                <li><strong>Mobile Applications:</strong> The introduction of mobile apps for reporting crimes and accessing police services has empowered citizens to engage with law enforcement conveniently.</li>
+                <li><strong>Social Media Outreach:</strong> The department actively uses social media platforms to disseminate information, engage with the community, and encourage public reporting of crimes.</li>
+            </ul>
+        
+            <h3>Community Policing Initiatives</h3>
+            <p>
+                Recognizing the importance of community relationships, the Srikakulam Police have implemented various initiatives aimed at fostering trust and collaboration:
+            </p>
+            <ul>
+                <li><strong>Police Mitra Program:</strong> Launched to build partnerships with local residents, this program encourages citizen involvement in crime prevention efforts.</li>
+                <li><strong>Public Forums:</strong> Regular community meetings and forums provide a platform for citizens to voice their concerns and collaborate with the police on local safety issues.</li>
+                <li><strong>Awareness Campaigns:</strong> Educational programs on topics like traffic safety, cybercrime, and domestic violence aim to inform and empower the public.</li>
+                <li><strong>Youth Engagement:</strong> Initiatives targeting schools and youth organizations focus on educating young people about safety and the role of law enforcement.</li>
+            </ul>
+        
+            <h3>Focus on Transparency and Accountability</h3>
+            <p>
+                The Srikakulam Police Department is committed to maintaining transparency and accountability in its operations:
+            </p>
+            <ul>
+                <li><strong>Public Access to Information:</strong> The department provides accessible information about policies, procedures, and performance metrics to the community.</li>
+                <li><strong>Complaint Resolution Mechanisms:</strong> Establishing clear channels for filing complaints against police conduct ensures accountability and builds public trust.</li>
+                <li><strong>Community Feedback:</strong> The department actively seeks feedback from the community to improve services and address concerns.</li>
+            </ul>
+        
+            <h3>Challenges and Opportunities</h3>
+            <p>
+                While the modern era has brought about numerous advancements, the Srikakulam Police Department continues to face challenges such as rising crime rates, drug abuse, and cyber threats. However, these challenges also present opportunities for innovation and growth:
+            </p>
+            <ul>
+                <li><strong>Adapting to Cybercrime:</strong> The department is enhancing its capabilities to combat cybercrime through specialized training and partnerships with tech firms.</li>
+                <li><strong>Strengthening Community Ties:</strong> Ongoing community engagement initiatives are crucial in building resilience against crime and fostering a safer environment for all.</li>
+                <li><strong>Collaboration with Other Agencies:</strong> Partnerships with neighboring police departments and state agencies improve resource sharing and collective problem-solving.</li>
+            </ul>
+        
+            <p>
+                The Srikakulam Police Department remains dedicated to serving the community with integrity and professionalism, leveraging modern tools and strategies to create a safer and more connected society.
+            </p>
+        </div>
+        
+        <h3>Vision and Mission</h3>
+<div class="vision-mission">
+    <h4>Our Vision</h4>
+    <ul>
+        <li><strong>Vision of Safety:</strong> To create a safe and secure environment for every individual within the Srikakulam district, ensuring a society where people can live without fear.</li>
+        <li><strong>Commitment to Community Trust:</strong> To foster a culture of transparency and accountability, building trust and mutual respect between the police force and the community.</li>
+        <li><strong>Innovation in Policing:</strong> To leverage modern technology and innovative policing strategies to ensure proactive and efficient law enforcement.</li>
+        <li><strong>Inclusivity and Equality:</strong> To serve every segment of society impartially, upholding the values of justice, fairness, and equality.</li>
+        <li><strong>Preventive Policing:</strong> To move from a reactive to a proactive stance, preventing crimes before they occur through intelligent analysis and community collaboration.</li>
+    </ul>
+
+    <h4>Our Mission</h4>
+    <ul>
+        <li><strong>To Serve with Integrity:</strong> Upholding the highest standards of integrity and professionalism, treating every citizen with dignity and respect.</li>
+        <li><strong>Community Engagement:</strong> Actively engaging with the community to solve local problems, understanding their needs, and addressing safety concerns through collaboration.</li>
+        <li><strong>Crime Prevention and Detection:</strong> Implementing effective crime prevention strategies and conducting thorough investigations to bring offenders to justice.</li>
+        <li><strong>Empowering Citizens:</strong> Through awareness programs, campaigns, and partnerships, educating citizens about crime prevention, their legal rights, and ways to safeguard themselves.</li>
+        <li><strong>Ensuring Safety for Vulnerable Groups:</strong> Paying special attention to the safety and security of women, children, the elderly, and marginalized communities through dedicated initiatives and units.</li>
+        <li><strong>Continuous Training and Development:</strong> Investing in the continuous development of officers through advanced training, equipping them with the skills needed for modern policing challenges.</li>
+        <li><strong>Response to Emergencies:</strong> Ensuring rapid response to emergencies, fostering a sense of security by always being accessible through hotlines like Dial-100.</li>
+        <li><strong>Leveraging Technology:</strong> Using state-of-the-art technologies, including surveillance, data analytics, and mobile solutions, to increase efficiency and enhance crime detection and prevention.</li>
+    </ul>
+</div>
+
+<section class="timeline">
+    <h3>Significant Milestones of the Srikakulam Police Department</h3>
+    <div class="timeline-container">
+        <!-- Event 1 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Formation of Srikakulam Police District</h4>
+                <span class="timeline-date">1950</span>
+                <p>The Srikakulam Police District was officially formed, addressing law and order issues in the growing region.</p>
+            </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>First Police Station Inaugurated</h4>
+                <span class="timeline-date">1965</span>
+                <p>The first police station in Srikakulam was inaugurated, serving as a central hub for law enforcement in the district.</p>
+            </div>
+        </div>
+        <!-- Event 3 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Implementation of Special Crime Units</h4>
+                <span class="timeline-date">1970</span>
+                <p>Special crime units were introduced to tackle rising crime rates in urban areas, focusing on major crimes.</p>
+            </div>
+        </div>
+        <!-- Event 4 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Adoption of Modern Forensic Techniques</h4>
+                <span class="timeline-date">1980</span>
+                <p>Modern forensic techniques were introduced, such as fingerprinting and ballistic analysis, to assist in solving crimes.</p>
+            </div>
+        </div>
+        <!-- Event 5 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Introduction of Technology in Policing</h4>
+                <span class="timeline-date">1995</span>
+                <p>Technology adoption began, improving response times and operational efficiency within the department.</p>
+            </div>
+        </div>
+        <!-- Event 6 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Establishment of Cyber Crime Cell</h4>
+                <span class="timeline-date">2000</span>
+                <p>The first Cyber Crime Cell was established to tackle online fraud and cybercrimes in the district.</p>
+            </div>
+        </div>
+        <!-- Event 7 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Launch of the First Women’s Police Station</h4>
+                <span class="timeline-date">2005</span>
+                <p>The Women’s Police Station was launched to address women’s safety and encourage female participation in law enforcement.</p>
+            </div>
+        </div>
+        <!-- Event 8 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Implementation of Community Policing</h4>
+                <span class="timeline-date">2010</span>
+                <p>Community policing initiatives were introduced to build strong community relationships and reduce crime rates.</p>
+            </div>
+        </div>
+        <!-- Event 9 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Launch of Mobile App for Citizen Services</h4>
+                <span class="timeline-date">2015</span>
+                <p>The police department launched a mobile app to provide better access to police services for citizens.</p>
+            </div>
+        </div>
+        <!-- Event 10 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Introduction of Body Cameras for Traffic Police</h4>
+                <span class="timeline-date">2018</span>
+                <p>Body cameras were introduced for traffic police to improve transparency and accountability during enforcement.</p>
+            </div>
+        </div>
+        <!-- Event 11 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>AI-Based Traffic Monitoring System</h4>
+                <span class="timeline-date">2020</span>
+                <p>The department introduced AI-based traffic monitoring to improve road safety and reduce traffic incidents.</p>
+            </div>
+        </div>
+        <!-- Event 12 -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+                <img src="#" alt="Formation of Srikakulam Police District">
+                <h4>Zero Crime Zones Achieved in Rural Areas</h4>
+                <span class="timeline-date">2022</span>
+                <p>The department successfully created zero crime zones in multiple rural areas, significantly reducing crime rates.</p>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <h3>Historical Photos</h3>
+            <img src="images/photo1.jpg" alt="Historical Photo 1">
+            <img src="images/photo2.jpg" alt="Historical Photo 2">
+            <img src="images/photo3.jpg" alt="Historical Photo 3">
+            <!-- Add more images -->
+        </div>
+
+        <!-- Community Contributions -->
+        <section class="community-stories">
+            <h3>Community Stories</h3>
+            <p>Read about community experiences with the police department over the years...</p>
+            <!-- You could include links to stories or testimonials here -->
+        </section>
+
+        <!-- Infographics -->
+        <div class="infographics">
+            <h3>Department Growth Over the Years</h3>
+            <p>Include an infographic or link to a detailed report on departmental growth and achievements.</p>
+        </div>
+
+        <!-- FAQs Section -->
+        <div class="faqs">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q:</strong> What is the history of the Srikakulam Police?</p>
+            <p><strong>A:</strong> The history dates back to [insert relevant history].</p>
+            <p><strong>Q:</strong> How can I get involved with the police department?</p>
+            <p><strong>A:</strong> Community engagement initiatives are regularly held.</p>
+            <!-- Add more FAQs -->
+        </div>
+
+        <!-- Downloadable Resources -->
+        <div class="resources">
+            <h3>Downloadable Resources</h3>
+            <a href="history-report.pdf" download>Download Historical Report</a>
+            <!-- Add more resources as needed -->
+        </div>
+
+        <!-- Quotes Section -->
+        <div class="quotes">
+            <h3>Quotes from Officers</h3>
+            <blockquote>"We serve the community with honor and integrity."</blockquote>
+            <blockquote>"Safety is our priority, community engagement is our commitment."</blockquote>
+            <!-- Add more quotes -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
+    </footer>
+
+    <script >
+        // JavaScript (e.g., using jQuery)
+$(window).on('scroll', function() {
+    $('.section').each(function() {
+        var sectionTop = $(this).offset().top;
+        var windowTop = $(window).scrollTop();
+        if (windowTop >= sectionTop - windowHeight / 2) {
+            $(this).addClass('show');
+        }
+    });
+});
+
+    </script> <!-- Link to your JavaScript file if needed -->
+
+<script>
+    let currentSlide = 0; // Keep track of the current slide
+    const slides = document.querySelectorAll('.timeline-item'); // Select all slides
+    
+    function changeSlide(direction) {
+        currentSlide += direction; // Update the current slide index
+    
+        // Ensure currentSlide stays within bounds
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1; // Go to the last slide
+        } else if (currentSlide >= slides.length) {
+            currentSlide = 0; // Go back to the first slide
+        }
+    
+        // Move the timeline-slider based on currentSlide
+        const slider = document.querySelector('.timeline-slider');
+        const offset = -currentSlide * 100; // Calculate the offset
+        slider.style.transform = `translateX(${offset}%)`; // Apply the transform
+    }
+    </script>
+
+
+
+
+
+
+</body>
+</html>

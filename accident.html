@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikakulam Police Department - Accident Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+        <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a9396;
+            padding: 0;
+            color: white;
+            position: relative;
+        }
+        .logo {
+            width: 100px;
+            padding: 5px;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            font-weight: bold;
+        }
+        nav {
+            background-color: #0a9396;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.112);
+            border-radius: 5px;
+        }
+        /* Dropdown styles */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0a9396;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 150px;
+            z-index: 1;
+            border-radius: 10px;
+        }
+        nav ul li ul li a {
+            padding: 10px;
+            width: auto;
+            display: block;
+        }
+        nav ul li ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.112);
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 14px;
+            padding: 5px 0;
+            color: #555;
+        }
+        .accident{
+            margin: auto;
+        }
+      
+        footer {
+            background-color: #0a9396;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            position:relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <!-- Left Logo -->
+            <div>
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+
+            <!-- Center Heading -->
+            <h1 class="header-title">Srikakulam Police Department</h1>
+
+            <!-- Right Logo -->
+            <div>
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About Us</a>
+                    <ul>
+                        <li><a href="#mission">Mission</a></li>
+                        <li><a href="#vision">Vision</a></li>
+                        <li><a href="#history">History</a></li>
+                    </ul>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="accident">
+    <main class="head">
+        <h1>Srikakulam Police Department</h1>
+        <section id="home">
+            <h2>Welcome to the Srikakulam Police Department</h2>
+            <p>Your safety is our priority. We are committed to serving and protecting our community.</p>
+        </section>
+
+        
+
+        <section id="accident-analysis">
+            <h2>Accident Analysis</h2>
+            <p>Understanding accident trends is crucial for improving road safety. Here are some insights:</p>
+            <h3>Recent Trends</h3>
+            <ul>
+                <li>Increase in accidents during monsoon season</li>
+                <li>Majority of accidents involve two-wheelers</li>
+                <li>High accident rates near school zones</li>
+            </ul>
+            <h3>Preventive Measures</h3>
+            <p>We are implementing measures such as:</p>
+            <ul>
+                <li>Increased patrolling in high-accident areas</li>
+                <li>Public awareness campaigns</li>
+                <li>Collaboration with local organizations for safety workshops</li>
+            </ul>
+        </section>
+    </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy;SRI SIVANI COLLEGE OF ENGINEERING 2022-2026 AIML BATCH. All rights reserved.</p>
+    </footer>
+</body>
+</html>
