@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Srikakulam Police Department</title>
   <style>
-    body {
+   body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -17,6 +17,8 @@
             padding: 0;
             color: white;
             position: relative;
+            height: auto;
+            width: auto;
         }
         .logo {
             width: 100px;
@@ -56,7 +58,7 @@
         }
         nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.112);
-            border-radius: 5px;
+           
         }
         /* Dropdown styles */
         nav ul li ul {
@@ -83,81 +85,37 @@
         nav ul li:hover ul {
             display: block;
         }
+/* Section Styling */
+section {
+  padding: 2rem;
+}
+
+#about h2, #law-order h2 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+/* Law & Order Section */
+#law-order .law-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+#law-order .law-item {
+  background-color: #f1f1f1;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+#law-order h3 {
+  color: #0055cc;
+  margin-bottom: 0.5rem;
+}
 
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
 
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-        }
-
-        /* Hamburger menu on smaller screens */
-        @media only screen and (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                background-color: #00509e;
-                width: 100%;
-                text-align: center;
-            }
-
-            .navbar ul.show {
-                display: flex;
-            }
-        }
-
-    .container {
-      padding: 2em;
-      max-width: 900px;
-      margin: auto;
-    }
-    .emergency-numbers {
-      list-style-type: none;
-      padding: 0;
-    }
-    .emergency-numbers li {
-        color:black;
-        font-size: 18px;
-        font-weight:bold;
-        font-style:italic;
-      background-color: #e0e7ff;
-      margin: 1em 0;
-      padding: 1em;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-    .emergency-numbers a span{
-       font-size: 20px;
-        background-color:#0a9396;
-       border: 5px solid #0a9396;
-       border-radius: 5px;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-    }
-    .emergency-numbers a {
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .emergency-numbers li:hover {
-      color: red;
-      transform: scale(1.05);
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
@@ -190,7 +148,7 @@
                 </li>
                 <li><a href="#about">wings</a>
                     <ul>
-                        <li><a href="law.html">Law & order</a></li>
+                        <li><a href="">Law & order</a></li>
                         <li><a href="traffic.html">Traffic</a></li>
                         <li><a href="tel:100">Dail 100</a></li>
                         <li><a href="">AHTU</a></li>
@@ -210,31 +168,48 @@
         </nav>
     </section>
 
-<div class="container">
-  <h2>Emergency Contact Numbers</h2>
-  <ul class="emergency-numbers">
-    <li>
-      <span>Police Emergency:</span>
-      <a href="tel:100"><span>DAIL</span></a>
-    </li>
-    <li>
-      <span>Fire Services:</span>
-      <a href="tel:101"><span>DAIL</span></a>
-    </li>
-    <li>
-      <span>Ambulance:</span>
-      <a href="tel:108"><span>DAIL</span></a>
-    </li>
-    <li>
-      <span>Women’s Helpline:</span>
-      <a href="tel:181"><span>DAIL</span></a>
-    </li>
-    <li>
-      <span>Child Helpline:</span>
-      <a href="tel:1098"><span>DAIL</span></a>
-    </li>
-  </ul>
-</div>
+  <!-- Law & Order Section -->
+  <section id="law-order">
+    <h2>Law & Order</h2>
+    <p>The Srikakulam Police Department works tirelessly to uphold law and order in the community. Here is a detailed look at some of the major laws we enforce:</p>
+    <div class="law-details">
+      <div class="law-item">
+        <h3>Criminal Law</h3>
+        <p>Ensures that individuals committing criminal offenses face the law. Common areas covered:</p>
+        <ul>
+          <li><strong>Indian Penal Code (IPC):</strong> Addresses crimes like theft, assault, fraud, and others.</li>
+          <li><strong>Criminal Procedure Code (CrPC):</strong> Governs criminal investigations, arrests, and court proceedings.</li>
+          <li><strong>Narcotic Drugs and Psychotropic Substances Act:</strong> Controls the use and distribution of illegal substances.</li>
+        </ul>
+      </div>
+      <div class="law-item">
+        <h3>Traffic Laws</h3>
+        <p>Aimed at ensuring safe and responsible use of roads by all citizens:</p>
+        <ul>
+          <li><strong>Motor Vehicles Act:</strong> Regulates vehicle registration, licensing, and traffic offenses.</li>
+          <li><strong>Helmet & Seatbelt Regulations:</strong> Mandatory for drivers and passengers for safety.</li>
+          <li><strong>Drunk Driving Laws:</strong> Strict penalties for operating vehicles under the influence.</li>
+        </ul>
+      </div>
+      <div class="law-item">
+        <h3>Cybercrime Laws</h3>
+        <p>Handles cyber-related offenses to protect citizens from online crimes:</p>
+        <ul>
+          <li><strong>Information Technology Act:</strong> Covers cybercrimes like hacking, identity theft, and cyberbullying.</li>
+          <li><strong>Data Protection Laws:</strong> Protects citizens’ personal information and privacy online.</li>
+        </ul>
+      </div>
+      <div class="law-item">
+        <h3>Public Safety Laws</h3>
+        <p>Designed to protect public peace and order:</p>
+        <ul>
+          <li><strong>Arms Act:</strong> Regulates the possession and use of firearms and weapons.</li>
+          <li><strong>Public Order Act:</strong> Addresses public gatherings and disturbances to ensure public peace.</li>
+          <li><strong>Domestic Violence Act:</strong> Offers protection against violence in domestic settings.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
