@@ -174,7 +174,13 @@ nav ul li:hover ul {
     color:red;
 
 }
-
+.banner-4 .text-box h2{
+      font-size: 30px;
+}
+}
+.banner-4 .text-box p{
+    font-size: 25px;
+}
 /* Navigation Buttons */
 .nav-button {
     position: absolute;
@@ -445,6 +451,7 @@ font-size: 22px;
 display: flex;
 padding: 5px;
 width: 75%;
+height: fit-content;
 background-color: #fff;
 border: 1px solid #ddd;
  border-radius: 10px;
@@ -469,6 +476,14 @@ padding-top:10px;
 width: 35%;
 
 
+}
+.Services p{
+    opacity: 10pxß;
+}
+
+
+.newsbars{
+    display: flex;
 }
 
 
@@ -509,7 +524,7 @@ text-transform: uppercase;
 .news marquee		{
 max-height:200px;}
 .news p a 			{
-color:inherit;font-size: 16px !important;
+color:inherit;font-size: 14px !important;
 }
 .news p 			{
 display:block;font-family: 'Roboto', sans-serif; font-size:14px; ;width:100%;; 
@@ -522,7 +537,9 @@ display:block;font-family: 'Roboto', sans-serif; font-size:14px; ;width:100%;;
 
 
 .newsbar{
-width: 50%;
+    margin: 20px;
+    height: 30%;
+width: 60%;
 background-color:white;
 align-items: center;
 box-sizing: border-box;

@@ -15,7 +15,7 @@ function showBanner(index) {
             void textBox.offsetWidth; // Trigger reflow
             textBox.classList.add('animate'); // Add animation class back
         }
-    });
+    })
 }
 
 document.querySelector('.nav-button.left').addEventListener('click', () => {
