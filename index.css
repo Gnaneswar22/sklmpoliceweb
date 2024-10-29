@@ -108,7 +108,7 @@ nav ul li:hover ul {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 65vh;
+    height: 60vh;
     background-color: white; /* White background for the container */
 }
 

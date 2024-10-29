@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikakulam Police Department - Traffic Rules and Laws</title>
+    <style>
+        /* Basic Styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a9396;
+            padding: 0;
+            color: white;
+            position: relative;
+            
+        }
+        .logo {
+            width: 100px;
+
+            padding-left: 15px;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            font-weight: bold;
+        }
+        nav {
+            background-color:#0a9396;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.11);
+            border-radius: 5px;
+        }
+        /* Dropdown styles */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: whitesmoke;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 150px;
+            z-index: 1;
+            border-radius: 10px;
+        }
+        nav ul li ul li a {
+            padding: 10px;
+            width: auto;
+            display: block;
+            color: black;
+        }
+        nav ul li ul li a:hover {
+            background-color: rgba(18, 140, 126, 0.651);
+            border-radius: 5px;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        main {
+            margin: 20px;
+            max-width: 1200px;
+        }
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #0a0b0b;
+        }
+        footer {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .list {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <header>
+            <!-- Left Logo -->
+            <div>
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+
+            <!-- Center Heading -->
+            <h1 class="header-title">Srikakulam Police Department</h1>
+
+            <!-- Right Logo -->
+            <div>
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+        </header>
+
+        
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a>
+                    <ul>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="">Organisation Chart</a></li>
+                        <li><a href="">Awards</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">wings</a>
+                    <ul>
+                        <li><a href="">Law & order</a></li>
+                        <li><a href="">Traffic</a></li>
+                        <li><a href="">Dail 100</a></li>
+                        <li><a href="">AHTU</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accedent Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+                </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+         <!-- Recent Activity Bar -->
+         <div class="recent_activity">
+        
+            <marquee> <p>Sikakulam Police Department <a href="index.html"></a></p></a></marquee>
+        </div>
+    
+    </section>
+
+<main>
+
+    <section id="overview">
+        <h2>Overview of Srikakulam Police Department</h2>
+        <p>The Srikakulam Police Department is dedicated to safeguarding citizens, maintaining law and order, and upholding justice in the Srikakulam district. Our officers work tirelessly to prevent crime, ensure road safety, and assist the community. We emphasize community engagement and proactive policing to create a safe environment for everyone.</p>
+    </section>
+
+    <section id="traffic-rules">
+        <h2>Traffic Rules and Regulations</h2>
+        <h3>General Driving Rules</h3>
+        <ul class="list">
+            <li><b>Obey Speed Limits:</b> Follow the posted speed limits to avoid accidents.</li>
+            <li><b>Seat Belts:</b> Always wear seat belts while driving or as a passenger.</li>
+            <li><b>No Mobile Phones:</b> Avoid using mobile phones while driving; use hands-free devices if necessary.</li>
+            <li><b>Follow Lane Discipline:</b> Stick to your lane and avoid sudden lane changes.</li>
+            <li><b>Use Indicators:</b> Always use indicators when turning or changing lanes.</li>
+        </ul>
+        
+        <h3>Helmet and Seatbelt Requirements</h3>
+        <p>It is mandatory for all two-wheeler riders to wear helmets. Car drivers and passengers must wear seat belts. Violations may lead to fines or penalties, as well as increased risk of injury.</p>
+        
+        <h3>Drink and Drive Policy</h3>
+        <p>Driving under the influence of alcohol or drugs is strictly prohibited. Random breathalyzer checks are conducted, and offenders face heavy fines, license suspension, or imprisonment.</p>
+    </section>
+
+    <section id="penalties">
+        <h2>Penalties for Traffic Violations</h2>
+        <p>To maintain road safety, specific fines and penalties are imposed for various violations. Here’s an overview:</p>
+        <table border="1" cellpadding="10" cellspacing="0" style="width:100%; text-align: left;">
+            <tr>
+                <th>Violation</th>
+                <th>Penalty</th>
+            </tr>
+            <tr>
+                <td>Overspeeding</td>
+                <td>₹1000 - ₹2000</td>
+            </tr>
+            <tr>
+                <td>Driving Without License</td>
+                <td>₹5000</td>
+            </tr>
+            <tr>
+                <td>Drunk Driving</td>
+                <td>₹10,000 or imprisonment up to 6 months</td>
+            </tr>
+            <tr>
+                <td>Not Wearing Seatbelt</td>
+                <td>₹1000</td>
+            </tr>
+            <tr>
+                <td>Using Mobile Phone</td>
+                <td>₹1000 - ₹5000</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="faq">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+        <h3>1. What are the documents I need to carry while driving?</h3>
+        <p>Drivers must carry their driving license, vehicle registration certificate, insurance, and pollution under control (PUC) certificate.</p>
+        
+        <h3>2. How can I pay a traffic fine?</h3>
+        <p>Traffic fines can be paid online through the official Srikakulam Police Department portal or at designated traffic police stations.</p>
+        
+        <h3>3. What should I do if I witness an accident?</h3>
+        <p>If you witness an accident, report it immediately by calling the police helpline number. Provide assistance if possible without compromising your safety.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you need assistance, please reach out to us through the following contact details:</p>
+        <ul class="list">
+            <li><b>Phone:</b> +91-XXXX-XXXXXX</li>
+            <li><b>Email:</b> info@srikakulampolice.gov.in</li>
+            <li><b>Address:</b> Srikakulam Police Station, Srikakulam, Andhra Pradesh, India</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
