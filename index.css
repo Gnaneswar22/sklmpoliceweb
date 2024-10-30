@@ -23,7 +23,7 @@ header {
 .logo {
    
 height:auto;
-    width: 100px;
+    width: 120px;
    padding-top: 18px;
     padding-left: 30px;
     padding-right: 30px;
@@ -176,7 +176,6 @@ nav ul li:hover ul {
 }
 .banner-4 .text-box h2{
       font-size: 30px;
-}
 }
 .banner-4 .text-box p{
     font-size: 25px;
