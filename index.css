@@ -3,11 +3,11 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-family: Arial, sans-serif; 
-    
+
     background: #fff;
-    font-size: 100%;
+    font-size: 90%;
     
 }
 header {
@@ -23,10 +23,10 @@ header {
 .logo {
    
 height:auto;
-    width: 120px;
+    width: 100px;
    padding-top: 18px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
 .header-title {
@@ -137,7 +137,6 @@ nav ul li:hover ul {
     position: absolute;
     top: 20%;
     left: 100px;
-    
     padding: 20px;
     color: rgb(254, 252, 252); /* Text color */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -225,7 +224,7 @@ nav ul li:hover ul {
     }
 }
 
-.background-image1 {
+.background-image{
     background-color: #0a949689;
     position: absolute;
     width: 45%; /* Make it wider for the animation */

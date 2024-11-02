@@ -29,3 +29,5 @@ document.querySelector('.nav-button.right').addEventListener('click', () => {
 });
 
 showBanner(currentIndex); // Show the first banner initially
+
+
