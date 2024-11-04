@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Department Hierarchy Gallery</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-family: Arial, sans-serif; 
+            background: #fff;
+            font-size: 90%;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a9396;
+            padding: 0;
+            color: white;
+            position: relative;
+            
+        }
+        .logo {
+           
+        height:auto;
+            width: 100px;
+           padding-top: 18px;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            background-color:#0a9396;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 17px;
+            padding: 10px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.11);
+            border-radius: 5px;
+        }
+        /* Dropdown styles */
+        nav ul li ul {
+            display:none;
+            position:absolute;
+            top: 100%;
+           
+            background-color: whitesmoke;
+          
+            list-style: none;
+            height: auto;;
+            width: 160px;
+            z-index: 10;
+            border-radius: 10px;
+        }
+        nav ul li ul li a {
+            padding: auto;
+            height: auto;
+            width: auto;
+            display: block;
+            color: black;
+            font-size: 14px;
+            align-items: center;
+        }
+        nav ul li ul li a:hover {
+            background-color: rgba(18, 140, 126, 0.507);
+            border-radius: 5px;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        .Officers{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align content */
+            text-align: center;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 20px;
+            padding-bottom: 5px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            gap: 10px;
+            padding: 10px;
+            max-width: 800px; /* Optional: set a max width for the gallery */
+        }
+
+        figure {
+            margin: 0;
+            text-align: center;
+            border: 2px solid #ccc; /* Border around the figure */
+            border-radius: 8px; /* Rounded corners */
+            padding: 10px; /* Space between border and content */
+            background-color: #fff; /* Background color for the figure */
+        }
+
+        .gallery img {
+            width: 100px; /* Set image width */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery figure:hover {
+            transform: scale(1.05);
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Left Logo -->
+        <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+
+        <!-- Center Heading -->
+        <h1 class="header-title">Srikakulam Police Department</h1>
+
+        <!-- Right Logo -->
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+    </header>
+
+    
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About Us</a>
+                <ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                </ul>
+            </li>
+            <li><a href="#about">wings</a>
+                <ul>
+                    <li><a href="law.html">Law & order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dail 100</a></li>
+                    <li><a href="">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="">Women’s Corner</a></li>
+            <li><a href="">Services</a>
+              <ul>
+                <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
+                <li><a href="fir.html">View FIR</a></li>
+                <li><a href="domestic.html">Domestic Violence</a></li>
+                <li><a href="accident.html">Accedent Analysis</a></li>
+                <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+            </ul>
+          </li>
+            <li><a href="contacts.html">Contact Us</a></li>
+        </ul>
+    </nav>
+<section class="Officers">
+    <h1>Police Department Hierarchy Gallery</h1>
+
+    <h2>Chief of Police</h2>
+    <div class="gallery">
+        <figure>
+            <img src="images/chief.jpg" alt="Chief of Police">
+            <figcaption>Chief of Police: Leading the Department</figcaption>
+        </figure>
+    </div>
+
+    <h2>Deputy Chief</h2>
+    <div class="gallery">
+        <figure>
+            <img src="images/deputy_chief.jpg" alt="Deputy Chief">
+            <figcaption>Deputy Chief: Assisting the Chief</figcaption>
+        </figure>
+    </div>
+
+    <h2>Captains</h2>
+    <div class="gallery">
+        <figure>
+            <img src="images/captain1.jpg" alt="Captain 1">
+            <figcaption>Captain 1: Operations Division</figcaption>
+        </figure>
+        <figure>
+            <img src="images/captain2.jpg" alt="Captain 2">
+            <figcaption>Captain 2: Investigations Division</figcaption>
+        </figure>
+    </div>
+
+    <h2>Lieutenants</h2>
+    <div class="gallery">
+        <figure>
+            <img src="images/lieutenant1.jpg" alt="Lieutenant 1">
+            <figcaption>Lieutenant 1: Patrol</figcaption>
+        </figure>
+        <figure>
+            <img src="images/lieutenant2.jpg" alt="Lieutenant 2">
+            <figcaption>Lieutenant 2: Community Services</figcaption>
+        </figure>
+    </div>
+
+    <h2>Officers</h2>
+    <div class="gallery">
+        <figure>
+            <img src="images/officer1.jpg" alt="Officer 1">
+            <figcaption>Officer 1: Community Engagement Officer</figcaption>
+        </figure>
+        <figure>
+            <img src="images/officer2.jpg" alt="Officer 2">
+            <figcaption>Officer 2: Traffic Enforcement Officer</figcaption>
+        </figure>
+        <figure>
+            <img src="images/officer3.jpg" alt="Officer 3">
+            <figcaption>Officer 3: K-9 Unit Officer</figcaption>
+        </figure>
+        <figure>
+            <img src="images/officer4.jpg" alt="Officer 4">
+            <figcaption>Officer 4: Crime Scene Investigator</figcaption>
+        </figure>
+        <figure>
+            <img src="images/officer5.jpg" alt="Officer 5">
+            <figcaption>Officer 5: Patrol Officer</figcaption>
+        </figure>
+    </div>
+</section>
+</body>
+</html>
