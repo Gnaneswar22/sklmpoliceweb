@@ -5,84 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department - Domestic Violence</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #0a9396;
-            padding: 0;
-            color: white;
-            position: relative;
-        }
-        .logo {
-            width: 100px;
-            padding: 5px;
-        }
-        .recent_activity {
-            background-color: #61ddd3;
-            color: white;
-        }
-        .header-title {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 35px;
-            font-weight: bold;
-        }
-        nav {
-            background-color: #0a9396;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-        }
-        nav ul li {
-            position: relative;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-            padding: 10px;
-        }
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.112);
-            border-radius: 5px;
-        }
-        /* Dropdown styles */
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #0a9396;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            width: 150px;
-            z-index: 1;
-            border-radius: 10px;
-        }
-        nav ul li ul li a {
-            padding: 10px;
-            width: auto;
-            display: block;
-        }
-        nav ul li ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.112);
-        }
-        nav ul li:hover ul {
-            display: block;
-        }
+         body {
+    
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-family: Arial, sans-serif; 
+    
+    background: #fff;
+    font-size: 100%;
+    
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a9396;
+    padding: 0;
+    color: white;
+    position: relative;
+    
+}
+.logo {
+   
+height:auto;
+    width: 100px;
+   padding-top: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+    font-weight: bold;
+}
+nav {
+    display: flex;
+    background-color:#0a9396;
+    justify-content: center;
+    margin-left: auto;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    position: relative;
+    align-items: right;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+    position: relative; /* Allow positioning for the hover effect */
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    border-radius: 5px;
+}
+
+/* Dropdown styles */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; /* Align dropdown to the left of the parent */
+    background-color: whitesmoke;
+    list-style: none;
+    height: auto; /* Remove fixed height */
+    min-width: 160px; /* Set a minimum width for dropdown */
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+}
+
+nav ul li ul li {
+    padding: 10px; /* Add padding for dropdown items */
+}
+
+nav ul li ul li a {
+    padding: 10px; /* Ensure padding for dropdown links */
+    color: black; /* Change text color for dropdown */
+    font-size: 14px;
+}
+
+nav ul li ul li a:hover {
+    background-color: rgba(18, 140, 126, 0.507);
+    border-radius: 5px;
+}
+
+nav ul li:hover ul {
+    display: block; /* Show dropdown on hover */
+}
+
         .content {
             background: white;
             padding: 20px;
