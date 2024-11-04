@@ -7,9 +7,17 @@
     <style>
         /* Basic Styling */
         body {
+            background-color: #f7f7f7;
+            color: #333;
             margin: 0;
             font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-family: Arial, sans-serif; 
+            background: #fff;
+            font-size: 90%;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -21,9 +29,12 @@
             
         }
         .logo {
+           
+        height:auto;
             width: 100px;
-
-            padding-left: 15px;
+           padding-top: 18px;
+            padding-left: 80px;
+            padding-right: 80px;
         }
         
         .header-title {
@@ -34,7 +45,9 @@
             font-weight: bold;
         }
         nav {
+            display: flex;
             background-color:#0a9396;
+            justify-content: center;
         }
         nav ul {
             list-style-type: none;
@@ -51,7 +64,7 @@
         nav ul li a {
             text-decoration: none;
             color: white;
-            font-size: 16px;
+            font-size: 17px;
             padding: 10px;
         }
         nav ul li a:hover {
@@ -60,32 +73,34 @@
         }
         /* Dropdown styles */
         nav ul li ul {
-            display: none;
-            position: absolute;
+            display:none;
+            position:absolute;
             top: 100%;
-            left: 0;
+           
             background-color: whitesmoke;
-            padding: 0;
-            margin: 0;
+          
             list-style: none;
-            width: 150px;
-            z-index: 1;
+            height: auto;;
+            width: 160px;
+            z-index: 10;
             border-radius: 10px;
         }
         nav ul li ul li a {
-            padding: 10px;
+            padding: auto;
+            height: auto;
             width: auto;
             display: block;
             color: black;
+            font-size: 14px;
+            align-items: center;
         }
         nav ul li ul li a:hover {
-            background-color: rgba(18, 140, 126, 0.651);
+            background-color: rgba(18, 140, 126, 0.507);
             border-radius: 5px;
         }
         nav ul li:hover ul {
             display: block;
-        }
-        main {
+        }        main {
             margin: 20px;
             max-width: 1200px;
         }
@@ -99,15 +114,7 @@
         h2, h3 {
             color: #0a0b0b;
         }
-        footer {
-            background-color: #0056b3;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
+ 
         .list {
             padding-left: 20px;
         }
@@ -115,7 +122,7 @@
 </head>
 <body>
 
-    <section>
+    
         <header>
             <!-- Left Logo -->
             <div>
@@ -173,7 +180,7 @@
     </section>
 
 <main>
-
+<section>
     <section id="overview">
         <h2>Overview of Srikakulam Police Department</h2>
         <p>The Srikakulam Police Department is dedicated to safeguarding citizens, maintaining law and order, and upholding justice in the Srikakulam district. Our officers work tirelessly to prevent crime, ensure road safety, and assist the community. We emphasize community engagement and proactive policing to create a safe environment for everyone.</p>
@@ -249,12 +256,12 @@
             <li><b>Address:</b> Srikakulam Police Station, Srikakulam, Andhra Pradesh, India</li>
         </ul>
     </section>
+    
+</section>
 
 </main>
 
-<footer>
-    <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
-</footer>
+
 
 </body>
 </html>
