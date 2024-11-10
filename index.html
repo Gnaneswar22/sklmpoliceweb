@@ -9,6 +9,7 @@
     <link rel="icon" href="images/sklmlogo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     
+    
   
 </head>
 <body>
@@ -64,10 +65,13 @@
             </ul>
         </nav>
          <!-- Recent Activity Bar -->
-         <div class="recent_activity">
-        
-            <marquee> <p>Sikakulam Police Department <a href="index.html"></a></p></a></marquee>
-        </div>
+         <form action="index.php" method="post">
+          <div class="recent_activity">
+              <marquee>
+                  <p> <?php echo htmlspecialchars($activity_message); ? > <a href="index.html">Home</a></p>
+              </marquee>
+          </div>
+      </form>
     
     </section>
 
@@ -193,7 +197,7 @@
        
 
        
-    
+      <form action="#" method="post">
         
         <div class="newsbars">
         <div class="newsbar">
@@ -309,6 +313,8 @@
         
        </div>
         </div>
+      </form>
+        <form action="#" method="post1">
         <div class="newsbar">
           <h2 style="text-align:center;  text-decoration: underline; ">PRESS RELEASE</h2>
           <div class="news" method="POST" >
@@ -422,6 +428,7 @@
      </div>
       </div>
         </div>
+      </form>
       <br>
 <div class="hlayout">
         <section class="horizontal-layout">
