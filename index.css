@@ -95,13 +95,16 @@ nav ul li:hover ul {
 }
 
 .recent_activity{
+    
     justify-content: center;
     height: 24px;
- font-size: 14px;
- background-color: #0a949699;
- padding-bottom: 6px;
+    font-size: 14px;
+    background-color: #0a949699;
+    padding-top: 10px;
+ 
 
 }
+
 
   /* General Banner Styles */
   .image-container {

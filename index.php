@@ -109,7 +109,7 @@ $activities = $activityManager->getRecentActivities();
                 <?php else: ?>
                     <?php echo htmlspecialchars($activity['activity_text']); ?>
                 <?php endif; ?>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
             </span>
         <?php endforeach; ?>
     </marquee>
