@@ -98,7 +98,7 @@ nav ul li:hover ul {
     
     justify-content: center;
     height: 24px;
-    font-size: 14px;
+    font-size: 16px;
     background-color: #0a949699;
     padding-top: 10px;
  
@@ -538,7 +538,7 @@ display:block;font-family: 'Roboto', sans-serif; font-size:14px; ;width:100%;;
 
 
 .newsbar{
-    margin: 20px;
+    margin: 15px;
     height: 30%;
 width: 60%;
 background-color:white;
@@ -547,6 +547,9 @@ box-sizing: border-box;
 background-color: #fff;
 border: 1px solid #ddd;
 border-radius: 10px;
+font-size: 16px;
+text-indent: 20px;
+line-height: 30px;
 
 
 }

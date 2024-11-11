@@ -165,35 +165,53 @@ $activities = $activityManager->getRecentActivities();
     </div>
   </div>
 
-    <section class="top-news-sec fontSize">
-        <div class="container">
-            <div class="hdr-news-wrpr">
-                <h4><label> <a href="emergency.html"><img src="images/helpline.png" alt="helpline"> </a><span>Helplines</span> </label></h4>
-                <marquee onmouseover="this.stop();" onmouseout="this.start();">
-         <div class="marque-hldr hdrnews_marquee">
-                     
-                        <p>Child Line Day/Night: <a href="tel:1098">1098</a></p>
-      
-                     
-                        <p>Anti Bank Fraud Helpline: <a href="tel:8585063104">8585063104</a></p>
-      
-                     
-                        <p>Cyber PS : <a href="tel: 033-2214 3000">033-2214 3000</a> / <a href="tel: 98365 13000">98365 13000</a></p>
-      
-                     
-                        <p>Control Room: <a href="tel:100">100</a> / <a href="tel:1090">1090</a></p>
-      
-                     
-                        <p>Traffic: <a href="tel:1073">1073</a> (Toll Free)</p>
-      
-                     
-                        <p>Women in Need Call: <a href="tel:1091">1091</a> (Toll Free)</p>
-      
-                    </marquee>
+  <?php
+$servername = "localhost";
+$username = "root"; // Default XAMPP username
+$password = ""; // Default XAMPP password is empty
+$dbname = "srikakulam_police";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM helplines";
+$result = $conn->query($sql);
+?>
+
+<section class="top-news-sec fontSize">
+    <div class="container">
+        <div class="hdr-news-wrpr">
+            <h4><label> <a href="emergency.html"><img src="images/helpline.png" alt="helpline"> </a><span>Helplines</span> </label></h4>
+            <marquee onmouseover="this.stop();" onmouseout="this.start();">
+                <div class="marque-hldr hdrnews_marquee">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<p>" . $row['name'] . ": <a href='tel:" . $row['phone_number'] . "'>" . $row['phone_number'] . "</a>";
+                            if ($row['is_toll_free']) {
+                                echo " (Toll Free)";
+                            }
+                            echo "</p>";
+                        }
+                    } else {
+                        echo "No helplines available.";
+                    }
+                    ?>
                 </div>
-            </div>
+            </marquee>
         </div>
-    </section>
+    </div>
+</section>
+
+<?php
+$conn->close();
+?>
+
 
     
 
@@ -240,239 +258,82 @@ $activities = $activityManager->getRecentActivities();
     </div>
        
 
-       
-      <form action="#" method="post">
-        
-        <div class="newsbars">
-        <div class="newsbar">
+    <?php
+$servername = "localhost";
+$username = "root"; // Default XAMPP username
+$password = ""; // Default XAMPP password is empty
+$dbname = "srikakulam_police";
 
-            <h2 style="text-align:center;  text-decoration: underline; ">LATEST NEWS</h2>
-            <div class="news" method="POST" >
-               
-        <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-       <form action="news_articles.php" method="POST">
-            
-   
-               <p><a href="Data+Science_Academy+Curriculum.pdf" target="_blank">Instuctions to Submit Event Permission Application&nbsp;&nbsp;For Download Form Click Here<img src="new.gif"></a></p>
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+function fetchData($conn, $tableName) {
+    $sql = "SELECT * FROM $tableName";
+    return $conn->query($sql);
+}
+
+$news = fetchData($conn, 'news');
+$pressReleases = fetchData($conn, 'press_releases');
+?>
+
+
+        <div class="newsbars">
+            <div class="newsbar">
+                <h2 style="text-align:center; text-decoration: underline;">LATEST NEWS</h2>
+                <div class="news">
+                    <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+                        <?php
+                        if ($news->num_rows > 0) {
+                            while($row = $news->fetch_assoc()) {
+                                echo "<div><a href='" . htmlspecialchars($row['link']) . "' target='_blank'>" . htmlspecialchars($row['title']) . "</a>";
+                                if (!empty($row['description'])) {
+                                    echo "&nbsp;   &nbsp;" . htmlspecialchars($row['description']);
+                                }
+                                echo "<img src='images/new.gif'></div>";
+                            }
+                        } else {
+                            echo "<div>No news available.</div>";
+                        }
+                        ?>
+                    </marquee>
+                </div>
+            </div>
+            <div class="newsbar">
+                <h2 style="text-align:center; text-decoration: underline;">PRESS RELEASE</h2>
+                <div class="news">
+                    <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+                        <?php
+                        if ($pressReleases->num_rows > 0) {
+                            while($row = $pressReleases->fetch_assoc()) {
+                                echo "<div><a href='" . htmlspecialchars($row['link']) . "' target='_blank'>" . htmlspecialchars($row['title']) . "</a>";
+                                if (!empty($row['description'])) {
+                                    echo "&nbsp;   &nbsp;" . htmlspecialchars($row['description']);
+                                }
+                                echo "<img src='images/new.gif'></div>";
+                            }
+                        } else {
+                            echo "<div>No press releases available.</div>";
+                        }
+                        ?>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+
+
+<?php
+$conn->close();
+?>
+
     
-                &nbsp;
-               &nbsp;
-               &nbsp;
-   
-               <p><a href="citizen-services/APPLICATION FOR THE GRANT OF LICENCE TO RUN PLACE OF ENTERTAINMENT(FUNCTION HALLCONVENTION CENTER).pdf" target="_blank">Application For The Grant of Licence to Run Place of Enterainment (Function Hall / Convention Center)&nbsp;&nbsp;For Download Form Click Here<img src="new.gif"></a></p>
-               
-                &nbsp;
-               &nbsp;
-               &nbsp;
-   
-               <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
-   
-                &nbsp;
-               &nbsp;
-               &nbsp;
-   
-               <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
-   
-                &nbsp;
-               &nbsp;
-               &nbsp;
-   
-               <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
-   
-                &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-               <p><a href="https://www.ncwwomenhelpline.in/" target="_blank">Visit to Women in Distress Website & helpline: 7827 170 170 <img src="new.gif"></a></p> 
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-               <p><a href="press-release/Abandoned Vehicles 2023 (665).pdf" target="_blank">Srikakulam Police To Auction 665 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-                <p><a href="press-release/Abandoned Vehicles 2023 (1000).pdf" target="_blank">Srikakulam Police To Auction 1000 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-                 <p><a href="press-release/Abandoned Vehicles 2023 (539).pdf" target="_blank">Srikakulam Police To Auction 539 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-               <p><a href="press-release/Abandoned Vehicles 2023 (1197).pdf" target="_blank">Srikakulam Police To Auction 1197 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-                <p><a href="press-release/Abandoned Vehicles 2023 (820).pdf" target="_blank">Srikakulam Police To Auction 820 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-                 <p><a href="press-release/Abandoned Vehicles 2023 (885).pdf" target="_blank">Srikakulam Police To Auction 885 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-                <p><a href="press-release/Abandoned Vehicles 2023 (756).pdf" target="_blank">Srikakulam Police To Auction 756 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-                <p><a href="press-release/Abandoned Vehicles 2023 (462).pdf" target="_blank">Srikakulam Police To Auction 462 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-   
-               <p><a href="press-release/Abandoned Vehicles 2023 (527).pdf" target="_blank">Srikakulam Police To Auction 527 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
-   
-               &nbsp;
-               &nbsp;
-               &nbsp;
-   
-                <p><a href="press-release/Abandoned Vehicles 2023 (294).pdf" target="_blank">Srikakulam Police To Auction 294 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with   xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p> 
-   
-   
-               <p>Citizens are Advised to Report the Cyber offenses in concerned L & O Police Stations. Now we are Registering the Cyber Crime Cases in local Law & Order Police Stations only.<img src="new.gif"></p>
-           </form>
-           </marquee>
         
-       </div>
-        </div>
-      </form>
-        <form action="#" method="post1">
-        <div class="newsbar">
-          <h2 style="text-align:center;  text-decoration: underline; ">PRESS RELEASE</h2>
-          <div class="news" method="POST" >
-             
-      <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-     <form action="news_articles.php" method="POST">
-          
- 
-             <p><a href="Data+Science_Academy+Curriculum.pdf" target="_blank">Instuctions to Submit Event Permission Application&nbsp;&nbsp;For Download Form Click Here<img src="new.gif"></a></p>
-  
-              &nbsp;
-             &nbsp;
-             &nbsp;
- 
-             <p><a href="citizen-services/APPLICATION FOR THE GRANT OF LICENCE TO RUN PLACE OF ENTERTAINMENT(FUNCTION HALLCONVENTION CENTER).pdf" target="_blank">Application For The Grant of Licence to Run Place of Enterainment (Function Hall / Convention Center)&nbsp;&nbsp;For Download Form Click Here<img src="new.gif"></a></p>
-             
-              &nbsp;
-             &nbsp;
-             &nbsp;
- 
-             <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
- 
-              &nbsp;
-             &nbsp;
-             &nbsp;
- 
-             <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
- 
-              &nbsp;
-             &nbsp;
-             &nbsp;
- 
-             <p><a href="WomensHostelRegistration.html" target="_blank">Notification for Registration of Women Hostel in IT Corridor<img src="new.gif"></a><p>
- 
-              &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-             <p><a href="https://www.ncwwomenhelpline.in/" target="_blank">Visit to Women in Distress Website & helpline: 7827 170 170 <img src="new.gif"></a></p> 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-             <p><a href="press-release/Abandoned Vehicles 2023 (665).pdf" target="_blank">Srikakulam Police To Auction 665 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
-              <p><a href="press-release/Abandoned Vehicles 2023 (1000).pdf" target="_blank">Srikakulam Police To Auction 1000 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
-               <p><a href="press-release/Abandoned Vehicles 2023 (539).pdf" target="_blank">Srikakulam Police To Auction 539 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
-             <p><a href="press-release/Abandoned Vehicles 2023 (1197).pdf" target="_blank">Srikakulam Police To Auction 1197 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-              <p><a href="press-release/Abandoned Vehicles 2023 (820).pdf" target="_blank">Srikakulam Police To Auction 820 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-               <p><a href="press-release/Abandoned Vehicles 2023 (885).pdf" target="_blank">Srikakulam Police To Auction 885 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-              <p><a href="press-release/Abandoned Vehicles 2023 (756).pdf" target="_blank">Srikakulam Police To Auction 756 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
-              <p><a href="press-release/Abandoned Vehicles 2023 (462).pdf" target="_blank">Srikakulam Police To Auction 462 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
- 
-             <p><a href="press-release/Abandoned Vehicles 2023 (527).pdf" target="_blank">Srikakulam Police To Auction 527 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p>   
- 
-             &nbsp;
-             &nbsp;
-             &nbsp;
- 
-              <p><a href="press-release/Abandoned Vehicles 2023 (294).pdf" target="_blank">Srikakulam Police To Auction 294 Abandoned / Unclaimed Vehicles.&nbsp;&nbsp;If any queries contact with   xxxxxxxxxx.&nbsp;&nbsp;&nbsp; For Vehicle List Click Here<img src="new.gif"></a></p> 
- 
- 
-             <p>Citizens are Advised to Report the Cyber offenses in concerned L & O Police Stations. Now we are Registering the Cyber Crime Cases in local Law & Order Police Stations only.<img src="new.gif"></p>
-         </form>
-         </marquee>
- 
-     </div>
-      </div>
-        </div>
-      </form>
+       
+     
       <br>
 <div class="hlayout">
         <section class="horizontal-layout">
