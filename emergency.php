@@ -1,3 +1,44 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "emergency_contacts";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Function to get all emergency contacts
+function getEmergencyContacts($conn) {
+    $sql = "SELECT * FROM emergency_numbers WHERE is_active = 1";
+    $result = $conn->query($sql);
+    return $result;
+}
+
+// Function to add new emergency contact
+function addEmergencyContact($conn, $service_name, $phone_number, $description) {
+    $stmt = $conn->prepare("INSERT INTO emergency_numbers (service_name, phone_number, description) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $service_name, $phone_number, $description);
+    return $stmt->execute();
+}
+
+// Function to update emergency contact
+function updateEmergencyContact($conn, $id, $service_name, $phone_number, $description) {
+    $stmt = $conn->prepare("UPDATE emergency_numbers SET service_name = ?, phone_number = ?, description = ? WHERE id = ?");
+    $stmt->bind_param("sssi", $service_name, $phone_number, $description, $id);
+    return $stmt->execute();
+}
+
+// Function to delete emergency contact
+function deleteEmergencyContact($conn, $id) {
+    $stmt = $conn->prepare("UPDATE emergency_numbers SET is_active = 0 WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    return $stmt->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -212,31 +253,60 @@
         </nav>
     </section>
 
-<div class="container">
-  <h2>Emergency Contact Numbers</h2>
-  <ul class="emergency-numbers">
-    <li>
-      <span>Police Emergency:</span>
-      <a href="tel:100"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Fire Services:</span>
-      <a href="tel:101"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Ambulance:</span>
-      <a href="tel:108"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Women’s Helpline:</span>
-      <a href="tel:181"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Child Helpline:</span>
-      <a href="tel:1098"><span>DIAL</span></a>
-    </li>
-  </ul>
-</div>
+    <div class="container">
+        <h2>Emergency Contact Numbers</h2>
+        
+        <!-- Display Emergency Contacts -->
+        <ul class="emergency-numbers">
+            <?php
+            $contacts = getEmergencyContacts($conn);
+            while($row = $contacts->fetch_assoc()) {
+                echo "<li>";
+                echo "<span>" . htmlspecialchars($row['service_name']) . ": " . htmlspecialchars($row['phone_number']) . "</span>";
+                echo "<a href='tel:" . htmlspecialchars($row['phone_number']) . "' class='dial-button'>DIAL</a>";
+                echo "</li>";
+            }
+            ?>
+        </ul>
 
+        <!-- Admin Controls -->
+        <div class="admin-controls">
+            <h3>Add New Emergency Contact</h3>
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="service_name">Service Name:</label>
+                    <input type="text" name="service_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number:</label>
+                    <input type="text" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description"></textarea>
+                </div>
+                <button type="submit" name="add_contact">Add Contact</button>
+            </form>
+        </div>
+    </div>
+
+    <?php
+    // Handle form submissions
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['add_contact'])) {
+            $service_name = $_POST['service_name'];
+            $phone_number = $_POST['phone_number'];
+            $description = $_POST['description'];
+            
+            if (addEmergencyContact($conn, $service_name, $phone_number, $description)) {
+                echo "<script>alert('Contact added successfully!'); window.location.reload();</script>";
+            } else {
+                echo "<script>alert('Error adding contact!');</script>";
+            }
+        }
+    }
+
+    $conn->close();
+    ?>
 </body>
 </html>

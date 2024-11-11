@@ -69,26 +69,27 @@ nav ul li ul {
     position:absolute;
     top: 100%;
    
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
   
     list-style: none;
     height: auto;;
-    width: 160px;
+    width: 150px;
     z-index: 10;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 nav ul li ul li a {
-    padding: auto;
+    padding:auto;
     height: auto;
-    width: auto;
     display: block;
     color: black;
     font-size: 14px;
     align-items: center;
+    margin: 10px;
 }
 nav ul li ul li a:hover {
-    background-color: rgba(18, 140, 126, 0.507);
-    border-radius: 5px;
+    background-color: #0a9496bc;
+    border-radius: 1px;
+  color: white;
 }
 nav ul li:hover ul {
     display: block;
