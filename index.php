@@ -54,6 +54,7 @@
                     </ul>
                 </li>
                 <li><a href="womenscorner.html">Women’s Corner</a></li>
+                
                 <li><a href="">Services</a>
                   <ul>
                     <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
@@ -63,6 +64,7 @@
                     <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
                 </ul>
               </li>
+              <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="contacts.html">Contact Us</a></li>
             </ul>
         </nav>
