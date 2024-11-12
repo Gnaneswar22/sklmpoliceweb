@@ -187,242 +187,121 @@ nav ul li ul li a:hover {
 }
 
 
-  /* General Banner Styles */
-  .image-container {
+ /* Image container and navigation */
+.image-container {
     position: relative;
+    width: 100%;  /* Full width */
+    height: 65vh;  /* Increased height to 60% of the viewport height */
     overflow: hidden;
-    width: 100%;
-    height: 60vh;
-    background-color: white; /* White background for the container */
+    margin: 0 auto;  /* Centers the container horizontally */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);  /* Optional: adds a subtle shadow */
 }
 
-.image-container > div {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.image-container > div.active {
-    opacity: 1;
-    z-index: 1;
-}
-
-/* Image Styling */
-.image-container img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
-/* Text Box Styling */
-.text-box {
-    position: absolute;
-    top: 20%;
-    left: 100px;
-    padding: 20px;
-    color: rgb(254, 252, 252); /* Text color */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    transition: transform 3s ease-in; /* Animation for movement */
-}
-
-.text-box.animate {
-    animation: text 3s ease-in;
-}
-
-@keyframes text {
-   
-    10% {
-        transform: translate(10%); 
-    }
-}
-
-.text-box h1 {
-    font-size: 50px;
-    margin: 0;
-}
-
-.text-box h3 {
-    font-size: 30px;
-    margin: 5px 0;
-}
-
-.text-box p {
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-.text-box  h3 span{
-    color:red;
-
-}
-.banner-4 .text-box h2{
-      font-size: 30px;
-}
-.banner-4 .text-box p{
-    font-size: 25px;
-}
-/* Navigation Buttons */
 .nav-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     color: white;
     border: none;
     padding: 15px;
-    font-size: 24px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    z-index: 10;
-    border-radius: 50%;
+    z-index: 2;
+    transition: background 0.3s ease;
 }
 
 .nav-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.nav-button.left {
-    left: 10px;
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* Banner styles */
+[class^="banner-"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: none;
 }
 
-.nav-button.right {
-    right: 10px;
+[class^="banner-"].active {
+    opacity: 1;
+    display: block;
 }
 
-/* Background Image Animation */
+/* Image styles */
+[class^="banner-"] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures the image covers the container without distortion */
+     /* Slightly brightens the image */
+}
+
 .background-image {
-    background-color: #0a949689;
     position: absolute;
-    width: 45%; /* Make it wider for the animation */
+    top: 0;
+    left: 0%;
+    width: 50%;
     height: 100%;
-    left: 0;
-    animation: slide 5s ease-in ; /* Animate from left to right */
+    background: rgba(0, 0, 0, 0.4);
 }
 
-@keyframes slide {
- 
-    20% {
-        transform: translateX(-50%); /* Move left by 50% */
-    }
+/* Text box styles */
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    opacity: 0;
+    width: 80%;
+}
+.banner-4 .text-box{
+    left: 50%;
 }
 
-.background-image{
-    background-color: #0a949689;
-    position: absolute;
-    width: 45%; /* Make it wider for the animation */
-    height: 100%;
-    left: 0;
-    animation: slide1 5s ease-in ; /* Animate from left to right */
-}
-@keyframes slide1 {
- 
-    20% {
-        transform: translateX(-40%); /* Move left by 50% */
-    }
-}
-.background-image2 {
-    background-color: #0a949689;
-    position: absolute;
-    width: 45%; /* Make it wider for the animation */
-    height: 100%;
-    left: 0;
-    animation: slide2 5s ease-in ; /* Animate from left to right */
-}
-@keyframes slide2 {
- 
-    20% {
-        transform: translateX(-40%); /* Move left by 50% */
-    }
-}
-.background-image3 {
-    background-color: #0a949689;
-    position: absolute;
-    width: 45%; /* Make it wider for the animation */
-    height: 100%;
-    left: 0;
-    animation: slide3 5s ease-in ; /* Animate from left to right */
-}
-@keyframes slide3 {
- 
-    20% {
-        transform: translateX(-40%); /* Move left by 50% */
-    }
+.text-box.animate {
+    animation: fadeInUp 1s forwards;
 }
 
-@keyframes sp{
-    
-    0%{
-        visibility: visible;
+/* Text animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
     }
-    25%{
-        visibility: hidden;
-    }
-    50%{
-        visibility: hidden;
-    }
-    75%{
-        visibility: hidden;
-    }
-    100%{
-        visibility:hidden;
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
     }
 }
-@keyframes img{
-    
-    0%{
-        visibility: hidden;
-    }
-    25%{
-        visibility: visible;
-    }
-    50%{
-        visibility:  hidden;
-    }
-    75%{
-        visibility: hidden;
-    }
-    100%{
-        visibility:hidden;
-    }
+/* Image styles to maintain original dimensions */
+
+/* Responsive text sizes */
+.text-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
-@keyframes station{
-    
-    0%{
-        visibility: hidden;
-    }
-    25%{
-        visibility: hidden;
-    }
-    50%{
-        visibility:  visible;
-    }
-    75%{
-        visibility:visible;
-    }
-    100%{
-        visibility:hidden;
-    }
+
+.text-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
-@keyframes sklm{
-    
-    0%{
-        visibility: hidden;
-    }
-    25%{
-        visibility: hidden;
-    }
-    50%{
-        visibility:  hidden;
-    }
-    75%{
-        visibility:hidden;
-    }
-    100%{
-        visibility:visible;
-    }
+
+.text-box p {
+    font-size: 1.2rem;
 }
+
+@media (max-width: 768px) {
+    .text-box h1 { font-size: 1.8rem; }
+    .text-box h3 { font-size: 1.4rem; }
+    .text-box p { font-size: 1rem; }
+}
+
 
 .top-news-sec {
      top: -4px;
