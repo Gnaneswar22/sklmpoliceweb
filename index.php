@@ -15,19 +15,20 @@
   
 </head>
 <body>
-     <!-- Left Logo -->
-     <div>
+<header>
+        <!-- Left Logo -->
+        <div>
             <img src="images/Appolice.png" alt="Left Logo" class="logo">
         </div>
-
+    
         <!-- Center Heading -->
         <h1 class="header-title">Srikakulam Police Department</h1>
-
+    
         <!-- Right Logo -->
         <div>
             <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
         </div>
-
+    
         <!-- Hamburger Menu -->
         <div class="hamburger" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -67,7 +68,6 @@
             <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
         </ul>
     </nav>
-
         <?php
 require_once 'db_connect.php';
 
@@ -526,5 +526,6 @@ $conn->close();
     <script src="banners.js"></script>
     <script src="slides.js"></script>
     <script src="initiatives.js"></script>
+    <script src="hamburger.js"></script>
 </body>
 </html>6
