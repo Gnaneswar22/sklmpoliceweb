@@ -5,196 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Srikakulam Police Department - Women's Corner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
     <style>
-         body {
-    
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-family: Arial, sans-serif; 
-    
-    background: #fff;
-    font-size: 100%;
-    
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0a9396;
-    padding: 0;
-    color: white;
-    position: relative;
-    
-}
-.logo {
-   
-height:auto;
-    width: 100px;
-   padding-top: 18px;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.header-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 35px;
-    font-weight: bold;
-}
-nav {
-    display: flex;
-    background-color:#0a9396;
-    justify-content: center;
-    margin-left: auto;
-}
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px 0;
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    position: relative;
-    align-items: right;
-}
-
-nav ul li {
-    position: relative;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 17px;
-    padding: 10px;
-    position: relative; /* Allow positioning for the hover effect */
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.11);
-    border-radius: 5px;
-}
-
-/* Dropdown styles */
-nav ul li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0; /* Align dropdown to the left of the parent */
-    background-color: whitesmoke;
-    list-style: none;
-    height: auto; /* Remove fixed height */
-    min-width: 160px; /* Set a minimum width for dropdown */
-    z-index: 10;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
-}
-
-nav ul li ul li {
-    padding: 10px; /* Add padding for dropdown items */
-}
-
-nav ul li ul li a {
-    padding: 10px; /* Ensure padding for dropdown links */
-    color: black; /* Change text color for dropdown */
-    font-size: 14px;
-}
-
-nav ul li ul li a:hover {
-    background-color: rgba(18, 140, 126, 0.507);
-    border-radius: 5px;
-}
-
-nav ul li:hover ul {
-    display: block; /* Show dropdown on hover */
-}
-
         .container {
             width: 80%;
             margin: 0 auto;
-            padding: 19px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
         }
-        .helpline {
-            background-color: #FFEFD5;
-            padding: 15px;
-            border-radius: 5px;
+
+        .helpline, .contact-info {
+            background-color: #e0f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .helpline:hover, .contact-info:hover {
+            transform: scale(1.05);
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #0a9396;
             margin-bottom: 20px;
         }
-        .contact-info {
-            padding: 15px;
-            background-color: #E0FFFF;
-            border-radius: 5px;
+
+        p{
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
-        .container a{
-            display: flex;
-            float: right;
-            bottom: 10px;
-            padding-bottom: 20px;
-            height: 300px;
-            width: 300px;
+        a img {
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
         }
-        
+
+        a img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <section>
-        <header>
-            <!-- Left Logo -->
-            <div>
-                <img src="images/Appolice.png" alt="Left Logo" class="logo">
-            </div>
+    <header>
+        <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+        <h1 class="header-title">Srikakulam Police Department</h1>
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
-            <!-- Center Heading -->
-            <h1 class="header-title">Srikakulam Police Department</h1>
-
-            <!-- Right Logo -->
-            <div>
-                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-            </div>
-        </header>
-
-        <!-- Navigation Bar -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About Us</a>
-                    <ul>
-                        <li><a href="history.html">History</a></li>
-                        <li><a href="">Organisation Chart</a></li>
-                        <li><a href="awards.html">Awards</a></li>
-                        <li><a href="officers.html">OUR TEAM</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">wings</a>
-                    <ul>
-                        <li><a href="law.html">Law & order</a></li>
-                        <li><a href="traffic.html">Traffic</a></li>
-                        <li><a href="tel:100">Dail 100</a></li>
-                        <li><a href="">AHTU</a></li>
-                    </ul>
-                </li>
-                <li><a href="">Services</a>
-                    <ul>
-                      <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
-                      <li><a href="fir.html">View FIR</a></li>
-                      <li><a href="domestic.html">Domestic Violence</a></li>
-                      <li><a href="accident.html">Accedent Analysis</a></li>
-                      <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
-                  </ul>
-                </li>
-                <li><a href="contacts.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </section>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+                <ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                </ul>
+            </li>
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+                <ul>
+                    <li><a href="law.html">Law & Order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="#">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+                </ul>
+            </li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
         <section>
-            <h2 align="center">Women's Corner</h2>
-            <h3 align="center">Dedicated to Serve and Protect</h3>
-            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://disha-sos.en.softonic.com/android&ved=2ahUKEwiCroKI_uKIAxXxxDgGHebUCGMQFnoECCgQAQ&usg=AOvVaw0rYL2W92mn3_HxU7FR_M5S"><img src="images/disha.jpg"alt="Disha app" width="250" height="250"></a>
+            <h2>Women's Corner</h2>
+            <h3>Dedicated to Serve and Protect</h3>
+            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://disha-sos.en.softonic.com/android&ved=2ahUKEwiCroKI_uKIAxXxxDgGHebUCGMQFnoECCgQAQ&usg=AOvVaw0rYL2W92mn3_HxU7FR_M5S">
+                <img src="images/disha.jpg" alt="Disha app" width="250" height="250">
+            </a>
             <p>Welcome to the Women's Corner of Srikakulam Police Department. We are committed to ensuring the safety and security of women in our region. Our team is available 24/7 to assist women in distress, and we offer a range of services specifically tailored to support women's safety and well-being.</p>
             <p>If you or someone you know is facing harassment, domestic violence, or any other crime, please do not hesitate to reach out to us. We are here to help.</p>
         </section>
@@ -229,9 +147,11 @@ nav ul li:hover ul {
                 <p>Phone: +91-1234567890</p>
                 <p>Email: srikakulam-police@ap.gov.in</p>
             </div>
-         
         </section>
-
-    
+    </div>
+    <footer>
+        <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
+    </footer>
+    <script src="hamburger.js"></script>
 </body>
 </html>

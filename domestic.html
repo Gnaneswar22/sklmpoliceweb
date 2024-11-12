@@ -4,127 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department - Domestic Violence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
     <style>
-         body {
-    
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-family: Arial, sans-serif; 
-    
-    background: #fff;
-    font-size: 100%;
-    
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0a9396;
-    padding: 0;
-    color: white;
-    position: relative;
-    
-}
-.logo {
-   
-height:auto;
-    width: 100px;
-   padding-top: 18px;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.header-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 35px;
-    font-weight: bold;
-}
-nav {
-    display: flex;
-    background-color:#0a9396;
-    justify-content: center;
-    margin-left: auto;
-}
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px 0;
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    position: relative;
-    align-items: right;
-}
-
-nav ul li {
-    position: relative;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 17px;
-    padding: 10px;
-    position: relative; /* Allow positioning for the hover effect */
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.11);
-    border-radius: 5px;
-}
-
-/* Dropdown styles */
-nav ul li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0; /* Align dropdown to the left of the parent */
-    background-color: whitesmoke;
-    list-style: none;
-    height: auto; /* Remove fixed height */
-    min-width: 160px; /* Set a minimum width for dropdown */
-    z-index: 10;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
-}
-
-nav ul li ul li {
-    padding: 10px; /* Add padding for dropdown items */
-}
-
-nav ul li ul li a {
-    padding: 10px; /* Ensure padding for dropdown links */
-    color: black; /* Change text color for dropdown */
-    font-size: 14px;
-}
-
-nav ul li ul li a:hover {
-    background-color: rgba(18, 140, 126, 0.507);
-    border-radius: 5px;
-}
-
-nav ul li:hover ul {
-    display: block; /* Show dropdown on hover */
-}
-
+        
         .content {
             background: white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #555;
-            background-color: #0a9396;
-         
         }
         h3 {
             color: red;
@@ -135,57 +24,59 @@ nav ul li:hover ul {
 </head>
 <body>
 
-    <section>
-        <header>
-            <!-- Left Logo -->
-            <div>
-                <img src="images/Appolice.png" alt="Left Logo" class="logo">
-            </div>
-
-            <!-- Center Heading -->
-            <h1 class="header-title">Srikakulam Police Department</h1>
-
-            <!-- Right Logo -->
-            <div>
-                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-            </div>
-        </header>
-
-        <!-- Navigation Bar -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About Us</a>
-                    <ul>
-                        <li><a href="history.html">History</a></li>
-                        <li><a href="">Organisation Chart</a></li>
-                        <li><a href="awards.html">Awards</a></li>
-                        <li><a href="officers.html">OUR TEAM</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">wings</a>
-                    <ul>
-                        <li><a href="law.html">Law & order</a></li>
-                        <li><a href="traffic.html">Traffic</a></li>
-                        <li><a href="tel:100">Dail 100</a></li>
-                        <li><a href="">AHTU</a></li>
-                    </ul>
-                </li>
-                <li><a href="womenscorner.html">Women’s Corner</a></li>
-            <li><a href="">Services</a>
+    <header>
+        <!-- Left Logo -->
+        <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+    
+        <!-- Center Heading -->
+        <h1 class="header-title">Srikakulam Police Department</h1>
+    
+        <!-- Right Logo -->
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+    
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
                 <ul>
-                  <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
-                  <li><a href="fir.html">View FIR</a></li>
-                  <li><a href="domestic.html">Domestic Violence</a></li>
-                  <li><a href="accident.html">Accedent Analysis</a></li>
-                  <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
-              </ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                </ul>
             </li>
-            <li><a href="contacts.html">Contact Us</a></li>
-        </nav>
-    </section>
-
-   
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+                <ul>
+                    <li><a href="law.html">Law & Order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="#">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                            Report</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                            Speaker Permission</a></li>
+                </ul>
+            </li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
 
 <div class="content">
     <h3>Understanding Domestic Violence</h3>
@@ -217,6 +108,6 @@ nav ul li:hover ul {
 <footer>
     <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
 </footer>
-
+<script src="hamburger.js"></script>
 </body>
 </html>

@@ -9,66 +9,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="icon" href="images/sklmlogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
-    
     
   
 </head>
 <body>
-    <section>
-        <header>
-            <!-- Left Logo -->
-            <div>
-                <img src="images/Appolice.png" alt="Left Logo" class="logo">
-            </div>
+     <!-- Left Logo -->
+     <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
 
-            <!-- Center Heading -->
-            <h1 class="header-title">Srikakulam Police Department</h1>
+        <!-- Center Heading -->
+        <h1 class="header-title">Srikakulam Police Department</h1>
 
-            <!-- Right Logo -->
-            <div>
-                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-            </div>
-        </header>
+        <!-- Right Logo -->
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
 
-        
-
-        <!-- Navigation Bar -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About Us</a>
-                    <ul>
-                        <li><a href="history.html">History</a></li>
-                        <li><a href="organisation.html">Organisation Chart</a></li>
-                        <li><a href="awards.html">Awards</a></li>
-                        <li><a href="officers.html">OUR TEAM</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">wings</a>
-                    <ul>
-                        <li><a href="law.html">Law & order</a></li>
-                        <li><a href="traffic.html">Traffic</a></li>
-                        <li><a href="tel:100">Dial 100</a></li>
-                        <li><a href="">AHTU</a></li>
-                    </ul>
-                </li>
-                <li><a href="womenscorner.html">Women’s Corner</a></li>
-                
-                <li><a href="">Services</a>
-                  <ul>
-                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+                <ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                </ul>
+            </li>
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+                <ul>
+                    <li><a href="law.html">Law & Order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="#">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                            Report</a></li>
                     <li><a href="fir.html">View FIR</a></li>
                     <li><a href="domestic.html">Domestic Violence</a></li>
-                    <li><a href="accident.html">Accedent Analysis</a></li>
-                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                            Speaker Permission</a></li>
                 </ul>
-              </li>
-              <li><a href="gallery.php">Gallery</a></li>
-                <li><a href="contacts.html">Contact Us</a></li>
-            </ul>
-        </nav>
-
+            </li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
 
         <?php
 require_once 'db_connect.php';

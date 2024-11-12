@@ -5,247 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
     <style>
-      body {
-    
-        margin: 0;
-        font-family: Arial, sans-serif;
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        font-family: Arial, sans-serif; 
-        
-        background: #fff;
-        font-size: 100%;
-        
-    }
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #0a9396;
-        padding: 0;
-        color: white;
-        position: relative;
-        
-    }
-    .logo {
-       
-    height:auto;
-        width: 100px;
-       padding-top: 18px;
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    
-    .header-title {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 35px;
-        font-weight: bold;
-    }
-    nav {
-        display: flex;
-        background-color:#0a9396;
-        justify-content: center;
-    }
-    nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 10px 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        position: relative;
-    }
-    nav ul li {
-        position: relative;
-    }
-    nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 17px;
-        padding: 10px;
-    }
-    nav ul li a:hover {
-        background-color: rgba(255, 255, 255, 0.11);
-        border-radius: 5px;
-    }
-    /* Dropdown styles */
-    nav ul li ul {
-        display:none;
-        position:absolute;
-        top: 100%;
-       
-        background-color: whitesmoke;
-      
-        list-style: none;
-        height: auto;;
-        width: 160px;
-        z-index: 10;
-        border-radius: 10px;
-    }
-    nav ul li ul li a {
-        padding: auto;
-        height: auto;
-        width: auto;
-        display: block;
-        color: black;
-        font-size: 14px;
-        align-items: center;
-    }
-    nav ul li ul li a:hover {
-        background-color: rgba(18, 140, 126, 0.507);
-        border-radius: 5px;
-    }
-    nav ul li:hover ul {
-        display: block;
-    }
-    
-    .recent_activity{
-        justify-content: center;
-        height: 24px;
-     font-size: 14px;
-     background-color: #0a949699;
-     padding-bottom: 6px;
-    
-    }
-    
-        /* Mobile Adjustments (to keep layout similar to desktop) */
-        @media only screen and (max-width: 768px) {
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px;
-                flex-wrap: nowrap;
-                flex-direction: row;
-            }
-        
-            #sklmlogo, .aplogo {
-                width: 80px;
-            }
-        
-            .titles {
-                padding: 0 5px;
-                margin: 0 auto;
-                text-align: center;
-            }
-        
-            .sklm {
-                font-size: 30px;
-            }
-        
-            .police {
-                font-size: 28px;
-            }
-        }
-        
-        /* Very Small Devices (up to 480px) */
-        @media only screen and (max-width: 480px) {
-            .header {
-                padding: 10px;
-                flex-direction: row;
-            }
-        
-            #sklmlogo, .aplogo {
-                width: 60px;
-            }
-        
-            .sklm {
-                font-size: 24px;
-            }
-        
-            .police {
-                font-size: 22px;
-            }
-        
-            .titles {
-                padding: 0 10px;
-                text-align: center;
-            }
-        }
-        
-        /* Navbar Styles */
-        .navbar {
-            background-color: #00509e;
-            padding: 12px 0;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .navbar ul li {
-            padding: 8px 10px;
-            position: relative;
-        }
-        
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        
-        /* Responsive Navbar for smaller devices */
-        @media only screen and (max-width: 768px) {
-            .navbar ul {
-                flex-direction: column;
-                display: none;
-                width: 100%;
-                background-color: #2f415c;
-            }
-        
-            .navbar ul.show {
-                display: flex;
-            }
-        
-            .navbar ul li {
-                padding: 10px 0;
-                text-align: center;
-            }
-        }
-        
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-        }
-        
-        /* Hamburger menu on smaller screens */
-        @media only screen and (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-        
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                background-color: #00509e;
-                width: 100%;
-                text-align: center;
-            }
-        
-            .navbar ul.show {
-                display: flex;
-            }
-        }
-        
         /* Map and Dropdown Section */
 .container {
     padding: 20px;
@@ -485,58 +247,59 @@ select {
 
 <body>
 
-  <section>
     <header>
         <!-- Left Logo -->
         <div>
             <img src="images/Appolice.png" alt="Left Logo" class="logo">
         </div>
-
+    
         <!-- Center Heading -->
         <h1 class="header-title">Srikakulam Police Department</h1>
-
+    
         <!-- Right Logo -->
         <div>
             <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
         </div>
-    </header>
-
     
-
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
     <!-- Navigation Bar -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#about">About Us</a>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
                 <ul>
                     <li><a href="history.html">History</a></li>
-                    <li><a href="">Organisation Chart</a></li>
-                    <li><a href="">Awards</a></li>
-                    <li><a href="officers.html">OUR TEAM</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
                 </ul>
             </li>
-            <li><a href="#about">wings</a>
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
                 <ul>
-                    <li><a href="law.html">Law & order</a></li>
+                    <li><a href="law.html">Law & Order</a></li>
                     <li><a href="traffic.html">Traffic</a></li>
-                    <li><a href="tel:100">Dail 100</a></li>
-                    <li><a href="">AHTU</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="#">AHTU</a></li>
                 </ul>
             </li>
-            <li><a href="womenscorner.html">Women’s Corner</a></li>
-            <li><a href="">Services</a>
+            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
                 <ul>
-                  <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
-                  <li><a href="fir.html">View FIR</a></li>
-                  <li><a href="domestic.html">Domestic Violence</a></li>
-                  <li><a href="accident.html">Accedent Analysis</a></li>
-                  <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
-              </ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                            Report</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                            Speaker Permission</a></li>
+                </ul>
             </li>
-            <li><a href="contacts.html">Contact Us</a></li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
         </ul>
     </nav>
-
 <!-- Mandal Dropdown & Map -->
 <div class="container">
     <div class="form-group">
@@ -597,6 +360,7 @@ select {
             navMenu.classList.toggle('show');
         }
     </script>
+    <script src="hamburger.js"></script>
 
 </body>
 
