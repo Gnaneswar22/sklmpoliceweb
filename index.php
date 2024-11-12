@@ -15,6 +15,7 @@
   
 </head>
 <body>
+    <header>
      <!-- Left Logo -->
      <div>
             <img src="images/Appolice.png" alt="Left Logo" class="logo">
@@ -525,6 +526,7 @@ $conn->close();
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="banners.js"></script>
     <script src="slides.js"></script>
+    <script src="hamburger.js"></script>
     <script src="initiatives.js"></script>
 </body>
 </html>6
