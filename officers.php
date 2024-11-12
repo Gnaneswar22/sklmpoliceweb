@@ -162,7 +162,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch officers
-$sql = "SELECT name, rank, role, station, image_path FROM officers";
+$sql = "SELECT name, rank, station, image_path FROM officers";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -170,23 +170,31 @@ if ($result->num_rows > 0) {
             <section class="officers-section">
                 <h1 class="page-title">Police Department Hierarchy</h1>';
 
+    // Initialize rank sections
+    $currentRank = '';
+
     // Output data of each row
     while($row = $result->fetch_assoc()) {
-        echo '<div class="rank-section">
-                <h2 class="rank-title">' . htmlspecialchars($row["rank"]) . '</h2>
-                <div class="officer-card">
-                    <img src="' . htmlspecialchars($row["image_path"]) . '" alt="' . htmlspecialchars($row["name"]) . '" class="officer-image">
-                    <h3 class="officer-name">' . htmlspecialchars($row["name"]) . '</h3>';
-        if (!empty($row["role"])) {
-            echo '<p class="officer-role">' . htmlspecialchars($row["role"]) . '</p>';
+        if ($currentRank !== $row["rank"]) {
+            if ($currentRank !== '') {
+                echo '</div>'; // Close previous officers-grid
+            }
+            $currentRank = $row["rank"];
+            echo '<div class="rank-section">
+                    <h2 class="rank-title">' . htmlspecialchars($row["rank"]) . '</h2>
+                    <div class="officers-grid">';
         }
+
+        echo '<div class="officer-card">
+                <img src="' . htmlspecialchars($row["image_path"]) . '" alt="' . htmlspecialchars($row["name"]) . '" class="officer-image">
+                <h3 class="officer-name">' . htmlspecialchars($row["name"]) . '</h3>';
         if (!empty($row["station"])) {
             echo '<p class="officer-station">' . htmlspecialchars($row["station"]) . '</p>';
         }
-        echo '</div>
-            </div>';
+        echo '</div>';
     }
-    echo '  </section>
+    echo '      </div> <!-- Close last officers-grid -->
+            </section>
         </main>';
 } else {
     echo "No officers found.";
@@ -194,7 +202,6 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-    </main>
     <footer>
         <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
     </footer>
