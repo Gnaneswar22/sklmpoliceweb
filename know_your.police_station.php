@@ -382,6 +382,8 @@ width: 100%;
         }
     }
     </style>
+     <!-- Google Maps JavaScript API -->
+    
     <script>
         const policeStationsData = <?php echo json_encode($policeStationsData); ?>;
         
@@ -435,7 +437,7 @@ width: 100%;
         }
     </script>
     
-    <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSylRAnFAvAKfs-cDWhxsaEMQ5v2RoETSKfl&callback=initMap"></script>
+    <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyL00PdPtPBYYqQYcdiaLKAKKj32GihM__z=initMap"></script>
 </head>
 <body>
     
@@ -552,5 +554,6 @@ width: 100%;
             navMenu.classList.toggle('show');
         }
     </script>
+    
 </body>
 </html>
