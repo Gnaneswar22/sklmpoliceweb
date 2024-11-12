@@ -37,13 +37,17 @@
     <!-- Navigation Bar -->
     <nav>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
                 <ul>
                     <li><a href="history.html">History</a></li>
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
+<<<<<<< HEAD
                     <li><a href="officers.html">Our Team</a></li>
+=======
+                    <li><a href="officers.php">Our Team</a></li>
+>>>>>>> 4d49ec72245e913ee3601ff9533fc69137bf48dc
                     <li><a href="gallery.php">Gallery</a></li>
                 </ul>
             </li>
@@ -223,7 +227,7 @@ $conn->close();
         <div class="Services">
             <div class="sr">
                 
-            <a href="know_your_police_station.html"> <img src="images/police-station.png" ></a>
+            <a href="know_your_police_station.php"> <img src="images/police-station.png" ></a>
             <h3>POLICE STATION</h3>
             <p >know your police station and Locate your nearest police station</p>
         </div>

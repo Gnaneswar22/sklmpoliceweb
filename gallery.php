@@ -169,12 +169,14 @@
 <!-- Navigation Bar -->
 <nav>
     <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <ul>
                 <li><a href="history.html">History</a></li>
                 <li><a href="organisation.html">Organisation Chart</a></li>
                 <li><a href="awards.html">Awards</a></li>
+                <li><a href="officers.php">Our Team</a></li>
+                <li><a href="gallery.php">Gallery</a></li>
             </ul>
         </li>
         <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -195,6 +197,7 @@
                 <li><a href="accident.html">Accident Analysis</a></li>
                 <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
                         Speaker Permission</a></li>
+                        <li><a href="services.html">Knowmore</a></li>
             </ul>
         </li>
         <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
