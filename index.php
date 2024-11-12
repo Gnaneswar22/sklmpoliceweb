@@ -44,6 +44,7 @@
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
                     <li><a href="officers.html">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
                 </ul>
             </li>
             <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -229,7 +230,7 @@ $conn->close();
             <p> Emergency contacts -  dail-100/ dail-101 / dail-108 /dail-181 /dail-1098</p>
         </div>
         <div class="sr">
-            <a href=""> <img src="images/cyber.png" ></a>
+            <a href="cybercell.html"> <img src="images/cyber.png" ></a>
             <h3>CYBER CELL</h3>
             <p >Cyber Cell</p>
         </div>
