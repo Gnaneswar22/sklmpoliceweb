@@ -64,12 +64,49 @@ nav ul li {
 
 nav ul li a {
     color: white;
+<<<<<<< HEAD
     text-decoration: none;
     font-size: 16px;
     padding: 12px 20px;
     display: block;
     transition: all 0.3s ease;
     border-radius: 5px;
+=======
+    font-size: 17px;
+    padding: 10px;
+}
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    border-radius: 5px;
+}
+/* Dropdown styles */
+nav ul li ul {
+    display:none;
+    position:absolute;
+    top: 100%;
+   
+    background-color: rgb(255, 255, 255);
+  
+    list-style: none;
+    height: auto;;
+    width: 150px;
+    z-index: 10;
+    border-radius: 8px;
+}
+nav ul li ul li a {
+    padding:auto;
+    height: auto;
+    display: block;
+    color: black;
+    font-size: 14px;
+    align-items: center;
+    margin: 10px;
+}
+nav ul li ul li a:hover {
+    background-color: #0a9496bc;
+    border-radius: 1px;
+  color: white;
+>>>>>>> a1bc25e502f60e62959c831a3a3ed60ee679fa0a
 }
 
 nav ul li a:hover {
