@@ -79,10 +79,6 @@ nav ul ul a{
     font-size: 14px;
     color: #00030a;
 }
-nav ul li ul li a:hover {
-    background-color: #0a9496bc;
-    border-radius: 1px;
-  color: white;
 
 
 nav ul li:hover > ul {
@@ -141,7 +137,6 @@ nav ul li ul li a:hover {
     
     nav.active {
         display: block;
-        order: 3;
     }
     
     nav ul {
@@ -833,7 +828,14 @@ border-radius: 10px;
     
   }
   
+  
+
+
+  
   .swiper-pagination {
     position: relative;
     bottom: 0;
   }
+
+
+  
