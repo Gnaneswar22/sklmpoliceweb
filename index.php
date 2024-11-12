@@ -51,10 +51,10 @@
                     <li><a href="law.html">Law & Order</a></li>
                     <li><a href="traffic.html">Traffic</a></li>
                     <li><a href="tel:100">Dial 100</a></li>
-                    <li><a href="#">AHTU</a></li>
+                    <li><a href="ATHU.html">AHTU</a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
             <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
                 <ul>
                     <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
