@@ -44,7 +44,7 @@
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
                     <li><a href="officers.html">Our Team</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="gallery.php">Gallery</a></li>
                 </ul>
             </li>
             <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -52,7 +52,7 @@
                     <li><a href="law.html">Law & Order</a></li>
                     <li><a href="traffic.html">Traffic</a></li>
                     <li><a href="tel:100">Dial 100</a></li>
-                    <li><a href="ATHU.html">AHTU</a></li>
+                    <li><a href="AHTU.html">AHTU</a></li>
                 </ul>
             </li>
             <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
@@ -391,86 +391,67 @@ $conn->close();
 
 
 
-<section id="initiatives">
-    <div class="container">
-      <h1 class="text-center-section-heading">Our Initiatives</h1>
-    </div>
-    <div class="container">
-      <div class="swiper initiatives-slider">
-        <div class="swiper-wrapper">
-          <!-- Slide-start -->
-          <div class="swiper-slide initiative-slide">
-            <div class="initiative-slide-img">
-              <img src="images/1.jpg" alt="Initiative 1">
+<?php
+// Database connection details
+$servername = "localhost";
+$username = "root"; // Replace with your DB username
+$password = ""; // Replace with your DB password
+$dbname = "srikakulam_police"; // Your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch initiatives
+$sql = "SELECT title, description, image_path FROM initiatives";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<section id="initiatives">
+            <div class="container">
+                <h1 class="text-center-section-heading">Our Initiatives</h1>
             </div>
-            <div class="initiative-slide-content">
-              <h1 class="initiative-title">Community Outreach</h1>
-              <div class="initiative-slide-content-bottom">
-                <h2 class="initiative-description">
-                  Building Trust through Engagement
-                </h2>
-              </div>
+            <div class="container">
+                <div class="swiper initiatives-slider">
+                    <div class="swiper-wrapper">';
+
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo '<div class="swiper-slide initiative-slide">
+                <div class="initiative-slide-img">
+                    <img src="' . $row["image_path"] . '" alt="' . $row["title"] . '">
+                </div>
+                <div class="initiative-slide-content">
+                    <h1 class="initiative-title">' . $row["title"] . '</h1>
+                    <div class="initiative-slide-content-bottom">
+                        <h2 class="initiative-description">' . $row["description"] . '</h2>
+                    </div>
+                </div>
+              </div>';
+    }
+    echo '      </div>
+                <div class="slider-control">
+                    <div class="swiper-button-prev slider-arrow" style="color: white;">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-button-next slider-arrow" style="color: white;">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
-          </div>
-          <!-- Slide-end -->
-          <!-- Slide-start -->
-          <div class="swiper-slide initiative-slide">
-            <div class="initiative-slide-img">
-              <img src="images/2.jpg" alt="Initiative 2">
-            </div>
-            <div class="initiative-slide-content">
-              <h1 class="initiative-title">Safety Programs</h1>
-              <div class="initiative-slide-content-bottom">
-                <h2 class="initiative-description">
-                  Road Safety and Accident Prevention
-                </h2>
-              </div>
-            </div>
-          </div>
-          <!-- Slide-end -->
-          <!-- Slide-start -->
-          <div class="swiper-slide initiative-slide">
-            <div class="initiative-slide-img">
-              <img src="images/3.jpg" alt="Initiative 3">
-            </div>
-            <div class="initiative-slide-content">
-              <h1 class="initiative-title">Women’s Safety</h1>
-              <div class="initiative-slide-content-bottom">
-                <h2 class="initiative-description">
-                  Programs for Protecting Women
-                </h2>
-              </div>
-            </div>
-          </div>
-          <!-- Slide-end -->
-          <!-- Slide-start -->
-          <div class="swiper-slide initiative-slide">
-            <div class="initiative-slide-img">
-              <img src="images/sp.jpg" alt="Initiative 4">
-            </div>
-            <div class="initiative-slide-content">
-              <h1 class="initiative-title">Anti-Drug Campaign</h1>
-              <div class="initiative-slide-content-bottom">
-                <h2 class="initiative-description">
-                  Awareness Programs Against Substance Abuse
-                </h2>
-              </div>
-            </div>
-          </div>
-          <!-- Slide-end -->
         </div>
-        <div class="slider-control" >
-          <div class="swiper-button-prev slider-arrow" style="color: white"; >
-            <ion-icon name="arrow-back-outline" ></ion-icon>
-          </div>
-          <div class="swiper-button-next slider-arrow" style="color: white";>
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>';
+} else {
+    echo "No initiatives found.";
+}
+$conn->close();
+?>
+
 <br>
 
 
