@@ -50,14 +50,13 @@
                     <li><a href="law.html">Law & Order</a></li>
                     <li><a href="traffic.html">Traffic</a></li>
                     <li><a href="tel:100">Dial 100</a></li>
-                    <li><a href="#">AHTU</a></li>
+                    <li><a href="AHTU.htnl">AHTU</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
             <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
                 <ul>
-                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                            Report</a></li>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
                     <li><a href="fir.html">View FIR</a></li>
                     <li><a href="domestic.html">Domestic Violence</a></li>
                     <li><a href="accident.html">Accident Analysis</a></li>

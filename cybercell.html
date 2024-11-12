@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Cell - Srikakulam Police Station</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0a9396; /* Updated primary color */
+            --secondary-color: #e3f2fd;
+            --accent-color: #c62828;
+        }
+
+        body {
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .language-btn {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .emergency {
+            background-color: #ffebee;
+            color: var(--accent-color);
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0b6c6b; /* Slightly darker shade for hover effect */
+        }
+
+        /* Complaint Form Styles */
+        .complaint-form {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* News Section Styles */
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Social Media Icons */
+        .social-media {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-media a {
+            color: var(--primary-color);
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .resource-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .news-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Cyber Cell - Srikakulam Police Station</h1>
+        <p>Protecting Citizens in Cyberspace</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>About Us</h2>
+            <p>The Cyber Cell of Srikakulam Police Station is dedicated to preventing and investigating cybercrimes, ensuring the digital safety of our citizens.</p>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <ul>
+                    <li><strong>Address:</strong> Police Station Road, Srikakulam, Andhra Pradesh</li>
+                    <li><strong>Phone:</strong> 08942-222222</li>
+                    <li><strong>Email:</strong> cybercell.srikakulam@appolice.gov.in</li>
+                    <li><strong>Working Hours:</strong> 24/7</li>
+                </ul>
+            </div>
+            <div class="emergency">
+                <h3>Emergency Contact</h3>
+                <p>Toll-Free: 1930</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Report Cybercrime</h2>
+            <button class="btn" onclick="toggleComplaintForm()">File Online Complaint</button>
+            
+            <div class="complaint-form" id="complaintForm">
+                <h3>Complaint Form</h3>
+                <form onsubmit="submitComplaint(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="crimeType">Type of Cybercrime:</label>
+                        <select id="crimeType" required>
+                            <option value="">Select Crime Type</option>
+                            <option value="financial">Financial Fraud</option>
+                            <option value="harassment">Social Media Harassment</option>
+                            <option value="phishing">Phishing Attack</option>
+                            <option value="identity">Identity Theft</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description of Incident:</label>
+                        <textarea id="description" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Complaint</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Latest News & Updates</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <h3>Cyber Awareness Workshop</h3>
+                    <p>Join us for a free cyber awareness workshop on November 15, 2024.</p>
+                </div>
+                <div class="news-item">
+                    <h3>New Online Reporting System</h3>
+                    <p>We've launched a new online system for easier cybercrime reporting.</p>
+                </div>
+                <div class="news-item">
+                    <h3>Recent Success Stories</h3>
+                    <p>Our team successfully resolved 50 cybercrime cases last month.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Resources & Downloads</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Safety Guidelines</h3>
+                    <a href="#" class="btn">Download PDF</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Training Videos</h3>
+                    <a href="#" class="btn">Watch Now</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-book"></i>
+                    <h3>User Manual</h3>
+                    <a href="#" class="btn">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Connect With Us</h2>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Cyber Cell - Srikakulam Police Station. All rights reserved.</p>
+    </div>
+
+    <script>
+        function toggleComplaintForm() {
+            const form = document.getElementById('complaintForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function submitComplaint(event) {
+            event.preventDefault();
+            // Add your form submission logic here
+            alert('Complaint submitted successfully! We will contact you soon.');
+            event.target.reset();
+            toggleComplaintForm();
+        }
+
+    </script>
+</body>
+</html>
