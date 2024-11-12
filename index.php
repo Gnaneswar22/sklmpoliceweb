@@ -37,14 +37,14 @@
     <!-- Navigation Bar -->
     <nav>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
                 <ul>
                     <li><a href="history.html">History</a></li>
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
-                    <li><a href="officers.html">Our Team</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="officers.php">Our Team</a></li>
+                    <li><a href="gallery.php">Gallery</a></li>
                 </ul>
             </li>
             <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -52,7 +52,7 @@
                     <li><a href="law.html">Law & Order</a></li>
                     <li><a href="traffic.html">Traffic</a></li>
                     <li><a href="tel:100">Dial 100</a></li>
-                    <li><a href="ATHU.html">AHTU</a></li>
+                    <li><a href="AHTU.html">AHTU</a></li>
                 </ul>
             </li>
             <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
@@ -223,7 +223,7 @@ $conn->close();
         <div class="Services">
             <div class="sr">
                 
-            <a href="know_your_police_station.html"> <img src="images/police-station.png" ></a>
+            <a href="know_your_police_station.php"> <img src="images/police-station.png" ></a>
             <h3>POLICE STATION</h3>
             <p >know your police station and Locate your nearest police station</p>
         </div>
