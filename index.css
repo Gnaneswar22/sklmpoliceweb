@@ -182,6 +182,25 @@ nav ul li ul li a:hover {
 }
 
 
+/* General styling for the image container */
+.image-container {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    max-width: 100%;
+    flex-direction: column;
+}
+
+
+/* Responsive image styling */
+.image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%; /* Ensures images don't exceed the container width */
+    display: block;
+}
+
+
  /* Image container and navigation */
 .image-container {
     position: relative;
