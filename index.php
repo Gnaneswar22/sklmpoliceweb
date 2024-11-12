@@ -43,11 +43,7 @@
                     <li><a href="history.html">History</a></li>
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
-<<<<<<< HEAD
-                    <li><a href="officers.html">Our Team</a></li>
-=======
                     <li><a href="officers.php">Our Team</a></li>
->>>>>>> 4d49ec72245e913ee3601ff9533fc69137bf48dc
                     <li><a href="gallery.php">Gallery</a></li>
                 </ul>
             </li>
