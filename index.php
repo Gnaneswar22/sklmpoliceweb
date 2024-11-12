@@ -20,15 +20,15 @@
      <div>
             <img src="images/Appolice.png" alt="Left Logo" class="logo">
         </div>
-    
+
         <!-- Center Heading -->
         <h1 class="header-title">Srikakulam Police Department</h1>
-    
+
         <!-- Right Logo -->
         <div>
             <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
         </div>
-    
+
         <!-- Hamburger Menu -->
         <div class="hamburger" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -44,7 +44,6 @@
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
                     <li><a href="officers.html">Our Team</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
                 </ul>
             </li>
             <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -58,7 +57,8 @@
             <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
             <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
                 <ul>
-                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                            Report</a></li>
                     <li><a href="fir.html">View FIR</a></li>
                     <li><a href="domestic.html">Domestic Violence</a></li>
                     <li><a href="accident.html">Accident Analysis</a></li>
@@ -70,6 +70,7 @@
             <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
         </ul>
     </nav>
+
         <?php
 require_once 'db_connect.php';
 
@@ -231,7 +232,7 @@ $conn->close();
             <p> Emergency contacts -  dail-100/ dail-101 / dail-108 /dail-181 /dail-1098</p>
         </div>
         <div class="sr">
-            <a href="cybercell.html"> <img src="images/cyber.png" ></a>
+            <a href=""> <img src="images/cyber.png" ></a>
             <h3>CYBER CELL</h3>
             <p >Cyber Cell</p>
         </div>
@@ -529,6 +530,5 @@ $conn->close();
     <script src="slides.js"></script>
     <script src="hamburger.js"></script>
     <script src="initiatives.js"></script>
-    <script src="hamburger.js"></script>
 </body>
 </html>6
