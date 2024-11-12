@@ -1,33 +1,67 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const banners = document.querySelectorAll('[class^="banner-"]');
+    const leftBtn = document.querySelector('.left');
+    const rightBtn = document.querySelector('.right');
+    let currentIndex = 0;
+    const autoSlideInterval = 5000; // 5 seconds
+    let autoSlideTimer;
 
-let currentIndex = 0;
-const banners = document.querySelectorAll('.image-container > div');
-const totalBanners = banners.length;
+    // Function to show banner
+    function showBanner(index) {
+        // Remove active class from all banners
+        banners.forEach(banner => {
+            banner.classList.remove('active');
+            const textBox = banner.querySelector('.text-box');
+            textBox.classList.remove('animate');
+        });
 
-function showBanner(index) {
-    banners.forEach((banner, i) => {
-        const textBox = banner.querySelector('.text-box');
-        const backgroundImage = banner.querySelector('.background-image');
-        banner.classList.remove('active');
-        textBox.classList.remove('animate'); // Remove animation class
-        if (i === index) {
-            banner.classList.add('active');
-            // Restart the animation
-            void textBox.offsetWidth; // Trigger reflow
-            textBox.classList.add('animate'); // Add animation class back
+        // Add active class to current banner
+        banners[index].classList.add('active');
+        const textBox = banners[index].querySelector('.text-box');
+        textBox.classList.add('animate');
+    }
+
+    // Function to show next banner
+    function nextBanner() {
+        currentIndex = (currentIndex + 1) % banners.length;
+        showBanner(currentIndex);
+    }
+
+    // Function to show previous banner
+    function prevBanner() {
+        currentIndex = (currentIndex - 1 + banners.length) % banners.length;
+        showBanner(currentIndex);
+    }
+
+    // Auto slide function
+    function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideTimer = setInterval(nextBanner, autoSlideInterval);
+    }
+
+    // Stop auto slide
+    function stopAutoSlide() {
+        if (autoSlideTimer) {
+            clearInterval(autoSlideTimer);
         }
-    })
-}
+    }
 
-document.querySelector('.nav-button.left').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? totalBanners - 1 : currentIndex - 1;
-    showBanner(currentIndex);
+    // Event listeners for buttons
+    leftBtn.addEventListener('click', () => {
+        prevBanner();
+        startAutoSlide(); // Restart auto slide after manual navigation
+    });
+
+    rightBtn.addEventListener('click', () => {
+        nextBanner();
+        startAutoSlide(); // Restart auto slide after manual navigation
+    });
+
+    // Start auto slide on page load
+    startAutoSlide();
+
+    // Pause auto slide when hovering over the container
+    const container = document.querySelector('.image-container');
+    container.addEventListener('mouseenter', stopAutoSlide);
+    container.addEventListener('mouseleave', startAutoSlide);
 });
-
-document.querySelector('.nav-button.right').addEventListener('click', () => {
-    currentIndex = (currentIndex === totalBanners - 1) ? 0 : currentIndex + 1;
-    showBanner(currentIndex);
-});
-
-showBanner(currentIndex); // Show the first banner initially
-
-

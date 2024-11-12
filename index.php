@@ -43,6 +43,7 @@
                     <li><a href="history.html">History</a></li>
                     <li><a href="organisation.html">Organisation Chart</a></li>
                     <li><a href="awards.html">Awards</a></li>
+                    <li><a href="officers.html">Our Team</a></li>
                 </ul>
             </li>
             <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
@@ -155,7 +156,7 @@ $activities = $activityManager->getRecentActivities();
         </div>
     
         <div class="banner-4">
-            <img src="images/sklm.jpg" alt="Surya Narayana Swami Temple">
+            <img src="images/srikakulam.jpg" alt="Surya Narayana Swami Temple">
             <div class="background-image"></div>
             <div class="text-box">
                 <h1>SRIKAKULAM</h1>
