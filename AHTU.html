@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Initiatives - SKLM Police</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
+    <style>
+        .initiatives-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .initiative {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .initiative img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .text-content {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .text-content h2 {
+            color: #0a9396;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .text-content p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #0a9396;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0a9396;
+        }
+
+        /* Modal Styles */
+        .details-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .details-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .details-content h2 {
+            color: #0a9396;
+            margin-bottom: 20px;
+        }
+
+        .details-content h3 {
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .details-content ul {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+
+        .details-content li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .details-content li:before {
+            content: "•";
+            color: #0a9396;
+            position: absolute;
+            left: 0;
+        }
+
+        .details-content button {
+            background: #0a9396;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .details-content button:hover {
+            background: #0a9396;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-top: 1rem;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .initiative {
+                flex-direction: column;
+            }
+
+            .initiative img {
+                width: 100%;
+                height: auto;
+            }
+
+            .text-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Left Logo -->
+        <div>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+    
+        <!-- Center Heading -->
+        <h1 class="header-title">Srikakulam Police Department</h1>
+    
+        <!-- Right Logo -->
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+    
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+                <ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                </ul>
+            </li>
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+                <ul>
+                    <li><a href="law.html">Law & Order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="#">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                            Report</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                            Speaker Permission</a></li>
+                </ul>
+            </li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="initiatives-container">
+        <div class="initiative" id="tracing-missing">
+            <img src="tracing-missing.jpg" alt="Tracing Missing Cases Poster">
+            <div class="text-content">
+                <h2><i class="fas fa-search"></i> Tracing Missing Cases</h2>
+                <p>Our dedicated team works tirelessly to locate missing individuals, utilizing investigative skills, community collaboration, and advanced technology. We encourage anyone with information regarding a missing person to come forward and assist in our efforts. <strong>Note:</strong> All information shared remains confidential.</p>
+                <a href="#missing-details" class="cta-button" onclick="showDetails('missing')">Learn More</a>
+            </div>
+        </div>
+
+        <div class="initiative" id="good-touch-bad-touch">
+            <img src="good-bad-touch.jpg" alt="Good Touch & Bad Touch Poster">
+            <div class="text-content">
+                <h2><i class="fas fa-hand-holding-heart"></i> Awareness Programs on Good Touch & Bad Touch</h2>
+                <p>We educate children on the importance of safe touch, offering tools to identify and report unsafe situations. Our programs empower children to protect themselves and foster a safe environment. Join us in spreading awareness by attending or hosting a workshop.</p>
+                <a href="#touch-awareness-details" class="cta-button" onclick="showDetails('touch')">Learn More</a>
+            </div>
+        </div>
+
+        <div class="initiative" id="rescue-rehabilitation">
+            <img src="rescue-rehabilitation.jpg" alt="Rescue and Rehabilitation Poster">
+            <div class="text-content">
+                <h2><i class="fas fa-child"></i> Rescue and Rehabilitation of Vulnerable Children</h2>
+                <p>We rescue children in unsafe conditions, such as child labor and begging. Collaborating with welfare organizations, we provide shelter, education, and medical care. Help us give each child a safe, nurturing environment to grow and thrive.</p>
+                <a href="#rescue-details" class="cta-button" onclick="showDetails('rescue')">Learn More</a>
+            </div>
+        </div>
+
+        <div class="initiative" id="child-marriage-prevention">
+            <img src="child-marriage-prevention.jpg" alt="Child Marriage Prevention Poster">
+            <div class="text-content">
+                <h2><i class="fas fa-ban"></i> Prevention of Child Marriage</h2>
+                <p>Our initiative raises awareness about the harmful effects of child marriage, working closely with communities to protect children's rights. We aim to ensure every child enjoys a childhood free from undue responsibilities and has the chance to pursue education.</p>
+                <a href="#marriage-prevention-details" class="cta-button" onclick="showDetails('marriage')">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
+    </footer>
+
+
+
+
+    <script>
+        function showDetails(type) {
+            const detailsContent = {
+                'missing': {
+                    title: 'Missing Persons Details',
+                    content: `
+                        <h3>How We Help Find Missing Persons</h3>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="tracing-missing.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul>
+                            <li>24/7 Missing Persons Helpline: 1098</li>
+                            <li>Immediate FIR Registration</li>
+                            <li>Advanced Search Operations</li>
+                            <li>Digital Database Integration</li>
+                            <li>Inter-State Coordination</li>
+                        </ul>
+                        <p>Contact our dedicated missing persons cell: missing@sklmpolice.gov.in</p>
+                    `
+                },
+                'touch': {
+                    title: 'Good Touch Bad Touch Awareness Program',
+                    content: `
+                        <h3>Program Details</h3>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="good-bad-touch.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul>
+                            <li>School Awareness Sessions</li>
+                            <li>Parent Workshops</li>
+                            <li>Educational Materials</li>
+                            <li>Counseling Services</li>
+                            <li>Emergency Response Training</li>
+                        </ul>
+                        <p>Schedule a workshop: awareness@sklmpolice.gov.in</p>
+                    `
+                },
+                'rescue': {
+                    title: 'Child Rescue and Rehabilitation',
+                    content: `
+                        <h3>Our Rescue Operations</h3>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="rescue-rehabilitation.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul>
+                            <li>24/7 Rescue Teams</li>
+                            <li>Child-Friendly Facilities</li>
+                            <li>Medical Support</li>
+                            <li>Educational Programs</li>
+                            <li>Family Reunification</li>
+                        </ul>
+                        <p>Report child exploitation: childhelp@sklmpolice.gov.in</p>
+                    `
+                },
+                'marriage': {
+                    title: 'Child Marriage Prevention',
+                    content: `
+                        <h3>Prevention Strategies</h3>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="child-marriage-prevention.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <ul>
+                            <li>Community Awareness Programs</li>
+                            <li>Anonymous Reporting System</li>
+                            <li>Legal Aid Support</li>
+                            <li>Rehabilitation Services</li>
+                            <li>Education Support</li>
+                        </ul>
+                        <p>Report child marriage: stopchildmarriage@sklmpolice.gov.in</p>
+                    `
+                }
+            };
+
+            const details = detailsContent[type];
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'details-popup';
+            detailsDiv.innerHTML = `
+                <div class="details-content">
+                    <h2>${details.title}</h2>
+                    ${details.content}
+                    <button onclick="closeDetails(this)">Close</button>
+                </div>
+            `;
+            document.body.appendChild(detailsDiv);
+        }
+
+        function closeDetails(button) {
+            button.closest('.details-popup').remove();
+        }
+    </script>
+    <script src="hamburger.js"></script>
+</body>
+</html>

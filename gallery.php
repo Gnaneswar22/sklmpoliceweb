@@ -4,104 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Police Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
     <style>
-        /* General styling reset */
-        body {
-            background-color: #f7f7f7;
-            color: #333;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-family: Arial, sans-serif; 
-            background: #fff;
-            font-size: 90%;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #0a9396;
-            padding: 0;
-            color: white;
-            position: relative;
-            
-        }
-        .logo {
-           
-        height:auto;
-            width: 100px;
-           padding-top: 18px;
-            padding-left: 80px;
-            padding-right: 80px;
-        }
-        
-        .header-title {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 35px;
-            font-weight: bold;
-        }
-        nav {
-            display: flex;
-            background-color:#0a9396;
-            justify-content: center;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-        }
-        nav ul li {
-            position: relative;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 17px;
-            padding: 10px;
-        }
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.11);
-            border-radius: 5px;
-        }
-        /* Dropdown styles */
-        nav ul li ul {
-            display:none;
-            position:absolute;
-            top: 100%;
-           
-            background-color: whitesmoke;
-          
-            list-style: none;
-            height: auto;;
-            width: 160px;
-            z-index: 10;
-            border-radius: 10px;
-        }
-        nav ul li ul li a {
-            padding: auto;
-            height: auto;
-            width: auto;
-            display: block;
-            color: black;
-            font-size: 14px;
-            align-items: center;
-        }
-        nav ul li ul li a:hover {
-            background-color: rgba(18, 140, 126, 0.507);
-            border-radius: 5px;
-        }
-        nav ul li:hover ul {
-            display: block;
-        }
-        
+                
         .highlights {
             text-align: center;
             padding: 1.5rem;
@@ -241,58 +147,59 @@
     </style>
 </head>
 <body>
-    <section>
-        <header>
-            <!-- Left Logo -->
-            <div>
-                <img src="images/Appolice.png" alt="Left Logo" class="logo">
-            </div>
+<header>
+    <!-- Left Logo -->
+    <div>
+        <img src="images/Appolice.png" alt="Left Logo" class="logo">
+    </div>
 
-            <!-- Center Heading -->
-            <h1 class="header-title">Srikakulam Police Department</h1>
+    <!-- Center Heading -->
+    <h1 class="header-title">Srikakulam Police Department</h1>
 
-            <!-- Right Logo -->
-            <div>
-                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-            </div>
-        </header>
+    <!-- Right Logo -->
+    <div>
+        <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+    </div>
 
-        
-
-        <!-- Navigation Bar -->
-        <nav>
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About Us</a>
-                    <ul>
-                        <li><a href="history.html">History</a></li>
-                        <li><a href="organisation.html">Organisation Chart</a></li>
-                        <li><a href="awards.html">Awards</a></li>
-                        <li><a href="officers.html">OUR TEAM</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">wings</a>
-                    <ul>
-                        <li><a href="law.html">Law & order</a></li>
-                        <li><a href="traffic.html">Traffic</a></li>
-                        <li><a href="tel:100">Dail 100</a></li>
-                        <li><a href="">AHTU</a></li>
-                    </ul>
-                </li>
-                <li><a href="womenscorner.html">Women’s Corner</a></li>
-                <li><a href="">Services</a>
-                  <ul>
-                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
-                    <li><a href="fir.html">View FIR</a></li>
-                    <li><a href="domestic.html">Domestic Violence</a></li>
-                    <li><a href="accident.html">Accedent Analysis</a></li>
-                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
-                </ul>
-              </li>
-                <li><a href="contacts.html">Contact Us</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="organisation.html">Organisation Chart</a></li>
+                <li><a href="awards.html">Awards</a></li>
             </ul>
-        </nav>
-
+        </li>
+        <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+            <ul>
+                <li><a href="law.html">Law & Order</a></li>
+                <li><a href="traffic.html">Traffic</a></li>
+                <li><a href="tel:100">Dial 100</a></li>
+                <li><a href="#">AHTU</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+        <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+            <ul>
+                <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                        Report</a></li>
+                <li><a href="fir.html">View FIR</a></li>
+                <li><a href="domestic.html">Domestic Violence</a></li>
+                <li><a href="accident.html">Accident Analysis</a></li>
+                <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                        Speaker Permission</a></li>
+            </ul>
+        </li>
+        <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+    </ul>
+</nav>
 
 
         <?php
@@ -401,6 +308,6 @@ $result = $conn->query($sql);
         }
     };
 </script>
-
+<script src="hamburger.js"></script>
 </body>
 </html>
