@@ -64,6 +64,7 @@
                     <li><a href="accident.html">Accident Analysis</a></li>
                     <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
                             Speaker Permission</a></li>
+                            <li><a href="services.html">knowmore</a></li>
                 </ul>
             </li>
             <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
