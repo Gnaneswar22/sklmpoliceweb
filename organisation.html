@@ -3,89 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organisation Chart</title>
+  <title>Police Department Organisation Chart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="headerfoot.css">
   <style>
-    /* General reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
+
     body {
       width: 100%;
-      height: 80%;
-      background-color: #f5f5f5;
-    }
-
-    /* Centering the main container */
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
       background-color: #f5f5f5;
     }
 
-    /* Outer circle styling */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .org-chart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      background-color: #f5f5f5;
+      position: relative;
+    }
+
     .circle {
-      position: fixed;
-      width: 300px;
-      height: 300px;
+      width: 280px;
+      height: 280px;
       background-color: #d9e0e7;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    /* Inner content in the circle */
-    .circle-content {
-      text-align: center;
-      color: #333;
+      position: relative;
+      cursor: pointer;
     }
 
     .circle-content {
       background-color: #dc0d67;
       height: 250px;
       width: 250px;
-      border-radius: 100%;
+      border-radius: 50%;
+      text-align: center;
+      color: #fff;
     }
 
     .circle-content h1 {
       padding-top: 100px;
-      color: white;
       font-size: 24px;
       font-weight: bold;
       margin-bottom: 5px;
     }
 
-    .circle-content p {
-      font-size: 14px;
-      color: #ffffff;
-    }
-
-    /* Lines connecting circle to info boxes */
     .line {
       position: absolute;
-      width: 5px;
-      height: 70%;
+      width: 3px;
       background-color: #6d7684;
-      z-index: -1;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
     }
 
-    /* Position lines around the circle */
-    .line1 { top: -30%; left: 90%; transform: rotate(50deg); }
-    .line2 { top: -5%; left: 110%; transform: rotate(75deg); }
-    .line3 { top: 23%; left: 120%; transform: rotate(92deg); }
-    .line4 { top: 48%; left: 110%; transform: rotate(110deg); }
-    .line5 { top: 82%; left: 75%; transform: rotate(-40deg); }
-    .line6 { top:-50%; left:70%; transform: rotate(35deg)}
-    .line7 { top: 68%; left: 100%; transform: rotate(-58deg); }
+    .line.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-    /* Info boxes */
+   
     .info-box {
-      position: fixed;
+      position: absolute;
       width: 200px;
       height: 80px;
       color: white;
@@ -93,21 +93,32 @@
       display: flex;
       align-items: center;
       gap: 1px;
-      padding-TOP: 10px;
+      padding: 10px;
       z-index: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
     }
 
-    /* Info box colors */
+    .info-box.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-    .info1 { top: 5%; left: 55%; background-color: #673ab7; }
-    .info2 { top: 33%; left: 68%; background-color: #2196f3; }
-    .info3 { top: 48%; left: 70%; background-color: #ff9800; }
-    .info4 { top: 63%; left: 68%; background-color: #9c27b0; }
-    .info5 { top: 90%; left: 56%; background-color: #f44336; }
-    .info6 { top: 18%; left: 63%; background-color: #4caf50; }
-    .info7 { top: 77%; left: 63%; background-color: #009688; }
+    .info-box:hover {
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
 
-    /* Icon circles in each info box */
+    .info1 { top: 0; left: 10%; transform: translate(-50%, -150%); background-color: #673ab7; }
+    .info2 { top: 30%; left: 75%; transform: translate(50%, -50%); background-color: #2196f3; }
+    .info3 { top: 70%; left: 75%; transform: translate(50%, -50%); background-color: #ff9800; }
+    .info4 { top: 95%; left: 50%; transform: translate(-50%, 50%); background-color: #9c27b0; }
+    .info5 { top: 30%; left: 25%; transform: translate(-150%, -50%); background-color: #f44336; }
+    .info6 { top: 70%; left: 25%; transform: translate(-150%, -50%); background-color: #4caf50; }
+    .info7 { top: 0; left: 100%; transform: translate(-50%, -150%); background-color: #009688; }
+
     .icon-circle {
       width: 25px;
       height: 25px;
@@ -116,100 +127,321 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: 10px;
     }
 
-    /* Tooltip styling */
-    .tooltip {
-      visibility: hidden;
-      width: 140px;
-      background-color: #333;
-      color: #fff;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 700px;
+      border-radius: 10px;
+      animation: modalOpen 0.4s ease-out;
+    }
+
+    @keyframes modalOpen {
+      from {transform: scale(0.7); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    .department-chart {
+      margin-top: 20px;
+    }
+
+    .department-chart h2 {
+      color: #333;
+      margin-bottom: 20px;
       text-align: center;
+      font-size: 24px;
+    }
+
+    .hierarchy-tree {
+      padding: 20px;
+    }
+
+    .hierarchy-tree ul {
+      list-style-type: none;
+    }
+
+    .hierarchy-tree li {
+      padding: 15px;
+      margin: 10px 0;
+      background-color: #f5f5f5;
       border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-      z-index: -1;
-      bottom: 125%; /* Position above the info-box */
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s;
+      border-left: 4px solid #333;
+      font-size: 16px;
     }
 
-    /* Tooltip arrow */
-    .tooltip::after {
-      content: "";
-      position: absolute;
-      top: 100%; /* At the bottom of the tooltip */
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }
-
-    /* Show tooltip on hover */
-    .info-box:hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-    }
+    .dept1 li { border-left-color: #673ab7; }
+    .dept2 li { border-left-color: #2196f3; }
+    .dept3 li { border-left-color: #ff9800; }
+    .dept4 li { border-left-color: #9c27b0; }
+    .dept5 li { border-left-color: #f44336; }
+    .dept6 li { border-left-color: #4caf50; }
+    .dept7 li { border-left-color: #009688; }
   </style>
 </head>
 <body>
-<div class="main">
-<div class="container">
-  <div class="circle">
-    <div class="circle-content">
-      <div class="inner-circle"></div>
-      <h1>SUPERINTENDENT OF POLICE</h1>
+  <header>
+    <!-- Left Logo -->
+    <div>
+        <img src="images/Appolice.png" alt="Left Logo" class="logo">
     </div>
-    <!-- Lines connecting to info boxes -->
-    <div class="line line1"></div>
-    <div class="line line2"></div>
-    <div class="line line3"></div>
-    <div class="line line4"></div>
-    <div class="line line5"></div>
-    <div class="line line6"></div>
-    <div class="line line7"></div>
-    
-    <!-- Info boxes with colors and icons -->
-    <div class="info-box info1">
-      <div class="icon-circle">1</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 1</div>
+
+    <!-- Center Heading -->
+    <h1 class="header-title">Srikakulam Police Department</h1>
+
+    <!-- Right Logo -->
+    <div>
+        <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
     </div>
-    <div class="info-box info2">
-      <div class="icon-circle">2</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 2</div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
     </div>
-    <div class="info-box info3">
-      <div class="icon-circle">3</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 3</div>
-    </div>
-    <div class="info-box info4">
-      <div class="icon-circle">4</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 4</div>
-    </div>
-    <div class="info-box info5">
-      <div class="icon-circle">5</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 5</div>
-    </div>
-    <div class="info-box info6">
-      <div class="icon-circle">6</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 6</div>
-    </div>
-    <div class="info-box info7">
-      <div class="icon-circle">7</div>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <div class="tooltip">Additional Info for Box 7</div>
+  </header>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+            <ul>
+                <li><a href="history.html">History</a></li>
+                <li><a href="organisation.html">Organisation Chart</a></li>
+                <li><a href="awards.html">Awards</a></li>
+            </ul>
+        </li>
+        <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+            <ul>
+                <li><a href="law.html">Law & Order</a></li>
+                <li><a href="traffic.html">Traffic</a></li>
+                <li><a href="tel:100">Dial 100</a></li>
+                <li><a href="#">AHTU</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
+        <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+            <ul>
+                <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                        Report</a></li>
+                <li><a href="fir.html">View FIR</a></li>
+                <li><a href="domestic.html">Domestic Violence</a></li>
+                <li><a href="accident.html">Accident Analysis</a></li>
+                <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                        Speaker Permission</a></li>
+            </ul>
+        </li>
+        <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="org-chart">
+      <div class="circle" onclick="toggleInfoBoxes()">
+        <div class="circle-content">
+          <h1>SUPERINTENDENT OF POLICE</h1>
+        </div>
+        
+        <div class="info-box info7" onclick="openModal('Technical Services Department')">
+          <div class="icon-circle">1</div>
+          <p>Technical Services</p>
+        </div>
+      
+
+        <div class="info-box info2" onclick="openModal('Traffic Control Department')">
+          <div class="icon-circle">2</div>
+          <p>Traffic Control</p>
+        </div>
+
+        <div class="info-box info3" onclick="openModal('Law and Order Department')">
+          <div class="icon-circle">3</div>
+          <p>Law and Order</p>
+        </div>
+
+        <div class="info-box info4" onclick="openModal('Intelligence Department')">
+          <div class="icon-circle">4</div>
+          <p>Intelligence</p>
+        </div>
+        <div class="info-box info6" onclick="openModal('Administrative Department')">
+          <div class="icon-circle">5</div>
+          <p>Administration</p>
+        </div>
+
+        <div class="info-box info5" onclick="openModal('Special Operations Department')">
+          <div class="icon-circle">6</div>
+          <p>Special Operations</p>
+        </div>
+
+        
+        <div class="info-box info1" onclick="openModal('Criminal Investigation Department')">
+          
+          <div class="icon-circle">7</div>
+          <p>Criminal Investigation</p>
+        </div>
+        
+      </div>
     </div>
   </div>
-</div>
-</div>
+
+  <div id="departmentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="department-chart">
+        <h2 id="modalTitle">Department Structure</h2>
+        <div class="hierarchy-tree" id="hierarchyContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
+  </footer>
+  
+  <script>
+    const departmentData = {
+      'Criminal Investigation Department': {
+        head: 'Deputy Commissioner (Crime)',
+        units: [
+          'Homicide Division',
+          'Cybercrime Unit',
+          'Special Investigation Unit',
+          'Forensic Department',
+          'Anti-Narcotics Division'
+        ]
+      },
+      'Traffic Control Department': {
+        head: 'Additional Commissioner (Traffic)',
+        units: [
+          'Traffic Management Unit',
+          'Road Safety Division',
+          'Traffic Engineering Cell',
+          'Vehicle Registration Wing',
+          'Traffic Education Unit'
+        ]
+      },
+      'Law and Order Department': {
+        head: 'Deputy Commissioner (L&O)',
+        units: [
+          'Patrol Division',
+          'Emergency Response Unit',
+          'Public Order Management',
+          'Community Policing Wing',
+          'Beat Officer Unit'
+        ]
+      },
+      'Intelligence Department': {
+        head: 'Joint Commissioner (Intelligence)',
+        units: [
+          'Counter Intelligence Unit',
+          'Security Analysis Wing',
+          'Surveillance Division',
+          'Strategic Operations Cell',
+          'Data Analysis Unit'
+        ]
+      },
+      'Special Operations Department': {
+        head: 'Additional Commissioner (Special Ops)',
+        units: [
+          'SWAT Team',
+          'Counter-Terrorism Unit',
+          'Bomb Disposal Squad',
+          'Crisis Response Team',
+          'VIP Security Wing'
+        ]
+      },
+      'Administrative Department': {
+        head: 'Deputy Commissioner (Admin)',
+        units: [
+          'Human Resources',
+          'Training Academy',
+          'Finance Division',
+          'Internal Affairs',
+          'Welfare Branch'
+        ]
+      },
+      'Technical Services Department': {
+        head: 'Deputy Commissioner (Technical)',
+        units: [
+          'Communications Division',
+          'IT Infrastructure',
+          'CCTV Monitoring Cell',
+          'Equipment Maintenance',
+          'Technical Support Unit'
+        ]
+      }
+    };
+
+    function openModal(department) {
+      const modal = document.getElementById('departmentModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const hierarchyContent = document.getElementById('hierarchyContent');
+      
+      modalTitle.textContent = department;
+      
+      const data = departmentData[department];
+      if (data) {
+        let html = `<ul class="dept${department.charAt(0)}">`;
+        html += `<li><strong>${data.head}</strong></li>`;
+        data.units.forEach(unit => {
+          html += `<li>${unit}</li>`;
+        });
+        html += '</ul>';
+        hierarchyContent.innerHTML = html;
+      }
+      
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('departmentModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('departmentModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    function toggleInfoBoxes() {
+      const infoBoxes = document.querySelectorAll('.info-box');
+      const lines = document.querySelectorAll('.line');
+      infoBoxes.forEach(box => {
+        box.classList.toggle('show');
+      });
+      lines.forEach(line => {
+        line.classList.toggle('show');
+      });
+    }
+  </script>
+  <script src="hamburger.js"></script>
 </body>
 </html>
