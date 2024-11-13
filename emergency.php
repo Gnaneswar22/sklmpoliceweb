@@ -88,6 +88,8 @@ function deleteEmergencyContact($conn, $id) {
       transform: scale(1.05);
       opacity: 1;
     }
+
+    
   </style>
 </head>
 <body>
@@ -145,7 +147,7 @@ function deleteEmergencyContact($conn, $id) {
         </ul>
     </nav>
 
-<<<<<<< HEAD:emergency.html
+
 <div class="container">
   <h2>Emergency Contact Numbers</h2>
   <ul class="emergency-numbers">
@@ -171,9 +173,12 @@ function deleteEmergencyContact($conn, $id) {
     </li>
   </ul>
 </div>
+<script src="hamburger.js"></script>
+
+
 <footer>
     <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
 </footer>
-<script src="hamburger.js"></script>
+
 </body>
 </html>

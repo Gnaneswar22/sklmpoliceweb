@@ -173,10 +173,13 @@ nav ul li ul li a:hover {
 footer {
     background-color: #0a9396;
     color: white;
-    padding: 20px;
     text-align: center;
-    margin-top: auto;
+    padding: 5px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
 }
+
 
 @media (max-width: 480px) {
     .logo {

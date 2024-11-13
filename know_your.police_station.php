@@ -386,7 +386,7 @@ width: 100%;
         color: white;
         text-align: center;
         padding: 5px 0;
-        position: fixed;
+        position: relative;
         width: 100%;
         bottom: 0;
     }
@@ -571,7 +571,7 @@ width: 100%;
     </div>
     <div class="map-container">
         <h2>Map of Andhra Pradesh</h2>
-        <img src="images/andhra_pradesh_map.png" alt="Andhra Pradesh Map" class="map-image">
+        <img src="images/sklmmap.jpg" alt="Srikakulam Map Map" class="map-image">
     </div>
     <script>
         const crimeData = <?php echo json_encode($crimeData); ?>;

@@ -228,7 +228,7 @@ $conn->close();
             <p >know your police station and Locate your nearest police station</p>
         </div>
         <div class="sr">
-            <a href="emergency.html"> <img src="images/emergency.png" ></a>
+            <a href="emergency.php"> <img src="images/emergency.png" ></a>
             <h3>Emergency Contacts</h3>
             <p> Emergency contacts -  dail-100/ dail-101 / dail-108 /dail-181 /dail-1098</p>
         </div>
@@ -339,168 +339,256 @@ $conn->close();
        
      
       <br>
-
-        <div class="hlayout">
-    <section class="horizontal-layout">
-        <!-- Twitter Section -->
-        <div class="twitter-section">
-            <h2>Srikakulam Police Department</h2>
-            <a class="twitter-timeline" data-width="330" data-height="350" href="https://twitter.com/POLICESRIKAKULM?ref_src=twsrc%5Etfw">Tweets by POLICESRIKAKULM</a>
-            <script async src="https://platform.twitter.com/widgets.js"></script>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="gallery-container">
-            <h1 class="gallery-title">Photo & Video Gallery</h1>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="image1.jpg" alt="Flag ceremony">
-                    <div class="hover-overlay">
-                        <span class="hover-text">View</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <video id="mainVideo" poster="video-thumbnail.jpg">
-                        <source src="parade-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-overlay">
-                        <div class="play-button"></div>
-                    </div>
-                    <div class="hover-overlay">
-                        <span class="hover-text">View Video</span>
-                    </div>
-                    <div class="video-controls">
-                        <div class="video-progress">
-                            <div class="video-progress-bar"></div>
-                        </div>
-                    </div>
-                </div>
+      <div class="hlayout">
+        <section class="horizontal-layout">
+            <!-- Twitter Section -->
+            <div class="twitter-section">
+                <a class="twitter-timeline" data-width="330" data-height="350" href="https://twitter.com/POLICESRIKAKULM?ref_src=twsrc%5Etfw">Tweets by POLICESRIKAKULM</a>
+                <script async src="https://platform.twitter.com/widgets.js"></script>
             </div>
-            <div class="small-grid">
-                <div class="gallery-item">
-                    <img src="image3.jpg" alt="Guard formation">
-                    <div class="hover-overlay">
-                        <span class="hover-text">View</span>
-                    </div>
+    
+            <!-- Slideshow Section -->
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="images/2.jpg" style="width:100%">
                 </div>
-                <div class="gallery-item">
-                    <img src="image4.jpg" alt="Police interaction">
-                    <div class="hover-overlay">
-                        <span class="hover-text">View</span>
-                    </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="images/1.jpg" style="width:100%">
                 </div>
-                <div class="gallery-item">
-                    <img src="image5.jpg" alt="Parade formation">
-                    <div class="hover-overlay">
-                        <span class="hover-text">View</span>
-                    </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="images/3.jpg" style="width:100%">
                 </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <button class="view-all-button"><a href="gallery.php"> View All</a></button>
-           
-
- <!-- Modal for fullscreen view -->
- <div id="fullscreenModal" class="modal" style="display:none;">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img class="modal-content" id="modalImage">
-            <div id="modalCaption"></div>
-        </div>
-        </div>
-
-        </div>
-
-        <!-- Facebook Section -->
-        <div class="fb-post">
-            <h2>Srikakulam Police Department</h2>
-            <div class="fb-page" 
-                data-href="https://www.facebook.com/profile.php?id=100068435118920" 
-                data-tabs="timeline" 
-                data-width="330" 
-                data-height="350" 
-                data-small-header="false" 
-                data-adapt-container-width="true" 
-                data-hide-cover="false" 
-                data-show-facepile="true">
-                <blockquote cite="https://www.facebook.com/profile.php?id=100068435118920" 
-                        class="fb-xfbml-parse-ignore">
-                       <a href="https://www.facebook.com/profile.php?id=100068435118920">Srikakulam Police Department</a>
-                </blockquote>
+            
+            <!-- Facebook Section -->
+            <div class="fb-post">
+                <div class="fb-page" 
+                    data-href="https://www.facebook.com/profile.php?id=100068435118920" 
+                    data-tabs="timeline" 
+                    data-width="330" 
+                    data-height="350" 
+                    data-small-header="false" 
+                    data-adapt-container-width="true" 
+                    data-hide-cover="false" 
+                    data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/profile.php?id=100068435118920" 
+                            class="fb-xfbml-parse-ignore">
+                           <a href="https://www.facebook.com/profile.php?id=100068435118920">Srikakulam Police Department</a>
+                    </blockquote>
+                </div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"></script>
             </div>
-            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"></script>
-        </div>
-    </section>
-</div>
-
-
+        </section>
 </div>
 </div>
 
 
-<?php
-// Database connection details
-$servername = "localhost";
-$username = "root"; // Replace with your DB username
-$password = ""; // Replace with your DB password
-$dbname = "srikakulam_police"; // Your database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch initiatives
-$sql = "SELECT title, description, image_path FROM initiatives";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo '<section id="initiatives">
-            <div class="container">
-                <h1 class="text-center-section-heading">Our Initiatives</h1>
+<section class="initiatives-section">
+    <div class="container">
+        <h1>Initiative</h1>
+        <div class="swiper initiatives-slider">
+            <div class="swiper-wrapper">
+                <!-- Initiative Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/Picsart_24-10-25_15-40-26-620.jpg" alt="Initiative 1" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 1</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                
+                <!-- Initiative Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/img.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/sp.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/sklmplc.png" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/Picsart_24-10-25_15-40-26-620.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/3.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/2.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="initiative-img-container">
+                        <img src="images/1.jpg" alt="Initiative 2" class="initiative-img">
+                    </div>
+                    <div class="initiative-content">
+                        <h3 class="initiative-title">Initiative Title 2</h3>
+                        <p class="initiative-description">Description of your initiative goes here.</p>
+                    </div>
+                </div>
+                
+                <!-- Add more slides as needed -->
+                
             </div>
-            <div class="container">
-                <div class="swiper initiatives-slider">
-                    <div class="swiper-wrapper">';
-
-    // Output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo '<div class="swiper-slide initiative-slide">
-                <div class="initiative-slide-img">
-                    <img src="' . $row["image_path"] . '" alt="' . htmlspecialchars($row["title"]) . '">
-                </div>
-                <div class="initiative-slide-content">
-                    <h1 class="initiative-title">' . htmlspecialchars($row["title"]) . '</h1>
-                    <div class="initiative-slide-content-bottom">
-                        <h2 class="initiative-description">' . htmlspecialchars($row["description"]) . '</h2>
-                    </div>
-                </div>
-              </div>';
-    }
-    echo '      </div>
-                <div class="slider-control">
-                    <div class="swiper-button-prev slider-arrow">
-                        <ion-icon name="arrow-back-outline"></ion-icon>
-                    </div>
-                    <div class="swiper-button-next slider-arrow">
-                        <ion-icon name="arrow-forward-outline"></ion-icon>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
+            
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
-    </section>';
-} else {
-    echo "No initiatives found.";
-}
-$conn->close();
-?>
-
+    </div>
+</section>
 <!-- Include Swiper JS and CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+     // Initialize Swiper with advanced configuration
+const initiativesSwiper = new Swiper('.initiatives-slider', {
+    // Enable slide effect
+    effect: 'slide',
+    
+    // Responsive breakpoints
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 20
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+        },
+        1024: {
+            slidesPerView: 3,
+            spaceBetween: 40
+        }
+    },
+    
+    // Center active slide
+    centeredSlides: true,
+    
+    // Enable loop
+    loop: true,
+    
+    // Auto play configuration
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+    },
+    
+    // Enable smooth transitions
+    speed: 800,
+    
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    
+    // Pagination
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true
+    },
+    
+    // Enable keyboard control
+    keyboard: {
+        enabled: true,
+        onlyInViewport: true
+    },
+    
+    // Enable mouse wheel control
+    mousewheel: {
+        invert: false
+    },
+    
+    // Add parallax effect
+    on: {
+        progress: function(swiper) {
+            const scaleStep = 0.2;
+            const zIndexMax = 10;
+            
+            for (let i = 0; i < swiper.slides.length; i++) {
+                const slide = swiper.slides[i];
+                const progress = slide.progress;
+                let scale = 1;
+                
+                if (progress > 0) {
+                    scale = 1 - (progress * scaleStep);
+                } else if (progress < 0) {
+                    scale = 1 + (Math.abs(progress) * scaleStep);
+                }
+                
+                slide.style.transform = `scale(${scale})`;
+                slide.style.zIndex = zIndexMax - Math.abs(Math.round(progress));
+            }
+        }
+    }
+});
+
+// Pause autoplay on hover
+document.querySelector('.initiatives-slider').addEventListener('mouseenter', () => {
+    initiativesSwiper.autoplay.stop();
+});
+
+document.querySelector('.initiatives-slider').addEventListener('mouseleave', () => {
+    initiativesSwiper.autoplay.start();
+});
+
+// Handle visibility change to pause/resume autoplay
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        initiativesSwiper.autoplay.stop();
+    } else {
+        initiativesSwiper.autoplay.start();
+    }
+});
+    </script>
 
 
 
