@@ -26,8 +26,12 @@
 
         .initiative img {
             width: 100%;
+            max-width: 800px;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 10px;
+            margin: 0 auto;
+            display: block;
         }
 
         .text-content {
@@ -146,6 +150,25 @@
             height: 100%;
         }
 
+        .awareness-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .initiative {
@@ -153,8 +176,9 @@
             }
 
             .initiative img {
-                width: 100%;
+                max-width: 100%;
                 height: auto;
+                padding: 5px;
             }
 
             .text-content {
@@ -167,61 +191,60 @@
     <header>
         <!-- Left Logo -->
         <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-       
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-       
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-       
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="seervices.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+            <img src="images/Appolice.png" alt="Left Logo" class="logo">
+        </div>
+    
+        <!-- Center Heading -->
+        <h1 class="header-title">Srikakulam Police Department</h1>
+    
+        <!-- Right Logo -->
+        <div>
+            <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+        </div>
+    
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+                <ul>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="organisation.html">Organisation Chart</a></li>
+                    <li><a href="awards.html">Awards</a></li>
+                    <li><a href="officers.php">Our Team</a></li>
+                    <li><a href="gallery.php">Gallery</a></li>
+                </ul>
+            </li>
+            <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
+                <ul>
+                    <li><a href="law.html">Law & Order</a></li>
+                    <li><a href="traffic.html">Traffic</a></li>
+                    <li><a href="tel:100">Dial 100</a></li>
+                    <li><a href="AHTU.html">AHTU</a></li>
+                </ul>
+            </li>
+            <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
+            <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul>
+                    <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
+                    <li><a href="fir.html">View FIR</a></li>
+                    <li><a href="domestic.html">Domestic Violence</a></li>
+                    <li><a href="accident.html">Accident Analysis</a></li>
+                    <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+                    <li><a href="seervices.html">knowmore</a></li>
+                </ul>
+            </li>
+            <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
     <div class="initiatives-container">
         <div class="initiative" id="tracing-missing">
-            <img src="tracing-missing.jpg" alt="Tracing Missing Cases Poster">
+            <img src="images/image15.jpg" alt="Tracing Missing Cases Poster">
             <div class="text-content">
                 <h2><i class="fas fa-search"></i> Tracing Missing Cases</h2>
                 <p>Our dedicated team works tirelessly to locate missing individuals, utilizing investigative skills, community collaboration, and advanced technology. We encourage anyone with information regarding a missing person to come forward and assist in our efforts. <strong>Note:</strong> All information shared remains confidential.</p>
@@ -230,7 +253,7 @@
         </div>
 
         <div class="initiative" id="good-touch-bad-touch">
-            <img src="good-bad-touch.jpg" alt="Good Touch & Bad Touch Poster">
+            <img src="images/image18.jpg" alt="Good Touch & Bad Touch Poster">
             <div class="text-content">
                 <h2><i class="fas fa-hand-holding-heart"></i> Awareness Programs on Good Touch & Bad Touch</h2>
                 <p>We educate children on the importance of safe touch, offering tools to identify and report unsafe situations. Our programs empower children to protect themselves and foster a safe environment. Join us in spreading awareness by attending or hosting a workshop.</p>
@@ -239,7 +262,7 @@
         </div>
 
         <div class="initiative" id="rescue-rehabilitation">
-            <img src="rescue-rehabilitation.jpg" alt="Rescue and Rehabilitation Poster">
+            <img src="images/image19.jpg" alt="Rescue and Rehabilitation Poster">
             <div class="text-content">
                 <h2><i class="fas fa-child"></i> Rescue and Rehabilitation of Vulnerable Children</h2>
                 <p>We rescue children in unsafe conditions, such as child labor and begging. Collaborating with welfare organizations, we provide shelter, education, and medical care. Help us give each child a safe, nurturing environment to grow and thrive.</p>
@@ -248,7 +271,7 @@
         </div>
 
         <div class="initiative" id="child-marriage-prevention">
-            <img src="child-marriage-prevention.jpg" alt="Child Marriage Prevention Poster">
+            <img src="images/image21.jpg" alt="Child Marriage Prevention Poster">
             <div class="text-content">
                 <h2><i class="fas fa-ban"></i> Prevention of Child Marriage</h2>
                 <p>Our initiative raises awareness about the harmful effects of child marriage, working closely with communities to protect children's rights. We aim to ensure every child enjoys a childhood free from undue responsibilities and has the chance to pursue education.</p>
@@ -260,9 +283,6 @@
         <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
     </footer>
 
-
-
-
     <script>
         function showDetails(type) {
             const detailsContent = {
@@ -270,9 +290,15 @@
                     title: 'Missing Persons Details',
                     content: `
                         <h3>How We Help Find Missing Persons</h3>
+                        <div class="awareness-gallery">
+                            <img src="images/stop-harassment-1.jpg" alt="Stop Sexual Harassment - Raised Hand" class="gallery-image">
+                            <img src="images/say-no-harassment.jpg" alt="Say No to Sexual Harassment" class="gallery-image">
+                            <img src="images/awareness-poster.jpg" alt="Sexual Harassment Awareness" class="gallery-image">
+                            <img src="images/stop-harassment-2.jpg" alt="Stop Sexual Harassment Symbol" class="gallery-image">
+                        </div>
                         <div class="video-container">
                             <video controls>
-                                <source src="tracing-missing.mp4" type="video/mp4">
+                                <source src="videos/missing-persons.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -290,9 +316,15 @@
                     title: 'Good Touch Bad Touch Awareness Program',
                     content: `
                         <h3>Program Details</h3>
+                        <div class="awareness-gallery">
+                            <img src="images/stop-harassment-1.jpg" alt="Stop Sexual Harassment - Raised Hand" class="gallery-image">
+                            <img src="images/say-no-harassment.jpg" alt="Say No to Sexual Harassment" class="gallery-image">
+                            <img src="images/awareness-poster.jpg" alt="Sexual Harassment Awareness" class="gallery-image">
+                            <img src="images/stop-harassment-2.jpg" alt="Stop Sexual Harassment Symbol" class="gallery-image">
+                        </div>
                         <div class="video-container">
                             <video controls>
-                                <source src="good-bad-touch.mp4" type="video/mp4">
+                                <source src="videos/good-touch-bad-touch.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -310,9 +342,15 @@
                     title: 'Child Rescue and Rehabilitation',
                     content: `
                         <h3>Our Rescue Operations</h3>
+                        <div class="awareness-gallery">
+                            <img src="images/stop-harassment-1.jpg" alt="Stop Sexual Harassment - Raised Hand" class="gallery-image">
+                            <img src="images/say-no-harassment.jpg" alt="Say No to Sexual Harassment" class="gallery-image">
+                            <img src="images/awareness-poster.jpg" alt="Sexual Harassment Awareness" class="gallery-image">
+                            <img src="images/stop-harassment-2.jpg" alt="Stop Sexual Harassment Symbol" class="gallery-image">
+                        </div>
                         <div class="video-container">
                             <video controls>
-                                <source src="rescue-rehabilitation.mp4" type="video/mp4">
+                                <source src="videos/rescue-rehabilitation.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -330,9 +368,15 @@
                     title: 'Child Marriage Prevention',
                     content: `
                         <h3>Prevention Strategies</h3>
+                        <div class="awareness-gallery">
+                            <img src="images/stop-harassment-1.jpg" alt="Stop Sexual Harassment - Raised Hand" class="gallery-image">
+                            <img src="images/say-no-harassment.jpg" alt="Say No to Sexual Harassment" class="gallery-image">
+                            <img src="images/awareness-poster.jpg" alt="Sexual Harassment Awareness" class="gallery-image">
+                            <img src="images/stop-harassment-2.jpg" alt="Stop Sexual Harassment Symbol" class="gallery-image">
+                        </div>
                         <div class="video-container">
                             <video controls>
-                                <source src="child-marriage-prevention.mp4" type="video/mp4">
+                                <source src="videos/child-marriage-prevention.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
