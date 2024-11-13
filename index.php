@@ -158,7 +158,7 @@ $activities = $activityManager->getRecentActivities();
         </div>
     
         <div class="banner-4">
-            <img src="images/srikakulam.jpg" alt="Surya Narayana Swami Temple">
+            <img src="images/arasavilli.jpg" alt="Surya Narayana Swami Temple">
             <div class="background-image"></div>
             <div class="text-box">
                 <h1>SRIKAKULAM</h1>
@@ -437,7 +437,6 @@ $conn->close();
 </div>
 
 
-
 <?php
 // Database connection details
 $servername = "localhost";
@@ -470,22 +469,22 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo '<div class="swiper-slide initiative-slide">
                 <div class="initiative-slide-img">
-                    <img src="' . $row["image_path"] . '" alt="' . $row["title"] . '">
+                    <img src="' . $row["image_path"] . '" alt="' . htmlspecialchars($row["title"]) . '">
                 </div>
                 <div class="initiative-slide-content">
-                    <h1 class="initiative-title">' . $row["title"] . '</h1>
+                    <h1 class="initiative-title">' . htmlspecialchars($row["title"]) . '</h1>
                     <div class="initiative-slide-content-bottom">
-                        <h2 class="initiative-description">' . $row["description"] . '</h2>
+                        <h2 class="initiative-description">' . htmlspecialchars($row["description"]) . '</h2>
                     </div>
                 </div>
               </div>';
     }
     echo '      </div>
                 <div class="slider-control">
-                    <div class="swiper-button-prev slider-arrow" style="color: white;">
+                    <div class="swiper-button-prev slider-arrow">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </div>
-                    <div class="swiper-button-next slider-arrow" style="color: white;">
+                    <div class="swiper-button-next slider-arrow">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -498,6 +497,14 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+
+<!-- Include Swiper JS and CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+
 
 <br>
 
