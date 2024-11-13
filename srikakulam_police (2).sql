@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2024 at 06:24 AM
+-- Generation Time: Nov 13, 2024 at 07:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -21,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `srikakulam_police`
 --
-CREATE DATABASE IF NOT EXISTS `srikakulam_police` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `srikakulam_police`;
 
 -- --------------------------------------------------------
 
@@ -30,25 +27,18 @@ USE `srikakulam_police`;
 -- Table structure for table `gallery_highlights`
 --
 
-DROP TABLE IF EXISTS `gallery_highlights`;
-CREATE TABLE IF NOT EXISTS `gallery_highlights` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `gallery_highlights` (
+  `id` int(11) NOT NULL,
   `image_path` varchar(255) NOT NULL,
   `caption` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `gallery_highlights`
---
-
-TRUNCATE TABLE `gallery_highlights`;
 --
 -- Dumping data for table `gallery_highlights`
 --
 
-INSERT DELAYED IGNORE INTO `gallery_highlights` VALUES
+INSERT INTO `gallery_highlights` (`id`, `image_path`, `caption`, `created_at`) VALUES
 (1, 'images/Picsart_24-10-25_15-40-26-620.jpg', 'Event Title 1', '2024-11-11 14:09:03'),
 (2, 'images/Picsart_24-10-25_15-40-26-620.jpg', 'Event Title 2', '2024-11-11 14:09:03'),
 (3, 'images/Picsart_24-10-25_15-40-26-620.jpg', 'Event Title 3', '2024-11-11 14:09:03'),
@@ -60,26 +50,19 @@ INSERT DELAYED IGNORE INTO `gallery_highlights` VALUES
 -- Table structure for table `helplines`
 --
 
-DROP TABLE IF EXISTS `helplines`;
-CREATE TABLE IF NOT EXISTS `helplines` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `helplines` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `is_toll_free` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `is_toll_free` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `helplines`
---
-
-TRUNCATE TABLE `helplines`;
 --
 -- Dumping data for table `helplines`
 --
 
-INSERT DELAYED IGNORE INTO `helplines` VALUES
+INSERT INTO `helplines` (`id`, `name`, `phone_number`, `description`, `is_toll_free`) VALUES
 (1, 'Child Line Day/Night', '1098', 'Child Line Day/Night', 1),
 (2, 'Anti Bank Fraud Helpline', '8585063104', 'Anti Bank Fraud Helpline', 0),
 (3, 'Cyber PS', '033-2214 3000', 'Cyber Police Station', 0),
@@ -95,25 +78,18 @@ INSERT DELAYED IGNORE INTO `helplines` VALUES
 -- Table structure for table `initiatives`
 --
 
-DROP TABLE IF EXISTS `initiatives`;
-CREATE TABLE IF NOT EXISTS `initiatives` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `initiatives` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `image_path` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `initiatives`
---
-
-TRUNCATE TABLE `initiatives`;
 --
 -- Dumping data for table `initiatives`
 --
 
-INSERT DELAYED IGNORE INTO `initiatives` VALUES
+INSERT INTO `initiatives` (`id`, `title`, `description`, `image_path`) VALUES
 (1, 'Community Outreach', 'Building Trust through Engagement', 'images/1.jpg'),
 (2, 'Safety Programs', 'Road Safety and Accident Prevention', 'images/2.jpg'),
 (3, 'Women’s Safety', 'Programs for Protecting Women', 'images/3.jpg'),
@@ -125,26 +101,19 @@ INSERT DELAYED IGNORE INTO `initiatives` VALUES
 -- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `news`
---
-
-TRUNCATE TABLE `news`;
 --
 -- Dumping data for table `news`
 --
 
-INSERT DELAYED IGNORE INTO `news` VALUES
+INSERT INTO `news` (`id`, `title`, `link`, `description`, `created_at`) VALUES
 (1, 'Instructions to Submit Event Permission Application', 'Data+Science_Academy+Curriculum.pdf', 'For Download Form Click Here', '2024-11-11 11:24:50'),
 (2, 'Application For The Grant of Licence to Run Place of Entertainment', 'citizen-services/APPLICATION FOR THE GRANT OF LICENCE TO RUN PLACE OF ENTERTAINMENT(FUNCTION HALLCONVENTION CENTER).pdf', 'For Download Form Click Here', '2024-11-11 11:24:50'),
 (3, 'Notification for Registration of Women Hostel in IT Corridor', 'WomensHostelRegistration.html', '', '2024-11-11 11:24:50'),
@@ -157,26 +126,19 @@ INSERT DELAYED IGNORE INTO `news` VALUES
 -- Table structure for table `news_articles`
 --
 
-DROP TABLE IF EXISTS `news_articles`;
-CREATE TABLE IF NOT EXISTS `news_articles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news_articles` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `news_articles`
---
-
-TRUNCATE TABLE `news_articles`;
 --
 -- Dumping data for table `news_articles`
 --
 
-INSERT DELAYED IGNORE INTO `news_articles` VALUES
+INSERT INTO `news_articles` (`id`, `title`, `link`, `description`, `created_at`) VALUES
 (1, 'Instructions to Submit Event Permission Application', 'Data+Science_Academy+Curriculum.pdf', 'For Download Form Click Here', '2024-11-11 10:48:39'),
 (2, 'Application For The Grant of Licence to Run Place of Entertainment', 'citizen-services/APPLICATION FOR THE GRANT OF LICENCE TO RUN PLACE OF ENTERTAINMENT(FUNCTION HALLCONVENTION CENTER).pdf', 'For Download Form Click Here', '2024-11-11 10:48:39'),
 (3, 'Notification for Registration of Women Hostel in IT Corridor', 'WomensHostelRegistration.html', '', '2024-11-11 10:48:39'),
@@ -190,26 +152,19 @@ INSERT DELAYED IGNORE INTO `news_articles` VALUES
 -- Table structure for table `officers`
 --
 
-DROP TABLE IF EXISTS `officers`;
-CREATE TABLE IF NOT EXISTS `officers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `officers` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `rank` varchar(255) NOT NULL,
   `station` varchar(255) DEFAULT NULL,
-  `image_path` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `officers`
---
-
-TRUNCATE TABLE `officers`;
 --
 -- Dumping data for table `officers`
 --
 
-INSERT DELAYED IGNORE INTO `officers` VALUES
+INSERT INTO `officers` (`id`, `name`, `rank`, `station`, `image_path`) VALUES
 (1, 'Sri K.V.Maheswara Reddy', 'Superintendent of Police', NULL, 'images/2.jpg'),
 (2, 'Deputy Superintendent', 'Deputy Superintendent of Police', 'Special Branch', 'images/DSP SIR  SB.jpg'),
 (3, 'CI PRASAD', 'Circle Inspector', 'Kotturu Circle', 'images/CIS/CI PRASAD- ktohuru Circle.jpg'),
@@ -291,9 +246,8 @@ INSERT DELAYED IGNORE INTO `officers` VALUES
 -- Table structure for table `police_stations`
 --
 
-DROP TABLE IF EXISTS `police_stations`;
-CREATE TABLE IF NOT EXISTS `police_stations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `police_stations` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `latitude` decimal(10,8) NOT NULL,
   `longitude` decimal(11,8) NOT NULL,
@@ -301,20 +255,14 @@ CREATE TABLE IF NOT EXISTS `police_stations` (
   `address` varchar(255) DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `police_stations`
---
-
-TRUNCATE TABLE `police_stations`;
 --
 -- Dumping data for table `police_stations`
 --
 
-INSERT DELAYED IGNORE INTO `police_stations` VALUES
+INSERT INTO `police_stations` (`id`, `name`, `latitude`, `longitude`, `contact`, `address`, `image_url`, `created_at`, `updated_at`) VALUES
 (1, 'Srikakulam I Town', 18.29379415, 83.89546610, '1234567890', 'Srikakulam I Town, Srikakulam District, Andhra Pradesh', 'path/to/image1.jpg', '2024-11-11 16:21:54', '2024-11-11 16:21:54'),
 (2, 'Srikakulam II Town', 18.29580307, 83.89439602, '2345678901', 'Srikakulam II Town, Srikakulam District, Andhra Pradesh', 'path/to/image2.jpg', '2024-11-11 16:21:54', '2024-11-11 16:21:54'),
 (3, 'Amadalavalasa', 18.41264730, 83.90247140, '3456789012', 'Amadalavalasa, Srikakulam District, Andhra Pradesh', 'path/to/image3.jpg', '2024-11-11 16:21:54', '2024-11-11 16:21:54'),
@@ -328,26 +276,19 @@ INSERT DELAYED IGNORE INTO `police_stations` VALUES
 -- Table structure for table `press_releases`
 --
 
-DROP TABLE IF EXISTS `press_releases`;
-CREATE TABLE IF NOT EXISTS `press_releases` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `press_releases` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `press_releases`
---
-
-TRUNCATE TABLE `press_releases`;
 --
 -- Dumping data for table `press_releases`
 --
 
-INSERT DELAYED IGNORE INTO `press_releases` VALUES
+INSERT INTO `press_releases` (`id`, `title`, `link`, `description`, `created_at`) VALUES
 (1, 'Srikakulam Police To Auction 1000 Abandoned / Unclaimed Vehicles', 'press-release/Abandoned Vehicles 2023 (1000).pdf', 'For Vehicle List Click Here', '2024-11-11 11:15:18'),
 (2, 'Srikakulam Police To Auction 539 Abandoned / Unclaimed Vehicles', 'press-release/Abandoned Vehicles 2023 (539).pdf', 'For Vehicle List Click Here', '2024-11-11 11:15:18'),
 (3, 'Srikakulam Police To Auction 1197 Abandoned / Unclaimed Vehicles', 'press-release/Abandoned Vehicles 2023 (1197).pdf', 'For Vehicle List Click Here', '2024-11-11 11:15:18');
@@ -358,28 +299,136 @@ INSERT DELAYED IGNORE INTO `press_releases` VALUES
 -- Table structure for table `recent_activities`
 --
 
-DROP TABLE IF EXISTS `recent_activities`;
-CREATE TABLE IF NOT EXISTS `recent_activities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `recent_activities` (
+  `id` int(11) NOT NULL,
   `activity_text` text NOT NULL,
   `activity_link` varchar(255) DEFAULT NULL,
   `is_important` tinyint(1) DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncate table before insert `recent_activities`
---
-
-TRUNCATE TABLE `recent_activities`;
 --
 -- Dumping data for table `recent_activities`
 --
 
-INSERT DELAYED IGNORE INTO `recent_activities` VALUES
+INSERT INTO `recent_activities` (`id`, `activity_text`, `activity_link`, `is_important`, `created_at`) VALUES
 (1, 'welcome to our webpage', NULL, 0, '2024-11-11 08:09:29');
-SET FOREIGN_KEY_CHECKS=1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `gallery_highlights`
+--
+ALTER TABLE `gallery_highlights`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `helplines`
+--
+ALTER TABLE `helplines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `initiatives`
+--
+ALTER TABLE `initiatives`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news_articles`
+--
+ALTER TABLE `news_articles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `officers`
+--
+ALTER TABLE `officers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `police_stations`
+--
+ALTER TABLE `police_stations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `press_releases`
+--
+ALTER TABLE `press_releases`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recent_activities`
+--
+ALTER TABLE `recent_activities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `gallery_highlights`
+--
+ALTER TABLE `gallery_highlights`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `helplines`
+--
+ALTER TABLE `helplines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `initiatives`
+--
+ALTER TABLE `initiatives`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `news_articles`
+--
+ALTER TABLE `news_articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `officers`
+--
+ALTER TABLE `officers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- AUTO_INCREMENT for table `police_stations`
+--
+ALTER TABLE `police_stations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `press_releases`
+--
+ALTER TABLE `press_releases`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `recent_activities`
+--
+ALTER TABLE `recent_activities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
