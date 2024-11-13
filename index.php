@@ -223,7 +223,7 @@ $conn->close();
         <div class="Services">
             <div class="sr">
                 
-            <a href="know_your_police_station.php"> <img src="images/police-station.png" ></a>
+            <a href="know_your.police_station.php"> <img src="images/police-station.png" ></a>
             <h3>POLICE STATION</h3>
             <p >know your police station and Locate your nearest police station</p>
         </div>
