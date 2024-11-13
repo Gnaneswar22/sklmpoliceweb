@@ -190,7 +190,7 @@ $result = $conn->query($sql);
 <section class="top-news-sec fontSize">
     <div class="container">
         <div class="hdr-news-wrpr">
-            <h4><label> <a href="emergency.html"><img src="images/helpline.png" alt="helpline"> </a><span>Helplines</span> </label></h4>
+            <h4><label> <a href="emergency.html"><img src="images/helplines." alt="helpline"> </a><span>Helplines</span> </label></h4>
             <marquee onmouseover="this.stop();" onmouseout="this.start();">
                 <div class="marque-hldr hdrnews_marquee">
                     <?php
