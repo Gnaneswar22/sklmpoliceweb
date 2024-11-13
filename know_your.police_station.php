@@ -42,6 +42,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Your existing CSS styles here */
         body {
@@ -148,6 +149,28 @@ nav ul li:hover ul {
  padding-bottom: 6px;
 
 }
+.chart-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Your existing CSS styles here */
+.map-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .map-image {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
     /* Mobile Adjustments (to keep layout similar to desktop) */
     @media only screen and (max-width: 768px) {
@@ -543,7 +566,75 @@ width: 100%;
         <ul id="police-station-list"></ul>
     </div>
 </div>
+<div class="chart-container">
+        <canvas id="crimeChart"></canvas>
+    </div>
+    <div class="map-container">
+        <h2>Map of Andhra Pradesh</h2>
+        <img src="images/andhra_pradesh_map.png" alt="Andhra Pradesh Map" class="map-image">
+    </div>
+    <script>
+        const crimeData = <?php echo json_encode($crimeData); ?>;
 
+        function updateCrimeChart(policeStation) {
+            const ctx = document.getElementById('crimeChart').getContext('2d');
+            const stationData = crimeData[policeStation] || [];
+            const months = stationData.map(item => item.month);
+            const violentCrimes = stationData.map(item => item.violent_crimes);
+            const propertyCrimes = stationData.map(item => item.property_crimes);
+            const cybercrimes = stationData.map(item => item.cybercrime);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: 'Violent Crimes',
+                            data: violentCrimes,
+                            borderColor: 'rgb(255, 99, 132)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Property Crimes',
+                            data: propertyCrimes,
+                            borderColor: 'rgb(54, 162, 235)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Cybercrime',
+                            data: cybercrimes,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `${policeStation} Monthly Crime Trends`
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call updateCrimeChart when a new mandal is selected
+        document.getElementById("mandal").addEventListener("change", function() {
+            const selectedMandal = this.value;
+            updateCrimeChart(selectedMandal);
+        });
+
+        // Initialize with the first police station's data
+        window.onload = function() {
+            const initialStation = document.getElementById("mandal").value;
+            if (initialStation) {
+                updateCrimeChart(initialStation);
+            }
+        };
+    </script>
 <br>
 <br>
 <br>
