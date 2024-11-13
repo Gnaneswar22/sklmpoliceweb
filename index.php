@@ -339,53 +339,100 @@ $conn->close();
        
      
       <br>
-<div class="hlayout">
-        <section class="horizontal-layout">
-            <!-- Twitter Section -->
-            <div class="twitter-section">
-                <h2>Srikakulam Police Department</h2>
-                <a class="twitter-timeline" data-width="330" data-height="350" href="https://twitter.com/POLICESRIKAKULM?ref_src=twsrc%5Etfw">Tweets by POLICESRIKAKULM</a>
-                <script async src="https://platform.twitter.com/widgets.js"></script>
+
+        <div class="hlayout">
+    <section class="horizontal-layout">
+        <!-- Twitter Section -->
+        <div class="twitter-section">
+            <h2>Srikakulam Police Department</h2>
+            <a class="twitter-timeline" data-width="330" data-height="350" href="https://twitter.com/POLICESRIKAKULM?ref_src=twsrc%5Etfw">Tweets by POLICESRIKAKULM</a>
+            <script async src="https://platform.twitter.com/widgets.js"></script>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-container">
+            <h1 class="gallery-title">Photo & Video Gallery</h1>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="image1.jpg" alt="Flag ceremony">
+                    <div class="hover-overlay">
+                        <span class="hover-text">View</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <video id="mainVideo" poster="video-thumbnail.jpg">
+                        <source src="parade-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="hover-overlay">
+                        <span class="hover-text">View Video</span>
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-progress">
+                            <div class="video-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-    
-            <!-- Slideshow Section -->
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="images/2.jpg" style="width:100%">
+            <div class="small-grid">
+                <div class="gallery-item">
+                    <img src="image3.jpg" alt="Guard formation">
+                    <div class="hover-overlay">
+                        <span class="hover-text">View</span>
+                    </div>
                 </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="images/1.jpg" style="width:100%">
+                <div class="gallery-item">
+                    <img src="image4.jpg" alt="Police interaction">
+                    <div class="hover-overlay">
+                        <span class="hover-text">View</span>
+                    </div>
                 </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="images/3.jpg" style="width:100%">
+                <div class="gallery-item">
+                    <img src="image5.jpg" alt="Parade formation">
+                    <div class="hover-overlay">
+                        <span class="hover-text">View</span>
+                    </div>
                 </div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            
-            <!-- Facebook Section -->
-            <div class="fb-post">
-                <h2>Srikakulam Police Department</h2>
-                <div class="fb-page" 
-                    data-href="https://www.facebook.com/profile.php?id=100068435118920" 
-                    data-tabs="timeline" 
-                    data-width="330" 
-                    data-height="350" 
-                    data-small-header="false" 
-                    data-adapt-container-width="true" 
-                    data-hide-cover="false" 
-                    data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/profile.php?id=100068435118920" 
-                            class="fb-xfbml-parse-ignore">
-                           <a href="https://www.facebook.com/profile.php?id=100068435118920">Srikakulam Police Department</a>
-                    </blockquote>
-                </div>
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"></script>
+            <button class="view-all-button"><a href="gallery.php"> View All</a></button>
+           
+
+ <!-- Modal for fullscreen view -->
+ <div id="fullscreenModal" class="modal" style="display:none;">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modalImage">
+            <div id="modalCaption"></div>
+        </div>
+        </div>
+
+        </div>
+
+        <!-- Facebook Section -->
+        <div class="fb-post">
+            <h2>Srikakulam Police Department</h2>
+            <div class="fb-page" 
+                data-href="https://www.facebook.com/profile.php?id=100068435118920" 
+                data-tabs="timeline" 
+                data-width="330" 
+                data-height="350" 
+                data-small-header="false" 
+                data-adapt-container-width="true" 
+                data-hide-cover="false" 
+                data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/profile.php?id=100068435118920" 
+                        class="fb-xfbml-parse-ignore">
+                       <a href="https://www.facebook.com/profile.php?id=100068435118920">Srikakulam Police Department</a>
+                </blockquote>
             </div>
-        </section>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"></script>
+        </div>
+    </section>
+</div>
+
+
 </div>
 </div>
 
@@ -493,15 +540,7 @@ $conn->close();
 
 
 
-    <script>
-          
 
-    </script>
-
-
-<script>
-       
-    </script>
 
 
 
@@ -511,6 +550,7 @@ $conn->close();
     <script src="banners.js"></script>
     <script src="slides.js"></script>
     <script src="hamburger.js"></script>
+    <script src="gallerymodal.js"></script>
     <script src="initiatives.js"></script>
 </body>
-</html>6
+</html>
