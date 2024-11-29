@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Department Organisation Chart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      background-color: #f5f5f5;
+     
+    }
+
+    .container {
+      width: 60%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+     
+    }
+
+    .org-chart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    .circle {
+        width: 260px;
+        height: 260px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        animation: pulse 1.5s infinite; /* Pulse effect always active */
+    }
+
+    .circle:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .circle-content {
+        background-color: #dc0d67;
+        height: 240px;
+        width: 240px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+
+/* Add these new animations */
+@keyframes pulse {
+0% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0.4); }
+70% { box-shadow: 0 0 0 10px rgba(220, 13, 103, 0); }
+100% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0); }
+}
+@keyframes pulse {
+        0% { 
+            box-shadow: 0 0 0 0 rgba(220, 13, 103, 0.4);
+        }
+        70% { 
+            box-shadow: 0 0 0 10px rgba(220, 13, 103, 0);
+        }
+        100% { 
+            box-shadow: 0 0 0 0 rgba(220, 13, 103, 0);
+        }
+    }
+
+.circle:hover {
+animation: pulse 1.5s infinite;
+}
+
+
+    .line {
+      position: absolute;
+      width: 3px;
+      background-color: #6d7684;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .line.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+   
+    .info-box {
+      position: absolute;
+      width: 200px;
+      height: 80px;
+      color: white;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 1px;
+      padding: 10px;
+      z-index: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .info-box.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .info-box:hover {
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .info1 { top: 0; left: 10%; transform: translate(-50%, -150%); background-color: #673ab7; }
+    .info2 { top: 30%; left: 75%; transform: translate(50%, -50%); background-color: #2196f3; }
+    .info3 { top: 70%; left: 75%; transform: translate(50%, -50%); background-color: #ff9800; }
+    .info4 { top: 95%; left: 50%; transform: translate(-50%, 50%); background-color: #9c27b0; }
+    .info5 { top: 30%; left: 25%; transform: translate(-150%, -50%); background-color: #f44336; }
+    .info6 { top: 70%; left: 25%; transform: translate(-150%, -50%); background-color: #4caf50; }
+    .info7 { top: 0; left: 100%; transform: translate(-50%, -150%); background-color: #009688; }
+
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="org-chart">
+            <div class="circle" onclick="toggleInfoBoxes()">
+                <div class="circle-content">
+                    <h1>SUPERINTENDENT OF POLICE</h1>
+                </div>
+
+                <div class="info-box info1" onclick="openModal('Criminal Investigation Department')">
+                    <div class="icon-circle">1</div>
+                    <p>Criminal Investigation</p>
+                </div>
+
+                <div class="info-box info2" onclick="openModal('Traffic Control Department')">
+                    <div class="icon-circle">2</div>
+                    <p>Traffic Control</p>
+                </div>
+
+                <div class="info-box info3" onclick="openModal('Law and Order Department')">
+                    <div class="icon-circle">3</div>
+                    <p>Law and Order</p>
+                </div>
+
+                <div class="info-box info4" onclick="openModal('Intelligence Department')">
+                    <div class="icon-circle">4</div>
+                    <p>Intelligence</p>
+                </div>
+
+                <div class="info-box info5" onclick="openModal('Special Operations Department')">
+                    <div class="icon-circle">5</div>
+                    <p>Special Operations</p>
+                </div>
+
+                <div class="info-box info6" onclick="openModal('Administrative Department')">
+                    <div class="icon-circle">6</div>
+                    <p>Administration</p>
+                </div>
+
+                <div class="info-box info7" onclick="openModal('Technical Services Department')">
+                    <div class="icon-circle">7</div>
+                    <p>Technical Services</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+       
+
+        function toggleInfoBoxes() {
+            const infoBoxes = document.querySelectorAll('.info-box');
+            infoBoxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.classList.toggle('show');
+                }, index * 100);
+            });
+        }
+
+    
+
+        
+
+      
+    </script>
+</body>
+</html>

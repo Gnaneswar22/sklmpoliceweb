@@ -42,32 +42,63 @@
     }
 
     .circle {
-      width: 280px;
-      height: 280px;
-      background-color: #d9e0e7;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      cursor: pointer;
+        width: 280px;
+        height: 280px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        animation: pulse 1.5s infinite; /* Pulse effect always active */
+    }
+
+    .circle:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .circle-content {
-      background-color: #dc0d67;
-      height: 250px;
-      width: 250px;
-      border-radius: 50%;
-      text-align: center;
-      color: #fff;
+        background-color: #dc0d67;
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 2px solid rgba(255,255,255,0.2);
     }
 
-    .circle-content h1 {
-      padding-top: 100px;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 5px;
+
+/* Add these new animations */
+@keyframes pulse {
+0% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0.4); }
+70% { box-shadow: 0 0 0 10px rgba(220, 13, 103, 0); }
+100% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0); }
+}
+@keyframes pulse {
+        0% { 
+            box-shadow: 0 0 0 0 rgba(220, 13, 103, 0.4);
+        }
+        70% { 
+            box-shadow: 0 0 0 10px rgba(220, 13, 103, 0);
+        }
+        100% { 
+            box-shadow: 0 0 0 0 rgba(220, 13, 103, 0);
+        }
     }
+
+.circle:hover {
+animation: pulse 1.5s infinite;
+}
+
 
     .line {
       position: absolute;
@@ -218,10 +249,11 @@
        <!-- Center Heading -->
        <h1 class="header-title">Srikakulam Police Department</h1>
 
-    function toggleInfoBoxes() {
-      const infoBoxes = document.querySelectorAll('.info-box');
-      const circle = document.querySelector('.circle');
-      
+       <!-- Right Logo -->
+       <div>
+           <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+       </div>
+
        <!-- Hamburger Menu -->
        <div class="hamburger" onclick="toggleMenu()">
            <i class="fas fa-bars"></i>
