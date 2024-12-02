@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>Police Department Organisation Chart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -12,15 +14,17 @@
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            width: 100%;
+            width:auto;
             height: 100vh;
             background-color:#528787;
         }
 
         .container {
+            width: auto !important;
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
@@ -35,63 +39,68 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 80vh;
+            height: 100vh;
             background-color:#085c5f;
             position: relative;
+            width: auto;
         }
+
+
 
         .circle {
-            width: 260px;
-            height: 260px;
-            background-color: #e0e0e0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            animation: pulse 1.5s infinite;
-        }
+    width: 300px;  /* Adjust size as needed */
+    height: 300px;
+    position: relative;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff, #e6e6e6);
+    box-shadow: 
+    10px 10px 45px #bebebe,  /* Outer shadow */
+    -10px -10px 10px #ffffff,  /* Reduced white shadow */
+        inset 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 0px solid rgba(255, 255, 255, 0.4);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.3s ease;
+}
 
-        .circle:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+.circle:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        25px 25px 65px #bebebe,
+        -25px -25px 65px #ffffff,
+        inset 0 0 20px rgba(0, 0, 0, 0.15);
+}
 
-        .circle-content {
-            background-color: #dc0d67;
-            height: 240px;
-            width: 240px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 10px;
-            color: #fff;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            border: 2px solid rgba(255,255,255,0.2);
-        }
+/* Basic styling for inner content */
+.circle-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+       
 
         @keyframes pulse {
-            30% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0.4); }
-            60% { box-shadow: 0 0 0 10px rgba(220, 13, 103, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 13, 103, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(199, 27, 96, 0.512); }
+            50% { box-shadow: 0 0 0 20px rgba(199, 27, 96, 0.512); }
+            100% { box-shadow: 0 0 0 0 rgba(137, 131, 134, 0); }
         }
 
         .circle:hover {
-            animation: pulse 1.5s infinite;
+            animation: pulse 1s infinite;
         }
-
+ 
       
       /* General styles for info boxes */
 .info-box {
     justify-content: center;
     position: absolute;
-      width: 200px;
+      width: 180px;
       height: 80px;
       color: white;
       border-radius: 5px;
@@ -99,7 +108,7 @@
       align-items: center;
       gap: 1px;
       padding: 10px;
-      z-index: 1;
+      z-index: 10;
       cursor: pointer;
       transition: all 0.3s ease;
       opacity: 0;
@@ -122,7 +131,7 @@
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #009688;
+    background-color: #020096;
 }
 
 .info2 {
@@ -140,6 +149,8 @@
 }
 
 .info4 {
+    font-size: smaller;
+    font-weight: 550;
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -154,6 +165,7 @@
 }
 
 .info6 {
+
     top: 35%;
     left: 35%;
     transform: translate(-50%, -50%);
@@ -169,8 +181,8 @@
 
 /* Central circle styles */
 .circle {
-    width: 260px;
-    height: 260px;
+    width: 270px;
+    height: 270px;
     background-color: #dc0d67;
     border-radius: 50%;
     display: flex;
@@ -184,8 +196,8 @@
 
 .circle-content {
     background-color: #dc0d67;
-    height: 240px;
-    width: 240px;
+    height: 260px;
+    width: 260px;
     border-radius: 50%;
     text-align: center;
     font-size: 12px;
@@ -196,12 +208,83 @@
     flex-direction: column;
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
+.circle-content .sptext{
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+.circle-content p{
+     padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+/* Styling for the main icon-circle image */
+.circle-content .icon-circle img {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,0.2);
+    padding: 3px;
+   
+}
+
+/* Position the icon-circle container */
+.circle-content .icon-circle {
+    position: relative;
+    display: inline-block;
+}
+
+.circle-content {
+    position: relative;
+}
+
+.icon-circle {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-circle img {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+.popup-image {
+    position: absolute;
+    top: 0%; /* Position the popup below the image */
+    left: 70%;
+    transform: translateX(-50%);
+    display: none; /* Hide the popup initially */
+    z-index: 1;
+  
+    
+}
+
+.popup-image img {
+    width: 200px; /* Adjust the size of the popup image */
+    height: auto;
+    display: block;
+}
+
+.icon-circle:hover .popup-image {
+    display: block; /* Show the popup when hovering over the image */
+}
+
 
 .info-box .icon-circle img {
       width: 60px;
       height: 60px;
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -213,20 +296,234 @@
     }
 
 
+ /* Add this to your existing CSS */
+
+/* Circular ring connecting info boxes */
+.org-chart::before {
+    content: '';
+    position: absolute;
+    width: 600px;  /* Adjust based on your layout */
+    height: 600px; /* Should match width */
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Show ring when info boxes are visible */
+.org-chart:has(.info-box.show)::before {
+    opacity: 1;
+    animation: rotateRing 30s linear infinite;
+}
+
+/* Rotating animation for the ring */
+@keyframes rotateRing {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Add gradient effect to the ring */
+.org-chart::before {
+    background: linear-gradient(45deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 50%
+    );
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Add a second ring for extra effect */
+.org-chart::after {
+    content: '';
+    position: absolute;
+    width: 590px;  /* Slightly smaller than the outer ring */
+    height: 590px;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Show inner ring when info boxes are visible */
+.org-chart:has(.info-box.show)::after {
+    opacity: 1;
+    animation: rotateRingReverse 40s linear infinite;
+}
+
+/* Counter-rotation animation for inner ring */
+@keyframes rotateRingReverse {
+    from {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+
+/* Enhanced circular ring with brightness and animations */
+.org-chart::before {
+    content: '';
+    position: absolute;
+    width: 580px;
+    height: 580px;
+    border: 3px solid rgba(255, 255, 255, 0.4); /* Increased opacity for brightness */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+    /* Adding gradient glow effect */
+    background: linear-gradient(45deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 50%
+    );
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    filter: brightness(0.5);
+}
+
+/* Animated ring segments */
+.org-chart::after {
+    content: '';
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Show rings when info boxes are visible */
+.org-chart:has(.info-box.show)::before {
+    opacity: 1;
+    animation: 
+        rotateRing 30s linear infinite,
+        glowPulse 3s ease-in-out infinite;
+}
+
+.org-chart:has(.info-box.show)::after {
+    opacity: 1;
+    animation: 
+        rotateRingReverse 40s linear infinite,
+        dashOffset 20s linear infinite;
+}
+
+/* Enhanced rotating animation */
+@keyframes rotateRing {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.02);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    }
+}
+
+/* Counter-rotation with scale animation */
+@keyframes rotateRingReverse {
+    0% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(0.98);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+}
+
+/* Pulsing glow animation */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.3),
+            inset 0 0 20px rgba(255, 255, 255, 0.2);
+        filter: brightness(1);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(255, 255, 255, 0.5),
+            inset 0 0 30px rgba(255, 255, 255, 0.3);
+        filter: brightness(1);
+    }
+    100% {
+        box-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.3),
+            inset 0 0 20px rgba(255, 255, 255, 0.2);
+        filter: brightness(1);
+    }
+}
+
+/* Dashed line animation */
+@keyframes dashOffset {
+    0% {
+        border-dasharray: 50 20;
+    }
+    50% {
+        border-dasharray: 30 40;
+    }
+    100% {
+        border-dasharray: 50 20;
+    }
+}
+
+/* Add shimmer effect */
+.org-chart::before,
+.org-chart::after {
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(90, 90, 90, 0) 50%,
+        transparent 10%
+    );
+}
+
+/* Fallback for browsers that don't support :has() */
+.org-chart.active::before,
+.org-chart.active::after {
+    opacity: 1;
+    animation-play-state: running;
+}
 
 
 
 /* General styles for all node-lists */
 .node-list {
-    margin-left: 20px;
+    font-size: 15px;
+    margin-left: 10px;
     margin-top: 10px;
     padding: 20px;
     list-style: none;
     display: none; /* Hidden by default */
     position: absolute;
-    left: 120%; /* Position it to the right of the info-box */
+    left: 110%; /* Position it to the right of the info-box */
     min-width: auto; 
-    z-index: 1000;
+    z-index: 10;
 }
 
 /* Show the node-list when toggled */
@@ -236,11 +533,12 @@
 
 /* Styling for nodes */
 .node {
-   
-    color: #333;
-    padding: 10px 10px;
+    font-family: 'Poppins', sans-serif;
+    width: 130%;
+    color: #000000;
+    padding: 6px 10px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 15px;
     display: inline-block;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -248,7 +546,7 @@
 
 /* Hover effect for nodes */
 .node:hover {
-    background: #4caf50;
+    background: #dce3e3a4;
     color: white;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -288,6 +586,7 @@
 
 
 .info4 .node {
+    width: 100px;
     background: #9c27b0;
     color: white;
 }
@@ -363,284 +662,753 @@
     position: relative;
 }
 
-
-/* Sub-node list styles */
+/* Sub-node list: Vertical layout with reduced gap */
 .sub-node-list {
-    display: none;
+    font-size: 15px;
+    display: none; /* Hidden by default */
     list-style: none;
     padding: 0;
     margin: 0;
     position: absolute;
-    left: calc(100% + 40px); /* Space for the connecting line */
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 20px;
+    left: calc(100% + 50px); /* Slightly closer to the parent node */
+    top: 0; /* Align with parent node */
+    flex-direction: column; /* Stack sub-nodes vertically */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
 }
 
-/* Show sub-nodes when active */
+/* Show sub-nodes when parent node is active */
 .node.active + .sub-node-list {
+    display: flex; /* Make sub-nodes visible */
     opacity: 1;
     visibility: visible;
-    display: flex;
-}
-
-/* Horizontal line from node to sub-nodes */
-.info1 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
-}
-.info2 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
-}
-.info3 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
-}
-.info4 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
-}
-.info6 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
-}
-.info5 .node.active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    width: 40px; /* Length of connecting line */
-    height: 2px;
-    background: #ffffff;
-    transform: translateY(-50%);
 }
 
 /* Sub-node styles */
 .sub-node {
-    background: #f5f5f5;
-    color: #333;
-    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+    width:100px; /* Adjusted for compact design */
+    padding: 3px 5px;
     border-radius: 5px;
-    font-size: 12px;
-    display: inline-block;
+    font-size: 15px;
+    position: relative;
+    display: block;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-   
+    
+}
+
+/* Highlight effect for sub-nodes on hover */
+.sub-node:hover {
+    background: #4caf50;
+    color: white;
+    transform: translateX(5px); /* Slight movement to the right */
+    transition: all 0.3s ease;
+}
+
+/* Vertical connecting line for sub-nodes */
+.sub-node-list::before {
+    content: '';
+    position: absolute;
+    left: -15px; /* Position connecting line closer to nodes */
+    top: 100%;
+    bottom: 0;
+    width: 2px;
+    background: #ffffff; /* White connecting line */
 }
 
 /* Connecting lines between sub-nodes */
 .sub-node::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: -20px;
-    width: 20px;
+    left: -15px; /* Align with vertical line */
+    top: 10%;
+    width: 15px;
     height: 2px;
     background: #ffffff;
     transform: translateY(-50%);
+    display: none;
 }
 
-/* Remove line before first sub-node */
+/* Remove connecting line before the first sub-node */
 .sub-node-list li:first-child .sub-node::before {
     display: none;
 }
 
+/* Highlight active node */
+.node.active {
+    background: #4caf50; /* Highlight color */
+    color: white;
+    transform: scale(1.05); /* Slightly enlarge the node */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Ensure nodes and sub-nodes are independent */
+.node-list {
+    display: none; /* Hidden by default */
+}
+
+.node-list.show {
+    display: block; /* Show only when toggled */
+}
 
 
-/* Enhanced Popup Styles */
-.popup-image {
+/* Base popup image styles for icon-circles */
+.icon-circle {
+    position: relative;
+}
+
+/* Popup image container */
+.icon-circle .popup-image {
     position: absolute;
-    background: white;
     padding: 8px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     display: none;
     z-index: 1000;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(10px);
+    width: 200px; /* Adjust width as needed */
 }
 
-.popup-image.show {
+/* Popup image styling */
+.icon-circle .popup-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    display: block;
+}
+
+/* Left-side popup for info-boxes 1-4 */
+.info1 .icon-circle .popup-image,
+.info2 .icon-circle .popup-image,
+.info3 .icon-circle .popup-image,
+.info4 .icon-circle .popup-image {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+}
+
+/* Right-side popup for info-boxes 5-6 */
+.info5 .icon-circle .popup-image,
+.info6 .icon-circle .popup-image {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+}
+
+/* Arrow styling for left-side popups */
+.info1 .icon-circle .popup-image::after,
+.info2 .icon-circle .popup-image::after,
+.info3 .icon-circle .popup-image::after,
+.info4 .icon-circle .popup-image::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    
+}
+
+/* Arrow styling for right-side popups */
+.info5 .icon-circle .popup-image::after,
+.info6 .icon-circle .popup-image::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+   
+}
+
+/* Show popup on hover */
+.icon-circle:hover .popup-image {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+
+
+
+/*resonsive*/
+
+
+/* Responsive CSS */
+/* Responsive CSS with adjusted circular positioning */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100% !important;
+        height: 100%;
+        padding: 3px;
+       
+    }
+
+    .org-chart {
+        position: relative;
+        transform-origin: center center;
+        transform: scale(0.7);
+        margin: 100px auto;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    /* Center circle adjustments */
+    .circle {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        font-size: 12px;
+     
+      
+    }
+
+    .circle-content {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Info boxes circular positioning */
+    .info-box {
+        position: absolute;
+        width: 160px;
+        height: 80px;
+        font-size: 13px;
+        transform-origin: center center;
+        z-index: 1;
+    }
+
+    /* Adjusted positions for perfect circle arrangement */
+    .info1 {
+        top: calc(50% - 200px); /* Top position */
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .info2 {
+        top: calc(50% - 80px); /* Top right */
+        left: calc(50% + 185px);
+        transform: translate(-50%, -50%);
+    }
+
+    .info3 {
+        top: calc(50% + 75px); /* Bottom right */
+        left: calc(50% + 185px);
+        transform: translate(-50%, -50%);
+    }
+
+    .info4 {
+        top: calc(50% + 200px); /* Bottom position */
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .info5 {
+        top: calc(50% + 75px); /* Bottom left */
+        left: calc(50% - 180px);
+        transform: translate(-50%, -50%);
+    }
+
+    .info6 {
+        top: calc(50% - 80px); /* Top left */
+        left: calc(50% - 180px);
+        transform: translate(-50%, -50%);
+    }
+
+    .info7 {
+        top: calc(50% - 300px); /* Very top */
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Circular rings adjustment */
+    .org-chart::before {
+        width: 500px;
+        height: 500px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .org-chart::after {
+        width: 480px;
+        height: 480px;
+        border: 2px dashed rgba(255, 255, 255, 0.15);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Popup image adjustments */
+    .popup-image {
+        position: absolute;
+        width: 100px;
+        padding: 3px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    /* Adjust popup positions based on info-box location */
+    .info1 .popup-image,
+    .info2 .popup-image,
+    .info3 .popup-image {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 10px;
+    }
+
+    .info4 .popup-image,
+    .info5 .popup-image,
+    .info6 .popup-image {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .org-chart {
+        transform: scale(0.5);
+        margin: 10px auto;
+    }
+
+    /* Adjust ring sizes for smaller screens */
+    .org-chart::before {
+        width: 450px;
+        height: 450px;
+    }
+
+    .org-chart::after {
+        width: 430px;
+        height: 430px;
+    }
+
+    /* Maintain circular arrangement but reduce sizes */
+    .info-box {
+        width: 160px;
+        height: 80px;
+        font-size: 11px;
+    }
+
+    .popup-image {
+        width: 150px;
+    }
+}
+
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 360px) {
+    .org-chart {
+        transform: scale(0.8);
+        margin: 180px auto;
+    }
+}
+
+/* Landscape mode adjustments */
+@media screen and (max-width: 896px) and (orientation: landscape) {
+    .org-chart {
+        transform: scale(0.8);
+        margin: 50px auto;
+    }
+}
+
+/* Smooth transitions */
+.org-chart, .circle, .info-box {
+    transition: all 0.3s ease-out;
+}
+
+/* Ensure info boxes are visible when active */
+.info-box.show {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
+    z-index: 3;
 }
 
+/* Enhanced hover effects */
+.info-box:hover {
+    transform: translate(-50%, -50%) scale(1.0);
+    z-index: 4;
+}
+
+
+/* General Node and Sub-node Styles */
+.node-list {
+    display: none; /* Hidden by default */
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Show the node-list when toggled */
+.node-list.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Styling for nodes */
+.node {
+    width: 100px;
+    color: #fff; /* White text */
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    display: inline-block;
+    box-shadow: none; /* Remove shadow */
+    background: transparent; /* No background */
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hover effect for nodes */
+.node:hover {
+    background: #a3d216df; /* Slight highlight */
+    color: white;
+    transform: translateX(3px); /* Slight movement */
+}
+
+/* Sub-node styles */
+.sub-node-list {
+    display: none; /* Hidden by default */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: calc(100% + 10px); /* Adjusted for compact spacing */
+    top: 10; /* Align with parent node */
+    flex-direction: column; /* Vertical stack */
+    gap: 1px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Show sub-nodes when parent node is active */
+.node.active + .sub-node-list {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sub-node styles */
+.sub-node {
+    background:white; /* No background */
+    color: black; /* White text */
+    width: 100px; /* Reduced size */
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 12px; /* Smaller font */
+    position: relative;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Highlight effect for sub-nodes on hover */
+.sub-node:hover {
+    background: #0ee56fa5; /* Green highlight */
+    color: white;
+    transform: translateX(3px); /* Slight movement */
+}
+
+/* Dropdown arrow for nodes */
+.node::after {
+    content: '';
+    font-size: 8px;
+    margin-left: 5px;
+    vertical-align: middle;
+    color: #fff; /* White arrow */
+    transition: transform 0.3s ease;
+}
+
+.node.active::after {
+    transform: rotate(180deg); /* Rotate arrow */
+}
+
+/* Adjust dropdown positioning */
+.info1 .node-list,
+.info2 .node-list,
+.info3 .node-list {
+    left: 105%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.info4 .node-list,
+.info5 .node-list,
+.info6 .node-list {
+    right: 105%; /* Position to the left */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .node-list {
+        padding: 5px;
+    }
+
+    .node {
+        width: auto;
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .sub-node {
+        font-size: 8px;
+        padding: 2px 4px;
+        width: 60px;
+    }
+
+    .sub-node-list {
+        left: calc(100% + 3px); /* Adjusted for smaller screens */
+    }
+
+    .info4 .sub-node-list,
+    .info5 .sub-node-list,
+    .info6 .sub-node-list {
+        right: calc(100% + 3px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .node-list {
+        padding: 3px;
+    }
+
+    .node {
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+
+    .sub-node {
+        font-size: 7px;
+        padding: 2px 3px;
+        width: 60px;
+    }
+
+    .sub-node-list {
+        left: calc(100% + 2px);
+    }
+
+    .info4 .sub-node-list,
+    .info5 .sub-node-list,
+    .info6 .sub-node-list {
+        right: calc(100% + 2px);
+    }
+}
+
+/* Ensure smooth transitions */
+.node, .sub-node {
+    transition: all 0.3s ease;
+}
+
+/* Enhanced visibility for active states */
+.node.active {
+    background-color: white; /* Slight highlight */
+    color: black;
+}
+
+/* Dropdown arrow adjustments */
+.node::after {
+    font-size: 7px;
+    margin-left: 3px;
+}
+/* Base popup image styles */
+.popup-image {
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+    width: 150px; /* Default width */
+    max-width: 100%; /* Ensure it fits smaller screens */
+    transition: all 0.3s ease;
+}
+
+/* Popup image styling */
 .popup-image img {
-    max-width: 150px;
+    width: 100%;
     height: auto;
     border-radius: 5px;
     display: block;
 }
 
-.popup-image::before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: white;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    box-shadow: -2px -2px 5px rgba(0,0,0,0.1);
+/* Adjust popup positioning for left-side info-boxes */
+.info1 .popup-image,
+.info2 .popup-image,
+.info3 .popup-image {
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-/* Add hover effects */
-.circle:hover .popup-image,
-.info-box:hover .popup-image {
+/* Adjust popup positioning for right-side info-boxes */
+.info4 .popup-image,
+.info5 .popup-image,
+.info6 .popup-image {
+    right: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Show popup on hover */
+.icon-circle:hover .popup-image {
     display: block;
     animation: fadeIn 0.3s ease forwards;
 }
 
+/* Fade in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(-50%) translateX(10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-50%) translateX(0);
     }
 }
-/* Enhanced Popup Styles */
+
+/* Responsive adjustments for popup images */
+@media screen and (max-width: 768px) {
+    .popup-image {
+        width: 180px; /* Slightly smaller width */
+        max-width: 80%; /* Fit within smaller screens */
+        padding: 6px;
+    }
+
+    .popup-image img {
+        border-radius: 4px;
+    }
+
+    /* Adjust popup positioning for smaller screens */
+    .info1 .popup-image,
+    .info2 .popup-image,
+    .info3 .popup-image {
+        left: 100%;
+    }
+
+    .info4 .popup-image,
+    .info5 .popup-image,
+    .info6 .popup-image {
+        right: 100%;
+    }
+
+    .popup-image::after {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .popup-image {
+        width: 150px; /* Further reduced size */
+        max-width: 75%; /* Ensure it fits smaller screens */
+        padding: 5px;
+    }
+
+    .popup-image img {
+        border-radius: 3px;
+    }
+
+    /* Adjust popup positioning for very small screens */
+    .info1 .popup-image,
+    .info2 .popup-image,
+    .info3 .popup-image {
+        left: 95%;
+    }
+
+    .info4 .popup-image,
+    .info5 .popup-image,
+    .info6 .popup-image {
+        right: 95%;
+    }
+
+    .popup-image::after {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Ensure smooth transitions */
 .popup-image {
-    position: absolute;
-    background: white;
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: none;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(10px);
+    transition: all 0.3s ease, opacity 0.3s ease;
 }
 
-.popup-image.show {
-    opacity: 1;
-    transform: translateY(0);
-}
 
-.popup-image img {
-    max-width: 150px;
-    height: auto;
-    border-radius: 5px;
-    display: block;
-}
-
-.popup-image::before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: white;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    box-shadow: -2px -2px 5px rgba(0,0,0,0.1);
-}
-
-/* Add hover effects */
-.circle:hover .popup-image,
-.info-box:hover .popup-image {
-    display: block;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
     </style>
 </head>
-<body>
+<body ontouchstart="">
+
     <div class="container">
         <div class="org-chart">
            
 
                 <!-- Update the circle content -->
-<div class="circle" onclick="toggleInfoBoxes()">
-    <div class="circle-content">
-        <h1>SUPERINTENDENT OF POLICE </h1>
-        <h2>SRIKAKULAM</h2>
-    </div>
-    <div class="popup-image">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
-    </div>
-</div>
+                <div class="circle" onclick="toggleInfoBoxes()">
+                    <div class="circle-content">
+                        <p class="sptext">SUPERINTENDENT OF POLICE</p>
+                     
+                        <div class="icon-circle">
+                            <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+                            <div class="popup-image">
+                                <img src="images/spsir.jpg.jpg" alt="Popup Image">
+                            </div>
+                        </div>
+                        <p>SRIKAKULAM</p>
+                    </div>
+                </div>
+                
 
-<!-- Update info-boxes to include popup images -->
-<!-- Example for info1 (Criminal Investigation) -->
+
 <div class="info-box info1" onclick="toggleNodeList(event, this)">
     <div class="icon-circle">
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>
     </div>
-    <p>Criminal Investigation</p>
+    <p>ADDL .SP (ADMIN)</p>
     <ul class="node-list">
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
-            </ul>
+            <span class="node" onclick="toggleSubNodes(event, this)">Deputy Superintendent Of Police, AR</span>
+          
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
-            </ul>
+            <span class="node" onclick="toggleSubNodes(event, this)">Deputy Superintendent Of Police, DPTC</span>
+           
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
-            </ul>
+            <span class="node" onclick="toggleSubNodes(event, this)">District Police Office</span>
+           
         </li>
     </ul>
 </div>
@@ -650,137 +1418,93 @@
   
     <div class="icon-circle">
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>
     </div>
-    <p>Criminal Investigation</p>
+    <p>ADDL .SP (CRIME)</p>
     <ul class="node-list">
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
-            </ul>
+            <span class="node" onclick="toggleSubNodes(event, this)">Crime Police Station</span>
+            
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
-            </ul>
+            <span class="node" onclick="toggleSubNodes(event, this)">District Crime Record Bureau</span>
+           
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Information Technology Cell</span>
+            
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Finger print Unit</span>
+            
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Count Monitorning System </span>
+           
         </li>
         <li>
             <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
-            </ul>
+            
         </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Anti Human Trafficing</span>
+            
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Control Room</span>
+           
+        </li>
+
     </ul>
 </div>
+
 
 <div class="info-box info3" onclick="toggleNodeList(event, this)">
-  
-
-    <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
-    </div>
-    <p>Criminal Investigation</p>
-    <ul class="node-list">
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
-            </ul>
-        </li>
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
-            </ul>
-        </li>
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-
-<div id="traffic" class="info-box info4" onclick="toggleNodeList(event, this)">
- 
-
-    <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
-    </div>
-    <p>Criminal Investigation</p>
-    <ul class="node-list">
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
-            </ul>
-        </li>
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
-            </ul>
-        </li>
-        <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
-            <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-
-<div class="info-box info5" onclick="toggleNodeList(event, this)">
    
 
     <div class="icon-circle">
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>    
     </div>
-    <p>Criminal Investigation</p>
+    <p> SPDO SRIKAKULAM</p>
     <ul class="node-list">
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">Srikakulam Rural Circle </span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
+                <li><span class="sub-node">Srikakulam Rural </span></li>
+                <li><span class="sub-node">Srikakulam I Town</span></li>
+                <li><span class="sub-node">Gara</span></li>
             </ul>
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">Srikakulam II Town </span>
+           
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Amadalavalasa Circle</span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
+                <li><span class="sub-node">Amadalavalasa</span></li>
+                <li><span class="sub-node">Burja</span></li>
+                <li><span class="sub-node">Sarubujjili</span></li>
+                <li><span class="sub-node">Ponduru</span></li>
             </ul>
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">JR Puram Circle</span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
+                <li><span class="sub-node">JR Puram</span></li>
+                <li><span class="sub-node">Etcherla</span></li>
+                <li><span class="sub-node">Laveru</span></li>
+                <li><span class="sub-node">G Sigadam</span></li>
             </ul>
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Inspector Of Police .Traffic</span>
+           
         </li>
     </ul>
 </div>
@@ -790,32 +1514,119 @@
 
     <div class="icon-circle">
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>
     </div>
-    <p>Criminal Investigation</p>
+    <p>SPDO KASIBUGGA</p>
     <ul class="node-list">
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Detective Division</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">KasiBugga U</span>
+            
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">KasiBugga R Circle</span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Crime Scene Unit</span></li>
-                <li><span class="sub-node">Evidence Analysis</span></li>
-                <li><span class="sub-node">Forensics Team</span></li>
+                <li><span class="sub-node">Vajrapu Kothuru</span></li>
+                <li><span class="sub-node">Mandasa</span></li>
+                <li><span class="sub-node">Nandigam</span></li>
             </ul>
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Homicide</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">Sompeta Circle</span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Murder Investigation</span></li>
-                <li><span class="sub-node">Cold Case Unit</span></li>
-                <li><span class="sub-node">Missing Persons</span></li>
+                <li><span class="sub-node">Sompeta</span></li>
+                <li><span class="sub-node">Baruva</span></li>
+                <li><span class="sub-node">Kanchili</span></li>
             </ul>
         </li>
         <li>
-            <span class="node" onclick="toggleSubNodes(event, this)">Cyber Crime</span>
+            <span class="node" onclick="toggleSubNodes(event, this)">Ichapuram Circle</span>
             <ul class="sub-node-list">
-                <li><span class="sub-node">Digital Forensics</span></li>
-                <li><span class="sub-node">Online Fraud</span></li>
-                <li><span class="sub-node">Cybersecurity</span></li>
+                <li><span class="sub-node">Ichapuram Town</span></li>
+                <li><span class="sub-node">Ichapuram Rural</span></li>
+                <li><span class="sub-node">Kaviti</span></li>
             </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="traffic" class="info-box info5" onclick="toggleNodeList(event, this)">
+ 
+
+    <div class="icon-circle">
+        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>    
+    </div>
+    <p>SPDO TEKKALI</p>
+    <ul class="node-list">
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Tekkali U</span>
+           
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Tekkali Rural</span>
+            <ul class="sub-node-list">
+                <li><span class="sub-node">Santhabommali</span></li>
+                <li><span class="sub-node">Kotabommali</span></li>
+                <li><span class="sub-node">Nowpada</span></li>
+                <li><span class="sub-node">Nandigam</span></li>
+            </ul>
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Narasannapeta Circle</span>
+            <ul class="sub-node-list">
+                <li><span class="sub-node">Narasannapeta</span></li>
+                <li><span class="sub-node">Polaki</span></li>
+                <li><span class="sub-node">Jalumuru</span></li>
+                <li><span class="sub-node">Saravakota</span></li>
+            </ul>
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Pathapatnam Circle</span>
+            <ul class="sub-node-list">
+                <li><span class="sub-node">Pathapatnam </span></li>
+                <li><span class="sub-node">MaliaPutti</span></li>
+               
+            </ul>
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">Kothuru Circle</span>
+            <ul class="sub-node-list">
+                <li><span class="sub-node">Kothuru </span></li>
+                <li><span class="sub-node">Hiramandalam</span></li>
+               
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="info-box info4" onclick="toggleNodeList(event, this)">
+  
+
+    <div class="icon-circle">
+        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <div class="popup-image">
+            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+        </div>    
+    </div>
+    <p>DSP WOMEN PS ,DSP SC & ST Cell , DSP SB</p>
+    <ul class="node-list">
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">DSP WOMEN PS  </span>
+           
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)">DSP SC & ST Cell</span>
+           
+        </li>
+        <li>
+            <span class="node" onclick="toggleSubNodes(event, this)"> DSP SB</span>
+            
         </li>
     </ul>
 </div>
@@ -888,6 +1699,75 @@ function toggleNodeList(event, infoBox) {
     // Toggle the clicked info box's node list
     const nodeList = infoBox.querySelector('.node-list');
     nodeList.classList.toggle('show');
+}
+
+
+
+function toggleInfoBoxes() {
+    const orgChart = document.querySelector('.org-chart');
+    const infoBoxes = document.querySelectorAll('.info-box');
+    
+    orgChart.classList.toggle('active');
+    
+    infoBoxes.forEach((box, index) => {
+        setTimeout(() => {
+            box.classList.toggle('show');
+        }, index * 100);
+    });
+}
+
+
+
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const iconCircle = document.querySelector('.circle-content .icon-circle');
+    const popup = iconCircle.querySelector('.popup-image');
+
+    iconCircle.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent triggering parent circle click
+        popup.classList.toggle('show');
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!iconCircle.contains(e.target)) {
+            popup.classList.remove('show');
+        }
+    });
+});
+
+
+
+
+function toggleSubNodes(event, nodeElement) {
+    event.stopPropagation(); // Prevent event bubbling
+
+    // Toggle the active class on the clicked node
+    const isActive = nodeElement.classList.contains('active');
+    nodeElement.classList.toggle('active', !isActive);
+
+    // Locate the sub-node list associated with this node
+    const subNodeList = nodeElement.nextElementSibling;
+
+    if (subNodeList && subNodeList.classList.contains('sub-node-list')) {
+        // Toggle visibility of the sub-node list
+        if (isActive) {
+            subNodeList.style.display = 'none';
+        } else {
+            subNodeList.style.display = 'flex';
+        }
+    }
+
+    // Ensure other nodes and sub-nodes remain unaffected
+    document.querySelectorAll('.node').forEach(node => {
+        if (node !== nodeElement) {
+            node.classList.remove('active');
+            const siblingSubNodeList = node.nextElementSibling;
+            if (siblingSubNodeList && siblingSubNodeList.classList.contains('sub-node-list')) {
+                siblingSubNodeList.style.display = 'none';
+            }
+        }
+    });
 }
 
     </script>
