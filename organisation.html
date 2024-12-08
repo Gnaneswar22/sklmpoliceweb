@@ -417,8 +417,8 @@ footer {
 .org-chart::before {
     content: '';
     position: absolute;
-    width: 600px;  /* Adjust based on your layout */
-    height: 600px; /* Should match width */
+    width: 580px;  /* Adjust based on your layout */
+    height: 580px; /* Should match width */
     border: 3px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     top: 50%;
@@ -459,8 +459,8 @@ footer {
 .org-chart::after {
     content: '';
     position: absolute;
-    width: 590px;  /* Slightly smaller than the outer ring */
-    height: 590px;
+    width: 580px;  /* Slightly smaller than the outer ring */
+    height: 580px;
     border: 1px dashed rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     top: 50%;
@@ -492,8 +492,8 @@ footer {
 .org-chart::before {
     content: '';
     position: absolute;
-    width: 580px;
-    height: 580px;
+    width: 550px;
+    height: 550px;
     border: 3px solid rgba(255, 255, 255, 0.4); /* Increased opacity for brightness */
     border-radius: 50%;
     top: 50%;
@@ -518,8 +518,8 @@ footer {
 .org-chart::after {
     content: '';
     position: absolute;
-    width: 560px;
-    height: 560px;
+    width: 530px;
+    height: 530px;
     border: 2px dashed rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     top: 50%;
@@ -658,7 +658,7 @@ footer {
 
 /* Position each info box in a circular pattern */
 .info1 {
-    top: 15%;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #020096;
@@ -666,30 +666,30 @@ footer {
 
 .info2 {
     top: 35%;
-    left: 65%;
+    left: 68%;
     transform: translate(-50%, -50%);
     background-color: #2196f3;
 }
 
 .info3 {
     top: 65%;
-    left: 65%;
+    left: 68%;
     transform: translate(-50%, -50%);
     background-color: #ff9800;
 }
 
 .info4 {
-    font-size: smaller;
-    font-weight: 550;
-    top: 85%;
+
+    top: 87%;
     left: 50%;
+    font-size:15px;
     transform: translate(-50%, -50%);
     background-color: #9c27b0;
 }
 
 .info5 {
     top: 65%;
-    left: 35%;
+    left: 32%;
     transform: translate(-50%, -50%);
     background-color: #f44336;
 }
@@ -697,7 +697,7 @@ footer {
 .info6 {
 
     top: 35%;
-    left: 35%;
+    left: 32%;
     transform: translate(-50%, -50%);
     background-color: #4caf50;
 }
@@ -737,7 +737,7 @@ footer {
     color: #000000;
     padding: 6px 10px;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 14px;
     display: inline-block;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -785,13 +785,15 @@ footer {
 
 
 .info4 .node {
-    width: 100px;
+    
+    width: 120pxss;
     background: #9c27b0;
     color: white;
 }
 
 .info4 .node:hover {
     background: #7b1fa2;
+    
 }
 
 
@@ -969,61 +971,227 @@ footer {
 }
 
 
-/* Base popup image styles for icon-circles */
-.icon-circle {
-    position: relative;
-}
 
-/* Popup image container */
-.icon-circle .popup-image {
-    position: absolute;
-    padding: 8px;
-    border-radius: 8px;
+
+/* Card Popup Styling */
+.popup-card {
     display: none;
-    z-index: 1000;
-    width: 200px; /* Adjust width as needed */
-}
-
-/* Popup image styling */
-.icon-circle .popup-image img {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    display: block;
-}
-
-
-/* Default popup styling */
-.popup-image {
-    display: none; /* Initially hidden */
-    position: absolute;
-    top: 50px; /* Adjust as needed */
+    position: fixed;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    max-width: 400px;
+    width: 90%;
 }
 
-.popup-image img {
-    width: 150px;
-    height: auto;
-    display: block;
+/* Overlay background */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
 }
 
-/* Remove hover-based behavior completely */
-.icon-circle:hover .popup-image {
-    display: none; /* Disable hover-based popup */
-}
-
-/* Cursor pointer to indicate clickable behavior */
-.icon-circle {
+/* Close button with effects */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f0f0f0;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
 
+.close-btn::before {
+    transform: rotate(45deg);
+}
+
+.close-btn::after {
+    transform: rotate(-45deg);
+}
+
+.close-btn:hover {
+    background: #ff4444;
+    transform: rotate(180deg);
+}
+
+.close-btn:hover::before,
+.close-btn:hover::after {
+    background-color: white;
+}
+
+/* Card image with effects */
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card content styling */
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Desktop (1024px and above) */
+@media (min-width: 1024px) {
+    .popup-card {
+        padding: 25px;
+    }
+
+    .card-image {
+        height: 220px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-description {
+        font-size: 16px;
+    }
+}
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .popup-card {
+        padding: 20px;
+        max-width: 380px;
+    }
+
+    .card-image {
+        height: 190px;
+    }
+}
+
+/* Mobile Large (480px to 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .popup-card {
+        padding: 15px;
+        max-width: 340px;
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .close-btn {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Mobile Medium (360px to 479px) */
+@media (min-width: 360px) and (max-width: 479px) {
+    .popup-card {
+        padding: 12px;
+        max-width: 300px;
+    }
+
+    .card-image {
+        height: 160px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-description {
+        font-size: 13px;
+    }
+
+    .close-btn {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* Mobile Small (359px and below) */
+@media (max-width: 359px) {
+    .popup-card {
+        padding: 10px;
+        max-width: 280px;
+    }
+
+    .card-image {
+        height: 150px;
+    }
+
+    .card-title {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .card-description {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .close-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    .close-btn::before,
+    .close-btn::after {
+        width: 16px;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .popup-card {
+        height: 90vh;
+        overflow-y: auto;
+    }
+
+    .card-image {
+        height: 140px;
+    }
+}
 
 
 
@@ -1235,6 +1403,11 @@ footer {
         width: 50px;
         height: 50px;
     }
+    .org-chart{
+        transform: scale(0.9);
+        background-color: #085c5f;
+  
+    }
 
     /* Rotating rings adjustment */
     .org-chart::before {
@@ -1273,9 +1446,11 @@ footer {
     .sub-node.active + .sub-node-list {
         display: block;
     }
-
+    .node{
+        width: 95px;
+    }
     .node, .sub-node {
-        width: auto;
+     
         height: fit-content;
         font-size: 12px;
         padding:3px 5px;
@@ -1286,7 +1461,7 @@ footer {
         transition: all 0.3s ease;
     }
     .sub-node {
-        width: 90px;
+        width:auto;
     }
 
     .node:hover, .sub-node:hover {
@@ -1295,12 +1470,12 @@ footer {
     }
 
     /* Info boxes positioning */
-    .info1 { top: 15%; }
-    .info2 { top: 35%; left: 65%; }
+    .info1 { top: 25%; }
+    .info2 { top: 38%; left: 68%; }
     .info3 { top: 65%; left: 65%; }
-    .info4 { top: 85%; }
+    .info4 { top: 75%; }
     .info5 { top: 65%; left: 35%; }
-    .info6 { top: 35%; left: 35%; }
+    .info6 { top: 38%; left: 30%; }
 }
 
 /* Mobile Medium (max-width: 480px) */
@@ -1537,6 +1712,7 @@ footer {
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
         <div class="popup-image">
             <img src="images/spsir.jpg.jpg" alt="Popup Image">
+            <p style="color:black;">Name : UMA MAHESWARA REDDY</p>
         </div>
     </div>
     <p>ADDL .SP (ADMIN)</p>
@@ -1659,6 +1835,7 @@ footer {
         <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
         <div class="popup-image">
             <img src="images/spsir.jpg.jpg" alt="Popup Image">
+
         </div>
     </div>
     <p>SPDO KASIBUGGA</p>
@@ -1757,7 +1934,7 @@ footer {
             <img src="images/spsir.jpg.jpg" alt="Popup Image">
         </div>    
     </div>
-    <p>DSP WOMEN PS ,DSP SC & ST Cell , DSP SB</p>
+    <p>DSP WMN PS ,DSP SC & ST Cell , DSP SB</p>
     <ul class="node-list">
         <li>
             <span class="node" onclick="toggleSubNodes(event, this)">DSP WOMEN PS  </span>
@@ -1894,63 +2071,85 @@ function toggleSubNodes(event, nodeElement) {
     });
 }
 
-
-
-
-
-
-
-// image popup//
+//images//
 
 document.addEventListener("DOMContentLoaded", () => {
-    const popupImages = document.querySelectorAll(".icon-circle"); // Select all elements with popups
+    const popupImages = document.querySelectorAll(".icon-circle");
+    let currentlyOpenPopup = null;
 
-    let currentlyOpenPopup = null; // Track the currently open popup
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
 
     popupImages.forEach((popup) => {
         popup.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent the click from bubbling up
+            e.stopPropagation();
+            
+            // Get image and details
+            const imgSrc = popup.querySelector('img').src;
+            const title = popup.getAttribute('data-title') || 'Image Title';
+            const description = popup.getAttribute('data-description') || 'Image Description';
 
-            const popupImage = popup.querySelector(".popup-image");
-
-            if (popupImage) {
-                // If the clicked popup is already open, toggle it (close it)
-                if (popupImage.style.display === "block") {
-                    popupImage.style.display = "none"; // Close the popup
-                    currentlyOpenPopup = null; // Reset the open popup
-                } else {
-                    // Close any previously open popup
-                    if (currentlyOpenPopup) {
-                        currentlyOpenPopup.style.display = "none";
-                    }
-
-                    // Open the clicked popup
-                    popupImage.style.display = "block";
-                    currentlyOpenPopup = popupImage; // Update the open popup
-                }
-            }
+            // Create and show card popup
+            showCardPopup(imgSrc, title, description);
         });
     });
 
-    // Close the popup when clicking outside of it
-    document.addEventListener("click", () => {
-        if (currentlyOpenPopup) {
-            currentlyOpenPopup.style.display = "none"; // Close the currently open popup
-            currentlyOpenPopup = null; // Reset the open popup
+    function showCardPopup(imgSrc, title, description) {
+        // Create popup card
+        const popupCard = document.createElement('div');
+        popupCard.className = 'popup-card';
+        
+        // Create close button
+        const closeBtn = document.createElement('div');
+        closeBtn.className = 'close-btn';
+        closeBtn.innerHTML = '×';
+        
+        // Create card content
+        popupCard.innerHTML = `
+            <div class="close-btn">×</div>
+            <img src="${imgSrc}" alt="${title}" class="card-image">
+            <h3 class="card-title">${title}</h3>
+            <p class="card-description">${description}</p>
+        `;
+
+        // Show overlay and popup
+        overlay.style.display = 'block';
+        document.body.appendChild(popupCard);
+        popupCard.style.display = 'block';
+
+        // Close button functionality
+        const closeButton = popupCard.querySelector('.close-btn');
+        closeButton.addEventListener('click', () => {
+            closeCardPopup(popupCard);
+        });
+
+        // Close on overlay click
+        overlay.addEventListener('click', () => {
+            closeCardPopup(popupCard);
+        });
+
+        // Store current popup
+        currentlyOpenPopup = popupCard;
+    }
+
+    function closeCardPopup(popupCard) {
+        overlay.style.display = 'none';
+        popupCard.remove();
+        currentlyOpenPopup = null;
+    }
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && currentlyOpenPopup) {
+            closeCardPopup(currentlyOpenPopup);
         }
     });
-
-    // Optional: Reset popup styles on window resize
-    window.addEventListener("resize", () => {
-        popupImages.forEach((popup) => {
-            const popupImage = popup.querySelector(".popup-image");
-            if (popupImage) {
-                popupImage.style.display = ""; // Reset display to default
-            }
-        });
-        currentlyOpenPopup = null; // Reset the open popup
-    });
 });
+
+
+
 
 
 
