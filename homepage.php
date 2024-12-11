@@ -94,6 +94,7 @@ function getMenuItems($conn, $parent_id = null) {
     }
 }
 
+
 // Get main menu items
 $main_menu_items = getMenuItems($conn);
 ?>
