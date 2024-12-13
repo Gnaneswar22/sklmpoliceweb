@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Station Locator with Crime Graph</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="headerfoot.css">
+    <!-- Custom CSS -->
+    <style>
+       /* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin-top: 10rem;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Container Styles */
+.container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Map Container */
+#map {
+    height: 60vh;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+/* Control Panel */
+.controls-panel {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Location Information */
+.location-info {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.location-info:hover {
+    transform: translateY(-5px);
+}
+
+/* Form Elements */
+.form-select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.form-select:focus {
+    border-color: #0a9396;
+    box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.1);
+    outline: none;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: #0a9396;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.btn-primary:hover {
+    background: #078183;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(10, 147, 150, 0.2);
+}
+
+/* Directions Panel */
+#directionsPanel {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar */
+#directionsPanel::-webkit-scrollbar {
+    width: 8px;
+}
+
+#directionsPanel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#directionsPanel::-webkit-scrollbar-thumb {
+    background: #0a9396;
+    border-radius: 4px;
+}
+
+/* Loading Overlay */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.loading::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #0a9396;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Current Location */
+.current-location {
+    color: #0a9396;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.current-location i {
+    color: #0a9396;
+}
+
+/* Chart Container */
+#crimeChartContainer {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+    transition: transform 0.3s ease;
+}
+
+#crimeChartContainer:hover {
+    transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+
+    #map {
+        height: 50vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin-top: 4rem;
+    }
+
+    .controls-panel,
+    .location-info,
+    #directionsPanel,
+    #crimeChartContainer {
+        padding: 1.2rem;
+    }
+
+    .btn-primary {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        margin-top: 4rem;
+    }
+
+    .container-fluid {
+        padding: 0.8rem;
+    }
+
+    #map {
+        height: 40vh;
+    }
+
+    .controls-panel,
+    .location-info,
+    #directionsPanel,
+    #crimeChartContainer {
+        padding: 1rem;
+    }
+
+    .form-select {
+        font-size: 0.9rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .controls-panel,
+    .btn-primary,
+    #map {
+        display: none;
+    }
+
+    #directionsPanel {
+        max-height: none
+    }
+}
+    </style>
+</head>
+<body>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>   
+   
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="controls-panel">
+                    <h2 class="h4 mb-4">Find Nearest Police Station</h2>
+                    
+                    <div class="current-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="currentLocationText">Detecting your location...</span>
+                    </div>
+
+                    <select class="form-select" id="policeStation" onchange="updateMapForStation()">
+                        <option value="">Select Police Station</option>
+                        <option value="18.3081313,83.8939253">District Police Office</option>
+                        <option value="18.30353942,83.87463395">SDPO, Srikakulam</option>
+                        <option value="18.318575,83.93196">Srikakulam Rural Circle</option>
+                        <option value="18.2917852,83.8965405">Srikakulam I Town</option>
+                        <option value="18.318575,83.93196">Srikakulam Rural</option>
+                        <option value="18.328583,84.051928">Gara</option>
+                        <option value="18.2958661,83.8943883">Srikakulam II Town</option>
+                        <option value="18.402328,83.895036">Amadalavalasa Circle</option>
+                        <option value="18.42004219,83.87186029">Amadalavalasa</option>
+                        <option value="18.5277305,83.9133796">Sarubujjili</option>
+                        <option value="18.528768,83.799779">Burja</option>
+                        <option value="18.348638,83.754606">Ponduru</option>
+                        <option value="18.2022398,83.6898558">J.R Puram Circle</option>
+                        <option value="18.20235,83.689583">J.R.Puram</option>
+                        <option value="18.2803953,83.8285233">Etcherla PS</option>
+                        <option value="18.23489,83.7020001">Laveru</option>
+                        <option value="18.3747657,83.6784275">G. Sigadam</option>
+                        <option value="18.6017497,84.22949278">Tekkali Circle</option>
+                        <option value="18.60169301,84.22922692">Tekkali PS</option>
+                        <option value="18.534595,84.1991103">Santhabommali</option>
+                        <option value="18.5583964,84.2928851">Naupada</option>
+                        <option value="18.5184306,84.1459869">Kotabommali</option>
+                        <option value="18.65739222,84.30135576">Nandigam</option>
+                        <option value="18.418119,84.045591">Narasannapeta Circle</option>
+                        <option value="18.418119,84.045591">Narasannapeta</option>
+                        <option value="18.50958262,84.03781604">Jalumuru</option>
+                        <option value="18.3600111,84.1126706">Polaki</option>
+                        <option value="18.59031615,84.05029386">Saravakota</option>
+                        <option value="18.744476,84.083242">Pathapatnam Circle</option>
+                        <option value="18.74457968,84.08318206">Pathapatnam</option>
+                        <option value="18.7726939,84.1789552">Meliaputti</option>
+                        <option value="18.777631,83.878965">Kothuru Circle</option>
+                        <option value="18.777631,83.878965">Kothuru PS</option>
+                        <option value="18.674012,83.949765">Hiramandalam</option>
+                        <option value="18.75960516,84.41767169">SDPO, Kasibugga</option>
+                        <option value="18.7606432,84.4172891">Kasibugga</option>
+                        <option value="18.7606432,84.4172891">Kasibugga Rural Circle</option>
+                        <option value="18.699887,84.43341697">Vajrapukothuru</option>
+                        <option value="18.8727842,84.459337">Mandasa</option>
+                        <option value="18.94471523,84.58460491">Sompeta Circle</option>
+                        <option value="18.94471523,84.58460491">Sompeta</option>
+                        <option value="18.978521,84.584908">Kanchili</option>
+                        <option value="18.884673,84.581346">Baruva</option>
+                        <option value="19.113573,84.684416">Ichauram Circle</option>
+                        <option value="19.113573,84.684416">Itchapuram Town</option>
+                        <option value="19.113918,84.69058">Itchapuram Rural</option>
+                        <option value="19.008577,84.689488">Kaviti</option>
+                        <option value="18.2794477,83.8987606">Disha PS, Srikakulam</option>
+                        <option value="18.2801951,83.8988121">CCS, Srikakulam</option>
+                        <option value="18.27908,83.898648">Srikakulam Traffic</option>
+                        <option value="18.29690167,83.89257667">DSB</option>
+                        <option value="18.3259959,83.9226481">DPTC</option>
+                    </select>
+
+                    <button class="btn btn-primary w-100 mb-3" onclick="getDirections()">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </button>
+
+                    <button class="btn btn-outline-primary w-100" onclick="findNearestStation()">
+                        <i class="fas fa-search-location"></i> Find Nearest Station
+                    </button>
+
+                    <div id="directionsPanel"></div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <div id="map"></div>
+                <div class="location-info">
+                    <div id="distanceInfo"></div>
+                    <div id="estimatedTime"></div>
+                </div>
+                <div id="crimeChartContainer">
+                    <h4>Crime Statistics</h4>
+                    <canvas id="crimeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="headerandfoot.js"></script>
+    
+    <script>
+        let map, userMarker, directionsService, directionsRenderer;
+let userLocation = null;
+const policeStations = new Map();
+
+// Add the Google Maps JavaScript API script tag
+const script = document.createElement('script');
+script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCfY-eoYaQN16Lpg2R7sAuEzEnPTnULB1w&libraries=geometry&callback=initMap`;
+script.async = true;
+script.defer = true;
+document.head.appendChild(script);
+
+// Add error handling for script loading
+script.onerror = () => {
+    document.getElementById('map').innerHTML = 
+        '<div class="alert alert-danger">Failed to load Google Maps. Please check your API key and internet connection.</div>';
+    if (document.getElementById('loadingSpinner')) {
+        document.getElementById('loadingSpinner').style.display = 'none';
+    }
+};
+
+function initMap() {
+    try {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 18.6225255, lng: 83.484536 },
+            zoom: 13,
+            styles: [{
+                featureType: "poi.business",
+                stylers: [{ visibility: "off" }]
+            }],
+            gestureHandling: 'cooperative',
+            mapTypeControl: true,
+            streetViewControl: true,
+            fullscreenControl: true
+        });
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map,
+            panel: document.getElementById('directionsPanel')
+        });
+
+        getUserLocation();
+        initializePoliceStations();
+    } catch (error) {
+        console.error('Map initialization failed:', error);
+        document.getElementById('map').innerHTML = 
+            '<div class="alert alert-danger">Failed to initialize map. Please refresh the page.</div>';
+    }
+}
+
+function getUserLocation() {
+    document.getElementById('currentLocationText').innerHTML = 
+        '<i class="fas fa-spinner fa-spin"></i> Detecting your location...';
+        
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                map.setCenter(userLocation);
+                if (userMarker) userMarker.setMap(null);
+                userMarker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: "Your Location",
+                    icon: {
+                        url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                    }
+                });
+
+                updateLocationText(userLocation);
+                document.getElementById('loadingSpinner').style.display = 'none';
+            },
+            error => {
+                handleLocationError(true, error);
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        );
+    } else {
+        handleLocationError(false);
+        document.getElementById('loadingSpinner').style.display = 'none';
+    }
+}
+
+function handleLocationError(browserHasGeolocation, error) {
+    const errorMessage = browserHasGeolocation
+        ? `Error: ${error.message}`
+        : "Error: Your browser doesn't support geolocation.";
+    
+    document.getElementById('currentLocationText').innerHTML = 
+        '<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> ' + 
+        'Location access denied. Please enable location services.</span>';
+    
+    map.setCenter({ lat: 18.6225255, lng: 83.484536 });
+}
+
+function updateLocationText(location) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: location }, (results, status) => {
+        if (status === 'OK') {
+            if (results[0]) {
+                document.getElementById('currentLocationText').innerHTML = 
+                    `Your Location: ${results[0].formatted_address}`;
+            }
+        }
+    });
+}
+
+function initializePoliceStations() {
+    const select = document.getElementById('policeStation');
+    Array.from(select.options).forEach(option => {
+        if (option.value) {
+            const [lat, lng] = option.value.split(',').map(Number);
+            policeStations.set(option.text, { lat, lng });
+        }
+    });
+}
+
+function findNearestStation() {
+    if (!userLocation) {
+        alert('Please wait for your location to be detected.');
+        return;
+    }
+
+    let nearestStation = null;
+    let shortestDistance = Infinity;
+
+    policeStations.forEach((coordinates, stationName) => {
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(
+            new google.maps.LatLng(userLocation),
+            new google.maps.LatLng(coordinates)
+        );
+
+        if (distance < shortestDistance) {
+            shortestDistance = distance;
+            nearestStation = stationName;
+        }
+    });
+
+    if (nearestStation) {
+        document.getElementById('policeStation').value = 
+            `${policeStations.get(nearestStation).lat},${policeStations.get(nearestStation).lng}`;
+        updateMapForStation();
+        getDirections();
+    }
+}
+
+function updateMapForStation() {
+    const select = document.getElementById('policeStation');
+    const coordinates = select.value.split(',');
+    
+    if (coordinates.length === 2) {
+        const stationLocation = {
+            lat: parseFloat(coordinates[0]),
+            lng: parseFloat(coordinates[1])
+        };
+
+        directionsRenderer.setMap(null);
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map,
+            panel: document.getElementById('directionsPanel')
+        });
+
+        new google.maps.Marker({
+            position: stationLocation,
+            map: map,
+            title: select.options[select.selectedIndex].text,
+            icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/police.png'
+            }
+        });
+
+        const bounds = new google.maps.LatLngBounds();
+        bounds.extend(stationLocation);
+        if (userLocation) bounds.extend(userLocation);
+        map.fitBounds(bounds);
+
+        updateCrimeChart(select.options[select.selectedIndex].text);
+    }
+}
+
+function getDirections() {
+    const select = document.getElementById('policeStation');
+    const coordinates = select.value.split(',');
+    
+    if (coordinates.length === 2 && userLocation) {
+        const destination = {
+            lat: parseFloat(coordinates[0]),
+            lng: parseFloat(coordinates[1])
+        };
+
+        const request = {
+            origin: userLocation,
+            destination: destination,
+            travelMode: 'DRIVING'
+        };
+
+        directionsService.route(request, (result, status) => {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(result);
+                
+                const route = result.routes[0];
+                document.getElementById('distanceInfo').innerHTML = 
+                    `Distance: ${route.legs[0].distance.text}`;
+                document.getElementById('estimatedTime').innerHTML = 
+                    `Estimated Time: ${route.legs[0].duration.text}`;
+            } else {
+                alert('Directions request failed due to ' + status);
+            }
+        });
+    } else {
+        alert('Please ensure your location is detected and a police station is selected.');
+    }
+}
+
+const crimeData = {
+    "District Police Office": [10, 20, 15, 25, 30, 40, 35],
+    "SDPO, Srikakulam": [5, 15, 10, 20, 25, 30, 28],
+    // Add more data for each station as needed
+};
+
+function updateCrimeChart(stationName) {
+    const ctx = document.getElementById('crimeChart').getContext('2d');
+    const data = crimeData[stationName] || [0, 0, 0, 0, 0, 0, 0];
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Crime Incidents',
+                data: data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                },
+                title: {
+                    display: true,
+                    text: `Monthly Crime Trends for ${stationName}`
+                }
+            }
+        }
+    });
+}
+</script>
+
+    <!-- Google Maps JavaScript API -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfY-eoYaQN16Lpg2R7sAuEzEnPTnULB1w&libraries=geometry&callback=initMap">
+</script>
+
+
+</body>
+</html>

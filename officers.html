@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="headerfoot.css">
     <style>
-      /* Reset and base styles */
+/* Base Variables */
+:root {
+    --primary-color: #0a9396;
+    --secondary-color: #0a9396;
+    --background-color: white;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --card-shadow: 0 4px 15px rgba(10, 147, 150, 0.15);
+    --hover-shadow: 0 8px 25px rgba(10, 147, 150, 0.25);
+}
+
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -16,158 +27,408 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.4;
+    position: relative;
 }
 
-/* Main container styles */
-.hierarchy-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Page title */
-.page-title {
-    text-align: center;
-    color: #1a237e;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    border-bottom: 3px solid #1a237e;
-    padding-bottom: 10px;
-}
-
-/* Top leadership container */
-.top-leadership {
+/* Top Officers Section */
+.top-officers {
     display: flex;
-    justify-content: center;
-    gap: 30px;
     flex-wrap: wrap;
-    margin-bottom: 50px;
-    background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    justify-content: center;
+    gap: 40px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1400px;
 }
 
-/* Rank section styles */
-.rank-section {
-    margin-bottom: 40px;
-}
-
-.rank-title {
-    text-align: center;
-    color: #fff;
-    background: #303f9f;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-/* Officer card styles */
-.officer-card {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
+.top-officer-card {
+    width: 300px;
+    background: var(--background-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    margin-top: 10rem;
 }
 
-.officer-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+.officer-image-container {
+    width: 100%;
+    height: 400px;
+    position: static;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
-.officer-image {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+.officer-image-container img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 3px solid #303f9f;
+    transition: transform 0.3s ease;
 }
 
-.officer-name {
-    color: #1a237e;
-    font-size: 1.2rem;
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(10, 147, 150, 0.9), transparent);
+    padding: 20px;
+    color: white;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.image-overlay h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
     margin-bottom: 5px;
 }
 
-.officer-rank,
-.officer-station,
-.officer-role {
-    color: #666;
+.image-overlay p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Hover Effects */
+.officer-image-container:hover img {
+    transform: scale(1.1);
+}
+
+.officer-image-container:hover .image-overlay {
+    transform: translateY(-10px);
+}
+
+/* Profile Modal */
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-content {
+    background: var(--background-color);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: var(--hover-shadow);
+}
+
+.profile-modal.active .profile-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.profile-details {
+    padding: 30px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateX(10px);
+    background: rgba(10, 147, 150, 0.05);
+}
+
+.detail-item i {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover i {
+    transform: rotate(360deg);
+    background: var(--secondary-color);
+}
+
+.detail-item p {
     font-size: 1rem;
+    color: var(--text-primary);
 }
 
-/* Grid layout for officers */
-.officers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-    padding: 20px;
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .officers-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 2rem;
-    }
-    
-    .rank-title {
-        font-size: 1.5rem;
-    }
-    
-    .officer-image {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .officers-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 20px;
-    }
+.profile-modal .profile-content {
+    animation: fadeInUp 0.5s ease;
 }
 
-@media (max-width: 480px) {
-    .hierarchy-content {
-        padding: 10px;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .profile-content {
+        width: 95%;
     }
-    
-    .officers-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
+
+    .profile-header {
+        padding: 20px;
     }
-    
-    .officer-image {
+
+    .profile-image {
         width: 120px;
         height: 120px;
     }
-    
-    .officer-name {
-        font-size: 1rem;
+
+    .profile-header h2 {
+        font-size: 1.5rem;
     }
-    
-    .officer-rank,
-    .officer-station,
-    .officer-role {
-        font-size: 0.9rem;
+
+    .profile-header p {
+        font-size: 1.1rem;
+    }
+
+    .detail-item {
+        padding: 12px;
+    }
+
+    .detail-item i {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
     }
 }
 
-/* Animation effects */
-@keyframes fadeIn {
+@media screen and (max-width: 480px) {
+    .profile-header {
+        padding: 15px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .profile-header p {
+        font-size: 1rem;
+    }
+
+    .detail-item {
+        padding: 10px;
+    }
+
+    .detail-item i {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .detail-item p {
+        font-size: 0.9rem;
+    }
+}
+/* Regular Officers Section */
+.officers-section {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.rank-section {
+    margin-bottom: 60px;
+}
+
+.rank-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.officers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.officer-card {
+    width: 100%;
+    max-width: 250px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.officer-card .officer-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.officer-info {
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.officer-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.officer-station {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Hover Effects */
+.officer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.officer-card:hover .officer-image {
+    transform: scale(1.1);
+}
+
+.officer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(10, 147, 150, 0) 0%,
+        rgba(10, 147, 150, 0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.officer-card:hover::before {
+    opacity: 1;
+}
+
+.officer-card:hover .officer-info {
+    background: transparent;
+}
+
+.officer-card:hover .officer-name,
+.officer-card:hover .officer-station {
+    color: white;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -179,30 +440,332 @@ body {
 }
 
 .officer-card {
-    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Accessibility improvements */
-.officer-card:focus-within {
-    outline: 3px solid #303f9f;
-    outline-offset: 3px;
+/* Stagger animation for grid items */
+.officers-grid .officer-card:nth-child(1) { animation-delay: 0.1s; }
+.officers-grid .officer-card:nth-child(2) { animation-delay: 0.2s; }
+.officers-grid .officer-card:nth-child(3) { animation-delay: 0.3s; }
+.officers-grid .officer-card:nth-child(4) { animation-delay: 0.4s; }
+/* Continue for more items if needed */
+
+/* Profile Modal for Regular Officers */
+.officer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-/* Print styles */
-@media print {
-    .hierarchy-content {
-        padding: 0;
+.officer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
     }
-    
+}
+
+@media screen and (max-width: 992px) {
+    .rank-title {
+        font-size: 1.8rem;
+    }
+
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .officers-section {
+        padding: 30px 15px;
+    }
+
+    .rank-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+
+    .officer-card .officer-image {
+        height: 220px;
+    }
+
+    .officer-info {
+        padding: 10px;
+    }
+
+    .officer-name {
+        font-size: 1rem;
+    }
+
+    .officer-station {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+
+    .officer-card .officer-image {
+        height: 180px;
+    }
+
+    .rank-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Loading Animation */
+.officer-card img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.officer-card img.loaded {
+    opacity: 1;
+}
+
+/* Scroll Animation */
+.officer-card {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.officer-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Additional Hover Effects */
+.officer-card::after {
+    content: 'View Profile';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.officer-card:hover::after {
+    opacity: 1;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
     .officer-card {
-        break-inside: avoid;
+        animation: none;
+        transition: none;
     }
-    
-    .officer-image {
-        print-color-adjust: exact;
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+/* Profile Modal Common Styles */
+.profile-modal, .officer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Profile Content Styles */
+.profile-content, .modal-content {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(10, 147, 150, 0.25);
+}
+
+/* Profile Header with Image */
+.profile-header1 {
+    background: linear-gradient(135deg, #0a9396, #0a9396);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+/* Fixed Profile Image Container */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* Modal Active States */
+.profile-modal.active, .officer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-modal.active .profile-content,
+.officer-modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Profile Text Content */
+.profile-header h2 {
+    font-size: 1.8rem;
+    margin: 15px 0 5px;
+    font-weight: 600;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-header {
+        padding: 30px 15px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-header p {
+        font-size: 1.1rem;
     }
 }
 
+@media screen and (max-width: 480px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header {
+        padding: 25px 15px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .profile-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Loading Animation for Profile Image */
+.profile-image img {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Hover Effect on Profile Image */
+.profile-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Additional Profile Modal Styles */
+.profile-details {
+    padding: 30px;
+    background: white;
+}
+
+/* Close Button Styles */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0a9396;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: #0a9396;
+    color: white;
+}
 
     </style>
 </head>
@@ -241,7 +804,7 @@ body {
                         <li><a href="law.html">Law & Order</a></li>
                         <li><a href="traffic.html">Traffic</a></li>
                         <li><a href="tel:100">Dial 100</a></li>
-                        <li><a href="#">AHTU</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-parent">
@@ -258,38 +821,49 @@ body {
                                 <li><a href="services.html">knowmore</a></li>
                     </ul>
                 </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
                 <li><a href="contacts.html">Contact Us</a></li>
             </ul>
         </nav>
     </section>
-
-    <main class="hierarchy-content">
-        <section class="officers-section">
-            <h1 class="page-title">Police Department Hierarchy</h1>
-
-            <!-- SP Section -->
-            <div class="rank-section">
-                <h2 class="rank-title">SUPERINTENDENT of POLICE</h2>
-                <div class="officer-card">
-                    <img src="images/2.jpg" alt="Sri K.V.Maheswara Reddy" class="officer-image">
-                    <h3 class="officer-name">Sri K.V.Maheswara Reddy</h3>
-                    <p class="officer-rank">Superintendent of Police</p>
-                </div>
+    
+    <div class="top-officers">
+    <div class="top-officer-card">
+        <div class="officer-image-container">
+            <img src="images/dgp1.jpeg" alt="DGP">
+            <div class="image-overlay">
+                <h3>Sri Ch. Dwaraka Tirumala Rao</h3>
+                <p>Director General of Police</p>
             </div>
-
-            <!-- DSP Section -->
-            <div class="rank-section">
-                <h2 class="rank-title">DEPUTY SUPERINTENDENT of POLICE</h2>
-                <div class="officer-card">
-                    <img src="images/DSP SIR  SB.jpg" alt="Deputy Superintendent" class="officer-image">
-                    <h3 class="officer-name">Deputy Superintendent</h3>
-                    <p class="officer-role">Special Branch</p>
-                </div>
+        </div>
+    </div>
+    
+    <div class="top-officer-card">
+        <div class="officer-image-container">
+            <img src="images/2.jpg" alt="SP">
+            <div class="image-overlay">
+                <h3>Sri K.V.Maheswara Reddy</h3>
+                <p>Superintendent of Police</p>
             </div>
+        </div>
+    </div>
+    
+    <div class="top-officer-card">
+        <div class="officer-image-container">
+            <img src="images/DSP SIR  SB.jpg" alt="DSP">
+            <div class="image-overlay">
+                <h3>Sri Ch.vivekananda</h3>
+                <p>Deputy Superintendent(Special Branch)</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <div class="rank-section">
-                <h2 class="rank-title">CIRCLE INSPECTORS</h2>
-                <div class="officers-grid">
+
+    <section class="officers-section">
+        <div class="rank-section">
+            <h2 class="rank-title">CIRCLE INSPECTORS</h2>
+            <div class="officers-grid">
                     <div class="officer-card">
                         <img src="images/CIS/CI PRASAD- ktohuru Circle.jpg" alt="CI PRASAD" class="officer-image">
                         <h3 class="officer-name">CI PRASAD</h3>
@@ -675,21 +1249,161 @@ body {
         <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
     </footer>
     <script>
-        // Optional JavaScript for enhanced functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            // Handle image loading
-            const images = document.querySelectorAll('.gallery img');
-
-            images.forEach(img => {
-                img.addEventListener('load', function () {
-                    this.style.opacity = 1;
-                });
-
-                img.addEventListener('error', function () {
-                    this.src = 'placeholder.jpg'; // Fallback image
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTopOfficers();
+            initializeRegularOfficers();
+        });
+        
+        function initializeTopOfficers() {
+            const topOfficerCards = document.querySelectorAll('.top-officer-card');
+            
+            topOfficerCards.forEach((card, index) => {
+                const name = card.querySelector('h3').textContent;
+                const role = card.querySelector('p').textContent;
+                const imgSrc = card.querySelector('img').src;
+        
+                card.addEventListener('click', () => {
+                    showOfficerProfile({
+                        name,
+                        role,
+                        imgSrc,
+                        isTopOfficer: true
+                    });
                 });
             });
+        }
+        
+        function initializeRegularOfficers() {
+            const officerCards = document.querySelectorAll('.officer-card');
+            
+            officerCards.forEach(card => {
+                const name = card.querySelector('.officer-name').textContent;
+                const station = card.querySelector('.officer-station').textContent;
+                const imgSrc = card.querySelector('.officer-image').src;
+        
+                card.addEventListener('click', () => {
+                    showOfficerProfile({
+                        name,
+                        role: station,
+                        imgSrc,
+                        isTopOfficer: false
+                    });
+                });
+            });
+        }
+        
+        function showOfficerProfile(officer) {
+            const modal = document.createElement('div');
+            modal.className = 'profile-modal';
+            
+            const contactEmail = generateEmail(officer.name);
+            const phoneNumber = generatePhoneNumber();
+        
+            modal.innerHTML = `
+                <div class="profile-content">
+                    <button class="close-modal" aria-label="Close profile">&times;</button>
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="${officer.imgSrc}" alt="${officer.name}" loading="lazy">
+                        </div>
+                        <h2>${officer.name}</h2>
+                        <p>${officer.role}</p>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <p>${phoneNumber}</p>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>${contactEmail}</p>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <p>Office Hours: 9:00 AM - 5:00 PM</p>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>${officer.role}</p>
+                        </div>
+                        ${officer.isTopOfficer ? `
+                        <div class="detail-item">
+                            <i class="fas fa-id-badge"></i>
+                            <p>Senior Official</p>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        
+            document.body.appendChild(modal);
+            
+            // Activate modal with animation
+            requestAnimationFrame(() => {
+                modal.classList.add('active');
+            });
+        
+            // Close modal functionality
+            const closeBtn = modal.querySelector('.close-modal');
+            const closeModal = () => {
+                modal.classList.remove('active');
+                setTimeout(() => modal.remove(), 300);
+            };
+        
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            
+            // Keyboard accessibility
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.parentElement) closeModal();
+            });
+        }
+        
+        // Helper function to generate email
+        function generateEmail(name) {
+            return `${name.toLowerCase().replace(/\s+/g, '.')}@police.gov.in`;
+        }
+        
+        // Helper function to generate phone number
+        function generatePhoneNumber() {
+            return '+91 9876543210'; // Example phone number
+        }
+        
+        // Optional: Add loading animation for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
         });
+        
+        // Optional: Add scroll animation for cards
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.officer-card, .top-officer-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+        
     </script>
     <script src="headerandfoot.js"></script>
 </body>

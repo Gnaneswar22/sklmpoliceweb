@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department</title>
-    
+
     <!-- External CSS Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-/* Base styles */
 /* Base styles */
 * {
     margin: 0;
@@ -19,7 +19,7 @@
 }
 
 .header-section {
-    position: relative;
+    position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -364,110 +364,295 @@ footer:hover {
     }
 }
 
-        /* Main Content Styles */
-        main {
-            margin-top:20rem;
-            padding: 2rem;
+        /* Base Variables */
+        :root {
+            --primary: #0a9396;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow: rgba(10, 147, 150, 0.15);
+            --hover-shadow: rgba(10, 147, 150, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-
-        section {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        /* Main Content Container */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            margin-top: 8.5rem;
         }
 
-        .section-animate {
-            animation: fadeIn 1s ease-in;
-            opacity: 0;
-            transform: translateY(20px);
+        /* Section Styles */
+       .main-content section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
 
-        .hover-effect:hover {
-            transform: scale(1.02);
-            transition: transform 0.3s ease;
-        }
-
+        /* Icon Container */
         .icon-container {
-            font-size: 2.5em;
-            margin-bottom: 1rem;
-            color: #0a9396;
-            text-align: center;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: var(--transition);
         }
 
-        h2 {
-            color: #0a9396;
-            margin-bottom: 1rem;
-            text-align: center;
+        .icon-container i {
+            font-size: 24px;
+            color: var(--white);
         }
 
+        /* Section Headers */
+        section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        /* List Styles */
         .list {
             list-style: none;
             padding: 0;
         }
 
         .list li {
-            margin-bottom: 1rem;
+            background: rgba(10, 147, 150, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 15px;
         }
 
-        .list i {
-            color: #0a9396;
-            width: 25px;
+        .list li i {
+            color: var(--primary);
+            min-width: 24px;
+            text-align: center;
         }
 
         /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
+            margin: 20px 0;
+            background: var(--white);
         }
 
-        th, td {
-            padding: 1rem;
-            border: 1px solid #ddd;
+        th,
+        td {
+            padding: 15px;
             text-align: left;
+            border-bottom: 1px solid rgba(10, 147, 150, 0.1);
         }
 
         th {
-            background-color: #0a9396;
-            color: white;
+            background: var(--primary);
+            color: var(--white);
         }
 
-        tr:nth-child(even) {
-            background-color: #f5f5f5;
+        /* Hover Effects */
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--hover-shadow);
         }
 
-        /* Animation Keyframes */
+        .list li:hover {
+            transform: translateX(10px);
+            background: rgba(10, 147, 150, 0.1);
+        }
+
+        tr:hover {
+            background: rgba(10, 147, 150, 0.05);
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+        section {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+        @media screen and (max-width: 1200px) {
+            .main-content {
+                padding: 15px;
             }
 
-            main {
-                margin-top: 200px;
+            section {
+                padding: 25px;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            section {
+                padding: 20px;
+            }
+
+            .icon-container {
+                width: 50px;
+                height: 50px;
+            }
+
+            .icon-container i {
+                font-size: 20px;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+            }
+
+            section {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
+
+            .list li {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            th,
+            td {
+                padding: 12px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            .icon-container {
+                width: 45px;
+                height: 45px;
+            }
+
+            .icon-container i {
+                font-size: 18px;
+            }
+
+            .list li {
+                padding: 10px;
+                font-size: 0.9rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Additional Responsive Fixes */
+        @media screen and (max-width: 480px) {
+            section {
+                padding: 12px;
+                margin: 12px 0;
+            }
+
+            .list li i {
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            section {
+                break-inside: avoid;
+                box-shadow: none;
+                margin: 20px 0;
+            }
+
+            .icon-container {
+                display: none;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
             }
         }
     </style>
 </head>
+
 <body>
     <section class="header-section">
         <header class="header">
@@ -502,7 +687,7 @@ footer:hover {
                         <li><a href="law.html">Law & Order</a></li>
                         <li><a href="traffic.html">Traffic</a></li>
                         <li><a href="tel:100">Dial 100</a></li>
-                        <li><a href="#">AHTU</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-parent">
@@ -516,22 +701,25 @@ footer:hover {
                         <li><a
                                 href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
                                 Speaker Permission</a></li>
-                                <li><a href="services.html">knowmore</a></li>
+                        <li><a href="services.html">knowmore</a></li>
                     </ul>
                 </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
                 <li><a href="contacts.html">Contact Us</a></li>
             </ul>
         </nav>
     </section>
 
-     <section id="overview" class="section-animate hover-effect">
+
+    <div class="main-content">
+        <section id="overview" class="section-animate hover-effect">
             <div class="icon-container">
                 <i class="fas fa-shield-alt"></i>
             </div>
             <h2>Overview of Srikakulam Police Department</h2>
-            <p>Welcome to the Srikakulam Police Department. We are committed to serving and protecting our community with integrity, professionalism, and dedication.</p>
+            <p>Welcome to the Srikakulam Police Department. We are committed to serving and protecting our community
+                with integrity, professionalism, and dedication.</p>
         </section>
-
         <section id="traffic-rules" class="section-animate hover-effect">
             <div class="icon-container">
                 <i class="fas fa-traffic-light"></i>
@@ -581,9 +769,12 @@ footer:hover {
             </div>
             <h2>Frequently Asked Questions</h2>
             <ul class="list">
-                <li><i class="fas fa-question"></i> <b>How do I report a crime?</b><br>Visit the nearest police station or call our emergency number.</li>
-                <li><i class="fas fa-question"></i> <b>How can I pay traffic fines?</b><br>You can pay online through our website or visit the traffic police office.</li>
-                <li><i class="fas fa-question"></i> <b>What documents should I carry while driving?</b><br>License, RC, Insurance, and PUC certificate.</li>
+                <li><i class="fas fa-question"></i> <b>How do I report a crime?</b><br>Visit the nearest police station
+                    or call our emergency number.</li>
+                <li><i class="fas fa-question"></i> <b>How can I pay traffic fines?</b><br>You can pay online through
+                    our website or visit the traffic police office.</li>
+                <li><i class="fas fa-question"></i> <b>What documents should I carry while driving?</b><br>License, RC,
+                    Insurance, and PUC certificate.</li>
             </ul>
         </section>
 
@@ -596,40 +787,15 @@ footer:hover {
                 <li><i class="fas fa-phone"></i> <b>Emergency:</b> 100</li>
                 <li><i class="fas fa-phone-alt"></i> <b>Control Room:</b> +91-XXXX-XXXXXX</li>
                 <li><i class="fas fa-envelope"></i> <b>Email:</b> info@srikakulampolice.gov.in</li>
-                <li><i class="fas fa-map-marker-alt"></i> <b>Address:</b> Police Headquarters, Main Road, Srikakulam</li>
+                <li><i class="fas fa-map-marker-alt"></i> <b>Address:</b> Police Headquarters, Main Road, Srikakulam
+                </li>
             </ul>
         </section>
-
+    </div>
     <footer>
         <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Intersection Observer for scroll animations
-        const sections = document.querySelectorAll('section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                section.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
     <script src="headerandfoot.js"></script>
 </body>
+
 </html>

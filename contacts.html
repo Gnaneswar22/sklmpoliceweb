@@ -23,55 +23,190 @@ body {
     padding: 2rem;
 }
 
-/* Container Styles */
-.directory-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    animation: fadeIn 0.5s ease-out;
-}
-
-/* Title Styles */
-.directory-title {
+/* Header and Time Display */
+.header-section1 {
     background: linear-gradient(135deg, #0a9396, #005f73);
-    color: white;
     padding: 2rem;
+    color: white;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 8rem;
 }
 
-/* Search Styles */
+.directory-title {
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.timestamp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.timestamp i {
+    color: #94d2bd;
+}
+
+/* Search Control Section */
+.search-control {
+    padding: 2rem;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+}
+
 .search-wrapper {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
     position: relative;
+    margin-bottom: 1rem;
 }
 
 .search-wrapper input {
     width: 100%;
-    padding: 1rem 3rem 1rem 1.5rem;
-    border: 1px solid #e2e8f0;
+    padding: 1rem 3.5rem 1rem 1.5rem;
+    border: 2px solid #e2e8f0;
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
+    background: #f8fafc;
 }
 
 .search-wrapper input:focus {
     border-color: #0a9396;
+    background: white;
     box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.1);
     outline: none;
 }
 
-.search-wrapper i {
+.search-button {
     position: absolute;
-    right: 3rem;
+    right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
+    background: #0a9396;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-button:hover {
+    background: #078183;
+}
+
+/* Filter Buttons */
+.search-filters {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #0a9396;
+    border-radius: 25px;
+    background: transparent;
     color: #0a9396;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    background: rgba(10, 147, 150, 0.1);
+}
+
+.filter-btn.active {
+    background: #0a9396;
+    color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header-section {
+        padding: 1.5rem;
+    }
+
+    .directory-title {
+        font-size: 1.8rem;
+    }
+
+    .search-control {
+        padding: 1.5rem;
+    }
+
+    .search-filters {
+        justify-content: center;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-section {
+        padding: 1rem;
+    }
+
+    .directory-title {
+        font-size: 1.5rem;
+    }
+
+    .timestamp {
+        font-size: 0.8rem;
+    }
+
+    .search-control {
+        padding: 1rem;
+    }
+
+    .search-wrapper input {
+        padding: 0.8rem 3rem 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .filter-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Animation for Search Results */
+@keyframes searchHighlight {
+    0% {
+        background: rgba(10, 147, 150, 0.2);
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+.search-highlight {
+    animation: searchHighlight 1s ease-out;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .search-wrapper input,
+    .search-button,
+    .filter-btn {
+        transition: none;
+    }
+}
+
+/* Focus States */
+.search-wrapper input:focus-visible,
+.search-button:focus-visible,
+.filter-btn:focus-visible {
+    outline: 2px solid #0a9396;
+    outline-offset: 2px;
 }
 
 /* Table Styles */
@@ -291,6 +426,7 @@ body {
     background: #078183;
 }
 
+
     </style>
 </head>
 
@@ -328,7 +464,7 @@ body {
                         <li><a href="law.html">Law & Order</a></li>
                         <li><a href="traffic.html">Traffic</a></li>
                         <li><a href="tel:100">Dial 100</a></li>
-                        <li><a href="#">AHTU</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-parent">
@@ -345,18 +481,22 @@ body {
                                 <li><a href="services.html">knowmore</a></li>
                     </ul>
                 </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
                 <li><a href="contacts.html">Contact Us</a></li>
             </ul>
         </nav>
     </section>
 
     <div class="directory-container">
-        <h1 class="directory-title">Police Department Directory</h1>
-        
-        <div class="search-wrapper">
-            <input type="text" id="directorySearch" placeholder="Search by name, rank, or location...">
-            <i class="fas fa-search"></i>
+        <div class="header-section1">
+            <h1 class="directory-title">Police Department Directory</h1>
+            <div class="timestamp">
+                <i class="fas fa-clock"></i>
+                <span>Last Updated: 2024-12-12 11:55:56</span>
+            </div>
         </div>
+    </div>
+    
     
         <div class="table-wrapper">
             <table class="directory-table">

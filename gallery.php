@@ -147,6 +147,7 @@
     </style>
 </head>
 <body>
+
 <header>
 <section class="header-section">
         <header class="header">
@@ -166,13 +167,13 @@
 
         <nav class="navbar">
             <ul class="nav-list" id="nav-list">
-                <li><a href="#home">Home</a></li>
+                <li><a href="homepage.php">Home</a></li>
                 <li class="dropdown-parent">
-                    <a href="#about">About Us</a>
+                    <a href="aboutus.html">About Us</a>
                     <ul class="dropdown">
                         <li><a href="history.html">History</a></li>
-                        <li><a href="#">Organisation Chart</a></li>
-                        <li><a href="#">Awards</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-parent">
@@ -181,7 +182,7 @@
                         <li><a href="law.html">Law & Order</a></li>
                         <li><a href="traffic.html">Traffic</a></li>
                         <li><a href="tel:100">Dial 100</a></li>
-                        <li><a href="#">AHTU</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-parent">
@@ -195,14 +196,15 @@
                         <li><a
                                 href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
                                 Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
                     </ul>
                 </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
                 <li><a href="contacts.html">Contact Us</a></li>
             </ul>
         </nav>
     </section>
-
-        <?php
+          <?php
 $servername = "localhost";
 $username = "root"; // Default XAMPP username
 $password = ""; // Default XAMPP password is empty
