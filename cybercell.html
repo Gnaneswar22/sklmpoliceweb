@@ -8,260 +8,384 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="headerfoot.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+        /* Base Styles */
+:root {
+    --primary-color: #0a9396;
+    --secondary-color: #005f73;
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --accent-color: #94d2bd;
+}
 
-        :root {
-            --primary-color: #0a9396; /* Updated primary color */
-            --secondary-color: #e3f2fd;
-            --accent-color: #c62828;
-        }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f8f9fa;
+}
 
-        body {
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
+/* Header Styles */
+/* Heading Styles */
+.heading {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out;
+    margin-top: 160px; /* Default space for navbar */
+    position: relative;
+}
 
-        .header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
+.heading h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
 
-        .language-switcher {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
+.heading p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin: 0;
+}
 
-        .language-btn {
-            padding: 5px 10px;
-            margin: 0 5px;
-            background: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+/* Responsive Adjustments */
+@media screen and (max-width: 992px) {
+    .heading {
+        margin-top: 100px; /* Adjusted for medium screens */
+        padding: 1.5rem;
+    }
 
-        .logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 10px;
-        }
+    .heading h1 {
+        font-size: 2rem;
+    }
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+@media screen and (max-width: 768px) {
+    .heading {
+        margin-top: 80px; /* Adjusted for smaller screens */
+        padding: 1.2rem;
+    }
 
-        .section {
-            background-color: #f5f5f5;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+    .heading h1 {
+        font-size: 1.8rem;
+    }
 
-        .contact-info {
-            background-color: var(--secondary-color);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+    .heading p {
+        font-size: 1rem;
+    }
+}
 
-        .emergency {
-            background-color: #ffebee;
-            color: var(--accent-color);
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
+@media screen and (max-width: 480px) {
+    .heading {
+        margin-top: 60px; /* Adjusted for mobile screens */
+        padding: 1rem;
+    }
 
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
+    .heading h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
 
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
+    .heading p {
+        font-size: 0.9rem;
+    }
+}
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
 
-        .btn:hover {
-            background-color: #0b6c6b; /* Slightly darker shade for hover effect */
-        }
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
 
-        /* Complaint Form Styles */
-        .complaint-form {
-            display: none;
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-        }
+/* Section Styles */
+.section {
+    background: var(--bg-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.6s ease-out forwards;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+/* Contact Info */
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
+.contact-info li {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap; /* Ensures content wraps within the container */
+    word-break: break-word; /* Breaks long words to prevent overflow */
+}
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+.contact-info i {
+    color: var(--primary-color);
+    flex-shrink: 0; /* Prevents the icon from shrinking */
+}
+/* Emergency Section */
+.emergency {
+    background: #fff5f5;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #ff4d4d;
+    margin-top: 1.5rem;
+}
 
-        /* News Section Styles */
-        .news-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
+/* Form Styles */
+.complaint-form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-        .news-item {
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+.complaint-form.active {
+    display: block;
+    opacity: 1;
+}
 
-        /* Social Media Icons */
-        .social-media {
-            margin-top: 20px;
-            text-align: center;
-        }
+.form-group {
+    margin-bottom: 1.5rem;
+}
 
-        .social-media a {
-            color: var(--primary-color);
-            margin: 0 10px;
-            font-size: 24px;
-            text-decoration: none;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
 
-        /* Resources Section */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
 
-        .resource-card {
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-        }
+/* Button Styles */
+.btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
-        .resource-card i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
 
-        /* Footer */
-        .footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+/* News Section */
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .news-container {
-                grid-template-columns: 1fr;
-            }
-        }
+.news-item {
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Resources Grid */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.resource-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Social Media */
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-media a {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+}
+
+.social-media a:hover {
+    transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .heading h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .heading h1 {
+        font-size: 1.8rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .news-container,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heading {
+        padding: 1.5rem;
+    }
+
+    .heading h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .social-media {
+        flex-wrap: wrap;
+    }
+}
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .contact-info li {
+        flex-direction: column; /* Stacks items vertically on smaller screens */
+        align-items: flex-start; /* Aligns text to the left */
+    }
+
+    .contact-info i {
+        margin-bottom: 0.5rem; /* Adds spacing between the icon and text */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact-info li {
+        font-size: 0.9rem; /* Reduces font size for better fit */
+    }
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
+
     <div class="heading">
         <h1>Cyber Cell - Srikakulam Police Station</h1>
         <p>Protecting Citizens in Cyberspace</p>
@@ -378,25 +502,46 @@
         </div>
     </div>
 
-    <div class="footer">
+    <footer>
         <p>&copy; 2024 Cyber Cell - Srikakulam Police Station. All rights reserved.</p>
-    </div>
+    </footer>
 
     <script>
-        function toggleComplaintForm() {
-            const form = document.getElementById('complaintForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
+       // Form Toggle
+function toggleComplaintForm() {
+    const form = document.getElementById('complaintForm');
+    form.classList.toggle('active');
+}
 
-        function submitComplaint(event) {
-            event.preventDefault();
-            // Add your form submission logic here
-            alert('Complaint submitted successfully! We will contact you soon.');
-            event.target.reset();
-            toggleComplaintForm();
+// Form Submit
+function submitComplaint(event) {
+    event.preventDefault();
+    // Add your form submission logic here
+    alert('Complaint submitted successfully!');
+    toggleComplaintForm();
+}
+
+// Intersection Observer for scroll animations
+const sections = document.querySelectorAll('.section');
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'slideUp 0.6s ease-out forwards';
+            observer.unobserve(entry.target);
         }
+    });
+}, observerOptions);
+
+sections.forEach(section => {
+    observer.observe(section);
+});
 
     </script>
-    <script src="hamburger.js"></script>
+    <script src="headerandfoot.js"></script>
 </body>
 </html>

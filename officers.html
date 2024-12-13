@@ -8,146 +8,260 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="headerfoot.css">
     <style>
-       /* Add to your existing CSS */
+      /* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f5f5f5;
+}
+
+/* Main container styles */
 .hierarchy-content {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Page title */
+.page-title {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid #1a237e;
+    padding-bottom: 10px;
+}
+
+/* Top leadership container */
+.top-leadership {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Rank section styles */
 .rank-section {
     margin-bottom: 40px;
 }
 
 .rank-title {
-    color: #333;
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e0e0e0;
+    color: #fff;
+    background: #303f9f;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
+/* Officer card styles */
 .officer-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .officer-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .officer-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 15px;
+    border: 3px solid #303f9f;
 }
 
 .officer-name {
-    font-size: 18px;
-    color: #333;
-    margin: 10px 0 5px;
+    color: #1a237e;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
 }
 
-.officer-station {
+.officer-rank,
+.officer-station,
+.officer-role {
     color: #666;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
+/* Grid layout for officers */
 .officers-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 25px;
     padding: 20px;
 }
 
-.officer-card {
-    flex: 0 1 200px; /* Adjust the width of each card */
-}
-
-@media screen and (max-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 1200px) {
     .officers-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 }
 
-@media screen and (max-width: 480px) {
-    .officers-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .rank-title {
+        font-size: 1.5rem;
     }
     
     .officer-image {
         width: 150px;
         height: 150px;
     }
+    
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
 }
+
+@media (max-width: 480px) {
+    .hierarchy-content {
+        padding: 10px;
+    }
+    
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .officer-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .officer-name {
+        font-size: 1rem;
+    }
+    
+    .officer-rank,
+    .officer-station,
+    .officer-role {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation effects */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.officer-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Accessibility improvements */
+.officer-card:focus-within {
+    outline: 3px solid #303f9f;
+    outline-offset: 3px;
+}
+
+/* Print styles */
+@media print {
+    .hierarchy-content {
+        padding: 0;
+    }
+    
+    .officer-card {
+        break-inside: avoid;
+    }
+    
+    .officer-image {
+        print-color-adjust: exact;
+    }
+}
+
 
     </style>
 </head>
 
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
 
     <main class="hierarchy-content">
         <section class="officers-section">
@@ -577,7 +691,7 @@
             });
         });
     </script>
-    <script src="hamburger.js"></script>
+    <script src="headerandfoot.js"></script>
 </body>
 
 </html>

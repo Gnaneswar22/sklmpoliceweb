@@ -7,254 +7,664 @@
     <link rel="stylesheet" href="headerfoot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Add these animation styles to your existing CSS */
-        
-        /* Fade-in animation for the main heading */
-        .head h1 {
-            animation: fadeIn 1.5s ease-in;
-        }
+        /* Main Content Styles */
+/* Base Styles */
+.head {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+}
 
-        /* Slide-in animation for sections */
-        #home, #accident-analysis {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 1s ease-out forwards;
-        }
+/* Department Title */
+.department-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+    color: #0a9396;
+    animation: fadeIn 1s ease-in-out;
+}
 
-        #home {
-            animation-delay: 0.5s;
-        }
+.title-highlight {
+    color: #0a9396;
+    font-weight: 700;
+}
 
-        #accident-analysis {
-            animation-delay: 1s;
-        }
+/* Section Cards */
+.section-card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px rgba(10, 147, 150, 0.1);
+    transition: transform 0.3s ease;
+    animation: slideUp 0.8s ease-out;
+}
 
-        /* Hover effect for list items */
-        #accident-analysis ul li {
-            transition: transform 0.3s ease, padding-left 0.3s ease;
-            position: relative;
-        }
+.section-card:hover {
+    transform: translateY(-5px);
+}
 
-        #accident-analysis ul li:hover {
-            transform: translateX(10px);
-            padding-left: 10px;
-            color: #2c3e50;
-        }
+/* Section Titles */
+.section-title {
+    color: #0a9396;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid #0a9396;
+}
 
-        /* Pulse animation for important headings */
-        h2 {
-            position: relative;
-            animation: pulse 2s infinite;
-        }
+.subsection-title {
+    color: #0a9396;
+    font-size: 1.8rem;
+    margin: 2rem 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-        /* Define the animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+/* Mission Statement */
+.mission-statement {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: #ffffff;
+    border: 2px solid #0a9396;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.mission-icon {
+    font-size: 2.5rem;
+    color: #0a9396;
+}
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+.mission-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #0a9396;
+}
 
-        /* Add a smooth hover effect for sections */
-        section {
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-        }
+/* Quick Stats */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
-        section:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #0a9396;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
 
-        /* Animated background gradient */
-        .accident {
-            background: linear-gradient(45deg, #f3f4f6, #ffffff);
-            background-size: 200% 200%;
-            animation: gradientBG 10s ease infinite;
-        }
+.stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(10, 147, 150, 0.1);
+}
 
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+.stat-item i {
+    font-size: 2rem;
+    color: #0a9396;
+    margin-bottom: 1rem;
+}
 
-        /* Rotate animation for icons */
-        .icon-rotate {
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
+.stat-item span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0a9396;
+}
 
-        .icon-rotate:hover {
-            transform: rotate(20deg);
-        }
+/* Trend Cards */
+.trend-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
 
-        /* Bounce animation for buttons */
-        .btn-bounce {
-            animation: bounce 2s infinite;
-        }
+.trend-item {
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #0a9396;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
+.trend-item:hover {
+    transform: translateY(-5px);
+    background: rgba(10, 147, 150, 0.1);
+}
 
-        /* Fade-in effect for paragraphs */
-        p {
-            opacity: 0;
-            animation: fadeInText 2s ease forwards;
-        }
+.trend-item i {
+    font-size: 2rem;
+    color: #0a9396;
+    margin-bottom: 1rem;
+}
 
-        @keyframes fadeInText {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+.trend-percentage {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #0a9396;
+    border-radius: 20px;
+    color: #ffffff;
+    margin-top: 1rem;
+}
+
+/* Measure Cards */
+.measure-cards {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.measure-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #0a9396;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.measure-item:hover {
+    transform: translateX(10px);
+}
+
+.measure-content {
+    flex: 1;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #ffffff;
+    border: 1px solid #0a9396;
+    border-radius: 4px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #0a9396;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Emergency Contact */
+.contact-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-buttons a {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: transform 0.3s ease;
+    background: #0a9396;
+}
+
+.contact-buttons a:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #121212;
+    }
+
+    .section-card {
+        background: #1e1e1e;
+        border: 1px solid #0a9396;
+    }
+
+    .mission-statement,
+    .stat-item,
+    .trend-item,
+    .measure-item {
+        background: #1e1e1e;
+        border: 1px solid #0a9396;
+    }
+
+    .mission-text {
+        color: #ffffff;
+    }
+
+    .progress-bar {
+        background: #1e1e1e;
+    }
+}
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .head {
+        padding: 1.5rem;
+    }
+
+    .department-title {
+        font-size: 2.4rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .quick-stats,
+    .trend-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .head {
+        padding: 1rem;
+    }
+
+    .department-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .mission-statement {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .measure-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .quick-stats,
+    .trend-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+    }
+
+    .contact-buttons a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .department-title {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .subsection-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #121212;
+    }
+
+    .section-card {
+        background: #1e1e1e;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .department-title,
+    .section-title,
+    .subsection-title {
+        color: #7986cb;
+    }
+
+    .mission-statement {
+        background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    }
+
+    .mission-text {
+        color: #e0e0e0;
+    }
+
+    .stat-item,
+    .trend-item,
+    .measure-item {
+        background: #2d2d2d;
+    }
+
+    .trend-percentage {
+        background: #3f51b5;
+        color: white;
+    }
+
+    .progress-bar {
+        background: #424242;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-       
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-       
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-       
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
-    <main class="head">
-        <h1>Srikakulam Police Department</h1>
-        <section id="home">
-            <h2>Welcome to the Srikakulam Police Department</h2>
-            <p>Your safety is our priority. We are committed to serving and protecting our community.</p>
-        </section>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
 
-        <section id="accident-analysis">
-            <h2>Accident Analysis</h2>
-            <p>Understanding accident trends is crucial for improving road safety. Here are some insights:</p>
-            <h3>Recent Trends</h3>
-            <ul>
-                <li><i class="fas fa-cloud-rain"></i> Increase in accidents during monsoon season</li>
-                <li><i class="fas fa-motorcycle"></i> Majority of accidents involve two-wheelers</li>
-                <li><i class="fas fa-school"></i> High accident rates near school zones</li>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
             </ul>
-            <h3>Preventive Measures</h3>
-            <p>We are implementing measures such as:</p>
-            <ul>
-                <li><i class="fas fa-shield-alt"></i> Increased patrolling in high-accident areas</li>
-                <li><i class="fas fa-bullhorn"></i> Public awareness campaigns</li>
-                <li><i class="fas fa-handshake"></i> Collaboration with local organizations for safety workshops</li>
-            </ul>
+        </nav>
+    </section>
+
+    <main class="head">
+        <h1 class="department-title">
+            <span class="title-highlight">Srikakulam</span> Police Department
+        </h1>
+    
+        <section id="home" class="section-card">
+            <div class="welcome-container">
+                <h2 class="section-title">Welcome to Our Department</h2>
+                <div class="mission-statement">
+                    <i class="fas fa-shield-alt mission-icon"></i>
+                    <p class="mission-text">Your safety is our priority. We are committed to serving and protecting our community with integrity, professionalism, and dedication.</p>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>500+</span>
+                        <p>Officers</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7</span>
+                        <p>Service</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>100</span>
+                        <p>Emergency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="accident-analysis" class="section-card">
+            <div class="analysis-container">
+                <h2 class="section-title">Road Safety Analysis</h2>
+                
+                <div class="info-card">
+                    <p class="info-text">Understanding accident trends is crucial for improving road safety. Our comprehensive analysis helps in implementing effective preventive measures.</p>
+                </div>
+    
+                <div class="trends-container">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-chart-line"></i>
+                        Recent Trends
+                    </h3>
+                    <div class="trend-cards">
+                        <div class="trend-item">
+                            <i class="fas fa-cloud-rain"></i>
+                            <h4>Monsoon Safety</h4>
+                            <p>Increased accidents during rainy season</p>
+                            <span class="trend-percentage">↑ 25%</span>
+                        </div>
+                        <div class="trend-item">
+                            <i class="fas fa-motorcycle"></i>
+                            <h4>Two-Wheeler Incidents</h4>
+                            <p>Primary vehicle type in accidents</p>
+                            <span class="trend-percentage">60%</span>
+                        </div>
+                        <div class="trend-item">
+                            <i class="fas fa-school"></i>
+                            <h4>School Zone Safety</h4>
+                            <p>Critical areas requiring attention</p>
+                            <span class="trend-alert">High Risk</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="measures-container">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-tasks"></i>
+                        Preventive Measures
+                    </h3>
+                    <div class="measure-cards">
+                        <div class="measure-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="measure-content">
+                                <h4>Enhanced Patrolling</h4>
+                                <p>Regular monitoring of high-risk areas</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="measure-item">
+                            <i class="fas fa-bullhorn"></i>
+                            <div class="measure-content">
+                                <h4>Public Awareness</h4>
+                                <p>Regular safety campaigns and workshops</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="measure-item">
+                            <i class="fas fa-handshake"></i>
+                            <div class="measure-content">
+                                <h4>Community Collaboration</h4>
+                                <p>Partnerships with local organizations</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="emergency-contact">
+                    <h3 class="subsection-title">Emergency Contacts</h3>
+                    <div class="contact-buttons">
+                        <a href="tel:100" class="emergency-btn">
+                            <i class="fas fa-phone"></i>
+                            Dial 100
+                        </a>
+                        <a href="tel:108" class="ambulance-btn">
+                            <i class="fas fa-ambulance"></i>
+                            Ambulance
+                        </a>
+                        <a href="#report" class="report-btn">
+                            <i class="fas fa-file-alt"></i>
+                            Report Incident
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+    
     <footer>
         <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
     </footer>
     
     <script>
-        // Add scroll-based animations
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.75) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
+        // Enhanced scroll-based animations with Intersection Observer
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
         });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        observer.observe(section);
+    });
+
+    // Add hover effect for list items
+    const listItems = document.querySelectorAll('section ul li');
+    listItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            }
+        });
+    });
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+// Performance optimization for animations
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+    }
+    
+    scrollTimeout = window.requestAnimationFrame(function() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.75) && (rect.bottom >= 0);
+            
+            if (isVisible) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    });
+});
+
     </script>
-    <script src="hamburger.js"></script>
+    <script src="headerandfoot.js"></script>
 </body>
 </html>

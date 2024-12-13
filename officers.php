@@ -151,7 +151,7 @@
 $servername = "localhost";
 $username = "root"; // Replace with your DB username
 $password = ""; // Replace with your DB password
-$dbname = "srikakulam_police"; // Your database name
+$dbname = "srikakulam_police_department"; // Your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

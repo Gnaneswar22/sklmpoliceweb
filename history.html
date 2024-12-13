@@ -5,708 +5,363 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History of Srikakulam Police Department</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="headerfoot.css"> <!-- Link to your CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Font Awesome -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: #0a9396;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            width: 80px;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.1);
-        }
-
-        .header-title {
-            color: white;
-            text-align: center;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            flex: 1;
-            margin: 0 15px;
-        }
-
-        /* Navigation Styles */
-        nav {
-            background-color: #0a9396;
-            padding: 10px 0;
-            position: sticky;
-            top: 70px;
-            z-index: 999;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        nav ul li {
-            position: relative;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 12px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            border-radius: 5px;
-        }
-
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Dropdown Styles */
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            min-width: 220px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        nav ul li:hover > ul {
-            display: block;
-        }
-
-        nav ul li ul li a {
-            color: #333;
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        nav ul li ul li a:hover {
-            background-color: #f5f5f5;
-            color: #0a9396;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-            padding: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .hamburger:hover {
-            transform: scale(1.1);
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            header {
-                padding: 10px;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                width: 100%;
-                top: 100%;
-                background-color: #0a9396;
-                padding: 0;
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            nav ul li {
-                width: 100%;
-            }
-
-            nav ul li a {
-                padding: 15px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            nav ul li ul {
-                position: static;
-                width: 100%;
-                box-shadow: none;
-                background-color: rgba(255, 255, 255, 0.95);
-            }
-
-            nav ul li.active ul {
-                display: block;
-            }
-        }
-        main {
-            padding: 20px;
-        }
-
-        h2,
-        h3 {
-            color: #004080;
-            margin-bottom: 20px;
-        }
-
-        /* Section Styles */
-        .history-box,
-        .early-years,
-        .milestone-card,
-        .modern-era {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .milestones {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .milestone-date {
-            font-weight: bold;
-            color: #0a9396;
-        }
-
-        /* Modern Era styling */
-        .modern-era {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .modern-era h2,
-        .modern-era h3 {
-            color: #0a9396;
-            margin-bottom: 15px;
-        }
-
-        .modern-era h2 i,
-        .modern-era h3 i {
-            margin-right: 8px;
-        }
-
-        .modern-era ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .modern-era ul li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .modern-era ul li i {
-            margin-right: 8px;
-            color: #0a9396;
-        }
-
-        .image-gallery {
-            text-align: center;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        .image-gallery h3 {
-            color: #0a9396;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .gallery-grid figure {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-grid img {
-            width: 100%;
-            display: block;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .gallery-grid figure:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-grid figcaption {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            width: 100%;
-            padding: 5px;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-grid figure:hover figcaption {
-            opacity: 1;
-        }
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-
-            header,
-            nav,
-            footer {
-                padding: 10px;
-            }
-
-            .header-title {
-                font-size: 1.5rem;
-                text-align: center;
-                /* Center the title for smaller screens */
-            }
-
-            .milestones {
-                grid-template-columns: 1fr;
-            }
-
-            .logo {
-                width: 60px;
-                /* Adjust the width for smaller screens */
-            }
-
-            nav ul {
-                flex-direction: column;
-                /* Stack navigation items vertically */
-                align-items: center;
-            }
-
-            nav li {
-                margin-bottom: 10px;
-                margin-right: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                width: 50px;
-                /* Adjust the width for smaller screens */
-            }
-
-            .header-title {
-                font-size: 1.2rem;
-            }
-        }
-
-        .section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-
-        .section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Vision and Mission Styling */
-        .vision-mission {
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .vision-mission:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Header styles */
-        .vision-mission h4 {
-            color: #003366;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .vision-mission h4 i {
-            color: #0a9396;
-            margin-right: 8px;
-        }
-
-        /* List item styles */
-        .vision-mission ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .vision-mission ul li {
-            display: flex;
-            align-items: flex-start;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 12px;
-        }
-
-        .vision-mission ul li i {
-            color: #0a9396;
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
-            .vision-mission h3 {
-                font-size: 24px;
-            }
-
-            .vision-mission h4 {
-                font-size: 20px;
-            }
-
-            .vision-mission ul li {
-                font-size: 16px;
-            }
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-
-        h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .timeline-container {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .timeline-icon {
-            background-color: #5bc0de;
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
-            position: absolute;
-            left: -20px;
-            top: 10px;
-        }
-
-        .timeline-content {
-            background-color: #f7f7f7;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            width: calc(100% - 60px);
-            /* Adjusting for the icon */
-            margin-left: 60px;
-            /* Adding margin for the icon */
-            position: relative;
-        }
-
-        .timeline-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .timeline-date {
-            display: block;
-            font-size: 14px;
-            color: #999;
-            margin-bottom: 10px;
-        }
-
-        .timeline-container {
-            position: relative;
-            overflow: hidden;
-            /* Hide overflow for sliding effect */
-            width: 100%;
-            /* Full width */
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            /* Hide overflow for sliding effect */
-        }
-
-        .timeline-slider {
-            display: flex;
-            /* Display items in a row */
-            transition: transform 0.5s ease;
-            /* Smooth transition */
-            width: 100%;
-            /* Full width */
-        }
-
-        .timeline-item {
-            flex: 0 0 100%;
-            /* Each item takes full width of the container */
-            box-sizing: border-box;
-            /* Ensures padding is included in width */
-            padding: 20px;
-            text-align: center;
-            background-color: #f9f9f9;
-            /* Light background for the box */
-            border: 1px solid #ddd;
-            /* Light border around the box */
-            border-radius: 10px;
-            /* Rounded corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow for depth */
-            margin: 10px 0;
-            /* Margin between boxes */
-            transition: transform 0.3s;
-            /* Smooth transition for hover effect */
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-5px);
-            /* Slight lift on hover */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            /* Darker shadow on hover */
-        }
-
-        .timeline-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .prev,
-        .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #5bc0de;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 1;
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background-color: #31b0d5;
-            /* Darker shade on hover */
-        }
-
-        @media (max-width: 600px) {
-            .timeline-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .timeline-icon {
-                position: relative;
-                left: 0;
-                top: 0;
-                margin-bottom: 10px;
-            }
-
-            .timeline-content {
-                margin-left: 0;
-                width: 100%;
-            }
-        }
-
-
-       /* Footer Styles */
-footer {
-    background-color: #0a9396;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-footer p {
+   <style>
+    /* Reset and Base Styles */
+/* Reset and Base Styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --primary-color: #0a9396;
+    --primary-light: #14b8bb;
+    --primary-dark: #087f82;
+    --text-color: #333;
+    --white: #ffffff;
+    --bg-color: #f5f5f5;
+    --shadow: 0 2px 10px rgba(10, 147, 150, 0.1);
+    --transition: all 0.3s ease;
+}
+
+html {
     font-size: 16px;
-    line-height: 1.5;
+    scroll-behavior: smooth;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    footer {
-        padding: 15px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Container Styles */
+.container {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+/* Typography */
+h2 {
+    color: var(--primary-color);
+    margin-bottom:1
+    rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 10rem;
+}
+
+h3 {
+    color: var(--primary-color);
+    margin: 1rem 0;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+h4 {
+    color: var(--primary-dark);
+    margin: 0.8rem 0;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+/* Content Boxes */
+
+.early-years {
+    background-color: var(--white);
+    padding: clamp(1rem, 4vw, 2.5rem);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(10, 147, 150, 0.1);
+}
+/* Add spacing after navbar */
+.history-box {
+    margin-top: 2rem; /* Adds space after navbar */
+    background-color: var(--white);
+    padding: clamp(1rem, 4vw, 2.5rem);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+   
+}
+
+.history-box p,
+.early-years p {
+    margin-bottom: 0.5rem;
+    text-align: justify;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Timeline Section */
+.timeline {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background-color: var(--white);
+    margin: 2rem auto;
+    width: min(100% - 2rem, 1200px);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.timeline-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 1rem 0;
+}
+
+.timeline-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: clamp(0.8rem, 2vw, 1.5rem);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(10, 147, 150, 0.1);
+}
+
+.timeline-item img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.timeline-date {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+}
+
+/* Image Gallery */
+.image-gallery {
+    padding: clamp(1rem, 3vw, 2rem);
+    background-color: var(--white);
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: min(100% - 2rem, 1200px);
+    box-shadow: var(--shadow);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 1rem 0;
+}
+
+figure {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    border: 1px solid rgba(10, 147, 150, 0.1);
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(10, 147, 150, 0.9));
+    color: var(--white);
+    padding: 1rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(10, 147, 150, 0.95);
+    z-index: 1000;
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--white);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Hover Effects */
+.timeline-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+/* Enhanced Mobile Responsiveness */
+@media screen and (max-width: 480px) {
+    .timeline-item {
+        margin-inline: auto;
+        width: 100%;
     }
 
-    footer p {
-        font-size: 14px;
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    figure {
+        aspect-ratio: 3/2;
     }
 }
 
-@media (max-width: 480px) {
-    footer {
-        padding: 10px;
-    }
-
-    footer p {
-        font-size: 12px;
+/* Tablet Responsiveness */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .timeline-slider {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
     }
 }
 
-    </style>
+/* Large Screen Optimizations */
+@media screen and (min-width: 1200px) {
+    .timeline-slider {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: hover) {
+    .timeline-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(10, 147, 150, 0.2);
+    }
+
+    figure:hover img {
+        transform: scale(1.05);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .timeline-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .lightbox {
+        display: none !important;
+    }
+}
+/* For larger screens, increase the top margin */
+@media screen and (min-width: 768px) {
+    .history-box {
+        margin-top: 3rem; /* More space on larger screens */
+    }
+}
+
+/* For extra large screens */
+@media screen and (min-width: 1200px) {
+    .history-box {
+        margin-top: 4rem; /* Even more space on extra large screens */
+    }
+}
+</style>
 </head>
 
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
     </section>
 
     <main>
@@ -753,192 +408,7 @@ footer p {
                     serve the public while upholding the law.</p>
             </div>
         </div>
-        <div class="container">
-            <h2>Significant Milestones</h2>
-
-            <div class="milestones">
-                <div class="milestone-card">
-                    <p class="milestone-date">1947</p>
-                    <p class="milestone-description">Post-independence, the Srikakulam Police Department was
-                        restructured to align with democratic principles, focusing on community service and law
-                        enforcement integrity.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">1960</p>
-                    <p class="milestone-description">Formation of the Crime Investigation Department (CID) to enhance
-                        the investigation capabilities and streamline crime-solving processes.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">1980</p>
-                    <p class="milestone-description">Introduction of the Women Safety Wing, dedicated to addressing
-                        crimes against women and promoting their safety and empowerment within the community.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">1991</p>
-                    <p class="milestone-description">Launch of the Traffic Police division to manage increasing vehicle
-                        congestion and ensure road safety through awareness and strict enforcement.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">1997</p>
-                    <p class="milestone-description">Inauguration of community policing initiatives, aimed at building
-                        trust between the police and local communities through regular outreach programs.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">2005</p>
-                    <p class="milestone-description">Establishment of the Dial-100 emergency response system, providing
-                        a quick and efficient way for citizens to report emergencies and receive immediate assistance.
-                    </p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">2010</p>
-                    <p class="milestone-description">Implementation of modern technology and surveillance systems in
-                        policing, enhancing the department's ability to respond to crime and ensure public safety.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">2015</p>
-                    <p class="milestone-description">Introduction of the Police Mitra program, fostering partnerships
-                        with local residents to address safety concerns and crime prevention.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">2018</p>
-                    <p class="milestone-description">Launch of the Smart Policing initiative, utilizing data analytics
-                        and technology to enhance law enforcement strategies and improve public safety outcomes.</p>
-                </div>
-                <div class="milestone-card">
-                    <p class="milestone-date">2020</p>
-                    <p class="milestone-description">Introduction of community policing initiatives to strengthen
-                        relationships with citizens, fostering trust and cooperation between the police and the
-                        community.</p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modern-era">
-            <h2><i class="fas fa-bullhorn"></i> Modern Era</h2>
-            <p>
-                The modern era of the Srikakulam Police Department has been characterized by significant technological
-                advancements and an emphasis on community engagement. Since the turn of the 21st century, the department
-                has evolved to meet the challenges of a rapidly changing society, prioritizing public safety,
-                transparency, and efficient law enforcement.
-            </p>
-
-            <!-- Technological Advancements Section -->
-            <h3><i class="fas fa-laptop-code"></i> Technological Advancements</h3>
-            <p>With the advent of technology, the Srikakulam Police Department has integrated various modern tools and
-                systems to enhance operational efficiency:</p>
-            <ul>
-                <li><i class="fas fa-video"></i> <strong>Digital Surveillance Systems:</strong> Installation of CCTV
-                    cameras in strategic locations has increased monitoring capabilities and improved crime prevention.
-                </li>
-                <li><i class="fas fa-chart-line"></i> <strong>Data Analytics:</strong> Utilization of data analytics for
-                    crime mapping and analysis has allowed the police to identify hotspots and deploy resources more
-                    effectively.</li>
-                <li><i class="fas fa-mobile-alt"></i> <strong>Mobile Applications:</strong> The introduction of mobile
-                    apps for reporting crimes and accessing police services has empowered citizens to engage with law
-                    enforcement conveniently.</li>
-                <li><i class="fas fa-share-alt"></i> <strong>Social Media Outreach:</strong> The department actively
-                    uses social media platforms to disseminate information, engage with the community, and encourage
-                    public reporting of crimes.</li>
-            </ul>
-
-            <!-- Community Policing Initiatives Section -->
-            <h3><i class="fas fa-handshake"></i> Community Policing Initiatives</h3>
-            <p>Recognizing the importance of community relationships, the Srikakulam Police have implemented various
-                initiatives aimed at fostering trust and collaboration:</p>
-            <ul>
-                <li><i class="fas fa-users"></i> <strong>Police Mitra Program:</strong> Launched to build partnerships
-                    with local residents, this program encourages citizen involvement in crime prevention efforts.</li>
-                <li><i class="fas fa-comments"></i> <strong>Public Forums:</strong> Regular community meetings and
-                    forums provide a platform for citizens to voice their concerns and collaborate with the police on
-                    local safety issues.</li>
-                <li><i class="fas fa-bullhorn"></i> <strong>Awareness Campaigns:</strong> Educational programs on topics
-                    like traffic safety, cybercrime, and domestic violence aim to inform and empower the public.</li>
-                <li><i class="fas fa-child"></i> <strong>Youth Engagement:</strong> Initiatives targeting schools and
-                    youth organizations focus on educating young people about safety and the role of law enforcement.
-                </li>
-            </ul>
-
-            <!-- Transparency and Accountability Section -->
-            <h3><i class="fas fa-balance-scale"></i> Focus on Transparency and Accountability</h3>
-            <p>The Srikakulam Police Department is committed to maintaining transparency and accountability in its
-                operations:</p>
-            <ul>
-                <li><i class="fas fa-eye"></i> <strong>Public Access to Information:</strong> The department provides
-                    accessible information about policies, procedures, and performance metrics to the community.</li>
-                <li><i class="fas fa-exclamation-circle"></i> <strong>Complaint Resolution Mechanisms:</strong>
-                    Establishing clear channels for filing complaints against police conduct ensures accountability and
-                    builds public trust.</li>
-                <li><i class="fas fa-comments"></i> <strong>Community Feedback:</strong> The department actively seeks
-                    feedback from the community to improve services and address concerns.</li>
-            </ul>
-
-            <!-- Challenges and Opportunities Section -->
-            <h3><i class="fas fa-road"></i> Challenges and Opportunities</h3>
-            <p>While the modern era has brought about numerous advancements, the Srikakulam Police Department continues
-                to face challenges such as rising crime rates, drug abuse, and cyber threats. However, these challenges
-                also present opportunities for innovation and growth:</p>
-            <ul>
-                <li><i class="fas fa-shield-alt"></i> <strong>Adapting to Cybercrime:</strong> The department is
-                    enhancing its capabilities to combat cybercrime through specialized training and partnerships with
-                    tech firms.</li>
-                <li><i class="fas fa-hand-holding-heart"></i> <strong>Strengthening Community Ties:</strong> Ongoing
-                    community engagement initiatives are crucial in building resilience against crime and fostering a
-                    safer environment for all.</li>
-                <li><i class="fas fa-handshake"></i> <strong>Collaboration with Other Agencies:</strong> Partnerships
-                    with neighboring police departments and state agencies improve resource sharing and collective
-                    problem-solving.</li>
-            </ul>
-
-            <p>The Srikakulam Police Department remains dedicated to serving the community with integrity and
-                professionalism, leveraging modern tools and strategies to create a safer and more connected society.
-            </p>
-        </div>
-
-
-        <h3><i class="fas fa-eye"></i> Vision and Mission</h3>
-        <div class="vision-mission">
-            <h4><i class="fas fa-bullseye"></i> Our Vision</h4>
-            <ul>
-                <li><i class="fas fa-shield-alt"></i> <strong>Vision of Safety:</strong> To create a safe and secure
-                    environment for every individual within the Srikakulam district, ensuring a society where people can
-                    live without fear.</li>
-                <li><i class="fas fa-handshake"></i> <strong>Commitment to Community Trust:</strong> To foster a culture
-                    of transparency and accountability, building trust and mutual respect between the police force and
-                    the community.</li>
-                <li><i class="fas fa-lightbulb"></i> <strong>Innovation in Policing:</strong> To leverage modern
-                    technology and innovative policing strategies to ensure proactive and efficient law enforcement.
-                </li>
-                <li><i class="fas fa-equals"></i> <strong>Inclusivity and Equality:</strong> To serve every segment of
-                    society impartially, upholding the values of justice, fairness, and equality.</li>
-                <li><i class="fas fa-eye"></i> <strong>Preventive Policing:</strong> To move from a reactive to a
-                    proactive stance, preventing crimes before they occur through intelligent analysis and community
-                    collaboration.</li>
-            </ul>
-
-            <h4><i class="fas fa-flag"></i> Our Mission</h4>
-            <ul>
-                <li><i class="fas fa-balance-scale"></i> <strong>To Serve with Integrity:</strong> Upholding the highest
-                    standards of integrity and professionalism, treating every citizen with dignity and respect.</li>
-                <li><i class="fas fa-users"></i> <strong>Community Engagement:</strong> Actively engaging with the
-                    community to solve local problems, understanding their needs, and addressing safety concerns through
-                    collaboration.</li>
-                <li><i class="fas fa-search"></i> <strong>Crime Prevention and Detection:</strong> Implementing
-                    effective crime prevention strategies and conducting thorough investigations to bring offenders to
-                    justice.</li>
-                <li><i class="fas fa-hands-helping"></i> <strong>Empowering Citizens:</strong> Educating citizens about
-                    crime prevention, legal rights, and ways to safeguard themselves.</li>
-                <li><i class="fas fa-heart"></i> <strong>Ensuring Safety for Vulnerable Groups:</strong> Special
-                    initiatives for the safety of women, children, elderly, and marginalized communities.</li>
-                <li><i class="fas fa-chalkboard-teacher"></i> <strong>Continuous Training and Development:</strong>
-                    Investing in the continuous development of officers through advanced training.</li>
-                <li><i class="fas fa-phone-alt"></i> <strong>Response to Emergencies:</strong> Ensuring rapid response
-                    to emergencies through hotlines like Dial-100.</li>
-                <li><i class="fas fa-mobile-alt"></i> <strong>Leveraging Technology:</strong> Using state-of-the-art
-                    technologies to enhance crime detection and prevention.</li>
-            </ul>
-        </div>
-
+        
 
         <section class="timeline">
             <h3>Significant Milestones of the Srikakulam Police Department</h3>
@@ -1064,113 +534,51 @@ footer p {
                     <!-- Add more images as needed -->
                 </div>
             </div>
+            <!-- Lightbox -->
+<div id="lightbox" class="lightbox" style="display: none;">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="Lightbox Image">
+</div>
         </section>
+
         
         <footer>
             <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
         </footer>
 
-        <script>
-            // JavaScript (e.g., using jQuery)
-            $(window).on('scroll', function () {
-                $('.section').each(function () {
-                    var sectionTop = $(this).offset().top;
-                    var windowTop = $(window).scrollTop();
-                    if (windowTop >= sectionTop - windowHeight / 2) {
-                        $(this).addClass('show');
-                    }
-                });
-            });
-
-        </script> <!-- Link to your JavaScript file if needed -->
-
-        <script>
-            let currentSlide = 0; // Keep track of the current slide
-            const slides = document.querySelectorAll('.timeline-item'); // Select all slides
-            const totalSlides = slides.length; // Get total number of slides
-
-            function changeSlide(direction) {
-                currentSlide += direction; // Update the current slide index
-
-                // Ensure currentSlide stays within bounds
-                if (currentSlide < 0) {
-                    currentSlide = totalSlides - 1; // Go to the last slide
-                } else if (currentSlide >= totalSlides) {
-                    currentSlide = 0; // Go back to the first slide
-                }
-
-                // Move the timeline-slider based on currentSlide
-                const slider = document.querySelector('.timeline-slider');
-                const offset = -currentSlide * 100; // Calculate the offset
-                slider.style.transform = `translateX(${offset}%)`; // Apply the transform
-            }
-
-            // Automatically change slides every 5 seconds
-            setInterval(() => {
-                changeSlide(1); // Change to the next slide
-            }, 5000); // Change slide every 5000 milliseconds (5 seconds)
-
-            // Initial call to display the first slide
-            changeSlide(0);
-        </script>
-
-
-        <script>
-            // Lightbox Functionality
-            document.querySelectorAll('.gallery-grid img').forEach(image => {
-                image.addEventListener('click', () => {
-                    const lightbox = document.createElement('div');
-                    lightbox.classList.add('lightbox');
-                    lightbox.innerHTML = `<img src="${image.src}" alt="${image.alt}" />`;
-                    document.body.appendChild(lightbox);
-                    lightbox.addEventListener('click', () => document.body.removeChild(lightbox));
-                });
-            });
-        </script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         
-        <script>
-            function toggleMenu() {
-                const navUl = document.querySelector('nav ul');
-                navUl.classList.toggle('show');
-    
-                // Close all submenus when closing the main menu
-                if (!navUl.classList.contains('show')) {
-                    document.querySelectorAll('nav ul li').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                }
-            }
-    
-            // Handle submenu toggles on mobile
-            document.addEventListener('DOMContentLoaded', function () {
-                if (window.innerWidth <= 768) {
-                    const menuItems = document.querySelectorAll('nav ul li');
-    
-                    menuItems.forEach(item => {
-                        if (item.querySelector('ul')) {
-                            item.addEventListener('click', function (e) {
-                                e.preventDefault();
-                                this.classList.toggle('active');
-                            });
-                        }
-                    });
-                }
-            });
-    
-            // Close menu when clicking outside
-            document.addEventListener('click', function (e) {
-                const nav = document.querySelector('nav');
-                const hamburger = document.querySelector('.hamburger');
-    
-                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-                    document.querySelector('nav ul').classList.remove('show');
-                    document.querySelectorAll('nav ul li').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                }
-            });
-        </script>
+            <script src="headerandfoot.js"></script>
+            <script>
+                // Get the lightbox element, close button, and lightbox image
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+const closeButton = document.querySelector('.close');
 
+// Get all images in the gallery
+const images = document.querySelectorAll('.gallery-grid img');
+
+// Add click event for each image
+images.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.style.display = 'flex'; // Show lightbox
+        lightboxImg.src = img.src; // Set lightbox image to the clicked image
+        lightboxImg.alt = img.alt; // Set the alt text
+    });
+});
+
+// Close lightbox on clicking the close button
+closeButton.addEventListener('click', () => {
+    lightbox.style.display = 'none'; // Hide lightbox
+});
+
+// Close lightbox on clicking outside the image
+lightbox.addEventListener('click', (event) => {
+    if (event.target !== lightboxImg) {
+        lightbox.style.display = 'none'; // Hide lightbox
+    }
+});
+            </script>
 
 </body>
 

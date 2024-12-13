@@ -8,882 +8,1131 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="headerfoot.css">
     <style>
-        /* Table Styles */
-.table-responsive {
-    width: 100%;
+        /* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #2c3e50;
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+/* Container Styles */
+.directory-container {
+    max-width: 1400px;
     margin: 0 auto;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
 }
 
-table {
+/* Title Styles */
+.directory-title {
+    background: linear-gradient(135deg, #0a9396, #005f73);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Search Styles */
+.search-wrapper {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.search-wrapper input {
     width: 100%;
-    min-width: 800px;
-    border-collapse: collapse;
+    padding: 1rem 3rem 1rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-th, td {
-    padding: 12px 15px;
+.search-wrapper input:focus {
+    border-color: #0a9396;
+    box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.1);
+    outline: none;
+}
+
+.search-wrapper i {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0a9396;
+}
+
+/* Table Styles */
+.table-wrapper {
+    padding: 0 2rem 2rem;
+    overflow-x: auto;
+}
+
+.directory-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1rem;
+}
+
+.directory-table th,
+.directory-table td {
+    padding: 1rem;
     text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.directory-table th {
+    background: #0a9396;
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.directory-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.directory-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.directory-table tbody tr {
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-out;
+}
+
+.directory-table tbody tr:hover {
+    background: #f8fafc;
+    transform: translateX(5px);
+}
+
+.directory-table td {
+    vertical-align: middle;
+}
+
+/* Email Column */
+.directory-table td:last-child {
+    color: #0a9396;
+}
+
+/* Phone Number Column */
+.directory-table td:nth-child(4) {
     white-space: nowrap;
 }
 
-/* Responsive Breakpoints */
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    body {
+        padding: 1rem;
+    }
+
+    .directory-title {
+        font-size: 1.8rem;
+        padding: 1.5rem;
+    }
+
+    .search-wrapper {
+        padding: 0 1.5rem;
+    }
+
+    .table-wrapper {
+        padding: 0 1.5rem 1.5rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    th, td {
-        padding: 8px 10px;
-        font-size: 14px;
+    .directory-title {
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-top:2.5rem;
+    }
+
+    .directory-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .directory-table th,
+    .directory-table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .search-wrapper input {
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
     }
 }
 
 @media screen and (max-width: 480px) {
-    th, td {
-        padding: 6px 8px;
-        font-size: 13px;
+    body {
+        padding: 0.5rem;
     }
+
+    .directory-title {
+        font-size: 1.2rem;
+        margin-top: 4rem;
+    }
+
+    .directory-table th,
+    .directory-table td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Empty Cell Styles */
+.directory-table td:empty::before {
+    content: "—";
+    color: #cbd5e0;
+}
+
+/* Loading State */
+.directory-table.loading tbody {
+    position: relative;
+    min-height: 200px;
+}
+
+.directory-table.loading tbody::after {
+    content: "Loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0a9396;
+}
+
+/* Print Styles */
+@media print {
+    .search-wrapper {
+        display: none;
+    }
+
+    .directory-container {
+        box-shadow: none;
+    }
+
+    .directory-table th {
+        background: #f1f1f1 !important;
+        color: black;
+    }
+
+    .directory-table tr:hover {
+        transform: none;
+        background: none;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .directory-table tbody tr {
+        animation: none;
+    }
+
+    .directory-table tbody tr:hover {
+        transform: none;
+    }
+}
+
+/* Custom Scrollbar */
+.table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #0a9396;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #078183;
 }
 
     </style>
 </head>
 
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
 
-    <!-- Contacts Section -->
-    <div class="table-responsive">
-        <h1>CONTACTS</h1>
-        <h2>List of Phone Numbers of Srikakulam District Police</h2>
-        <table border="1" cellpadding="10" cellspacing="0" width="100%"">
-            <thead>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
 
-
-                <tr  style="background:#0a9396" >
-                    <th scope="col">Name of the officer</th>
-                    <th scope="col">Rank</th>
-                    <th scope="col">Place of work</th>
-                    <th scope="col">Phone Numbers</th>
-                    <th scope="col">Mail ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>shri/Smt.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td>Addl.SP(ADmn.)</td>
-                    <td>Srikakulam</td>
-                    <td>6309990801</td>
-                    <td>addlspsklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.srinivasa Rao</td>
-                    <td>Addl.SP(Crimes)</td>
-                    <td>Srikakulam</td>
-                    <td>6309990803</td>
-                </tr>
-                <tr>
-                    <td>Ch.Vivekananda</td>
-                    <td>SDPO</td>
-                    <td>SDPO,Srikakulam</td>
-                    <td>6309990804</td>
-                    <td>sdposrikakulam@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>vacant</td>
-                    <td>Vacant</td>
-                    <td>SDPO,Tekkali</td>
-                    <td>6309990804</td>
-                    <td>sdpotekkali@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Srinivasa Rao,Addl.SP(Crimes)</td>
-                    <td>In-Charge</td>
-                    <td>SDPO,Kasibugga</td>
-                    <td>6309990805</td>
-                    <td>sdpoofficerksb@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Vacant</td>
-                    <td>vacant</td>
-                    <td>DSP,DSB,SKLM</td>
-                    <td>6309990807</td>
-                    <td>dsbsklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Rajasekhar</td>
-                    <td>DSP</td>
-                    <td>DSP,Women PS</td>
-                    <td>6309990810</td>
-                    <td>wpssklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>D.N.V.Prasad</td>
-                    <td>DSP</td>
-                    <td>DSP,DPTC,SKL</td>
-                    <td>6309990943,
-                        9550803662
-                    </td>
-                    <td>dptcsklm32@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Sri.L.seshadri</td>
-                    <td>DSP</td>
-                    <td>DSP,DAR,Etcherla</td>
-                    <td>6309990813
-                        7382011935
-                    </td>
-                    <td>ridaretcherla@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>K.Paidapu naidu</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Srikakulam</td>
-                    <td>6309990814</td>
-                    <td>cisklmco@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Umamaheswara Rao</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>SKLM 2 Tn PS</td>
-                    <td>6309990824</td>
-                    <td>sho2tnskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>M.Avatharam</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>J R Puram</td>
-                    <td>6309990816</td>
-                    <td>cijrpuram@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Satyanarayana</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Amadalavalasa</td>
-                    <td>6309990823</td>
-                    <td>ciamadalavalasa@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>J.Srinivasa Rao</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Narasannapeta</td>
-                    <td>6309990815</td>
-                    <td>cinarsannapeta@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>A.Vijay Kumar</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Tekkali Urban</td>
-                    <td>6309990860</td>
-                    <td>citekkaliups@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>K.srinivasa Rao</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Tekkali Rural</td>
-                    <td>6309990817</td>
-                    <td>inspector.tkl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>N.Sai</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Pathapatnam</td>
-                    <td>6309990822</td>
-                    <td>circleppm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>CH.Prasad</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Kothuru</td>
-                    <td>6309990828</td>
-                    <td>ciktrsskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Eswara rao</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>kasibugga-Rural</td>
-                    <td>6309990818</td>
-                    <td>ciksbrskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>D.Mohana Rao</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Kasibugga-Town</td>
-                    <td>6309990825</td>
-                    <td>shoksbpsskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Mangaraju</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Sompeta</td>
-                    <td>6309990819</td>
-                    <td>cisptskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>m.Chinnam Naidu</td>
-                    <td>Circle Inspector of Police</td>
-                    <td>Ichapuram</td>
-                    <td>6309990827</td>
-                    <td>inspectoricp@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Immanual Raju</td>
-                    <td>Inspector of Police</td>
-                    <td>Special Branch</td>
-                    <td>6309990886</td>
-                    <td>dsbsklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Suryanarayana</td>
-                    <td>Inspector of Police</td>
-                    <td>SB-X</td>
-                    <td>6309990831</td>
-                </tr>
-                <tr>
-                    <td>T.Srinu</td>
-                    <td>Inspector of Police</td>
-                    <td>Cyber Cell</td>
-                    <td>6309990947,
-                        7661847783
-                    </td>
-                    <td>cybercrimesrikakulam@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Demullu</td>
-                    <td>Inspector of Police</td>
-                    <td>PCR CI</td>
-                    <td>9491391739</td>
-                    <td>pcrsklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td>Inspector of Police</td>
-                    <td>CCS CI</td>
-                    <td>6309990835</td>
-                    <td>ccscrikakulam@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>L.Swami Naidu</td>
-                    <td>Inspector of Police</td>
-                    <td>Woman PS</td>
-                    <td>6309990836</td>
-                    <td>wpssklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>V.Nagaraju</td>
-                    <td>Inspector of Police</td>
-                    <td>Traffic PS,CI</td>
-                    <td>6309990809</td>
-                    <td>shotrafficpssklm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td>Inspector of Police</td>
-                    <td>DPTC CI</td>
-                    <td>6309990834</td>
-                    <td>dptcsklm32@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Somasekhar</td>
-                    <td>Inspector of Police</td>
-                    <td>DCRB CI</td>
-                    <td>6309990833 </td>
-                    <td>dcrbsrikakulam@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Ramanamurthy</td>
-                    <td>Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9959888144</Rd>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>M.Harikrishna</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>SKLM 1 Town,SI-1</td>
-                    <td>6309990842</td>
-                    <td>sho1townpssklm2017@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>N.Krishna Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>SKLM 1 Town,SI-2</td>
-                    <td>6309990946
-                        9908000489
-                    </td>
-                </tr>
-                <tr>
-                    <td>R.Santhosh</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>SKLM 11 Town,SI-1</td>
-                    <td>6309990843</td>
-                    <td>sho2tnskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>A.Kanaka Raju</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>SKLM 11 Town,SI-2</td>
-                    <td>6309990935
-                        9440024987
-                    </td>
-                </tr>
-                <tr>
-                    <td>P.Kishorvarma</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>SKLM Rural PS</td>
-                    <td>6309990845</td>
-                    <td>shosklrskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>R.Janardan Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Gara,SI</td>
-                    <td>6309990846</td>
-                    <td>shogaraskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>S.Chiranjeevi</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>J.R.Puram,SI</td>
-                    <td>6309990850</td>
-                    <td>sijrpuram@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>V.Sandeep kumar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Etcherla,SI</td>
-                    <td>6309990853,
-                        9390237571
-                    </td>
-                    <td>sietcherla@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Y.Madhusana Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>G.Sigadam,SI</td>
-                    <td>6309990877</td>
-                    <td>gsigadamps@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Laxmana Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Laveru,SI</td>
-                    <td>6309990851</td>
-                    <td>silaveruskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>K.Venkatesh</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Amadalavalasa,SI-1</td>
-                    <td>6309990854</td>
-                    <td>siamadalava;asa@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>A.Simhachalam</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Amadalavalasa,SI-2</td>
-                    <td>9618316235</td>
-                </tr>
-                <tr>
-                    <td>T.Rajesh</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Sarubujjili,SI</td>
-                    <td>9494670357,
-                        6309990856
-                    </td>
-                    <td>sisarubujjili@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>M.Pravallika</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Burja,SI</td>
-                    <td>6309990855,
-                        9493324011
-                    </td>
-                    <td>siofpoliceburjaps@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>V.Satyanarayana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Ponduru,SI</td>
-                    <td>6309990852</td>
-                    <td>si.ponduru@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Ch.Durgaprasad</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Narasannapeta,SI</td>
-                    <td>6309990847</td>
-                    <td>sinarasannapeta@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Ashok Babu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Jalumuru,SI</td>
-                    <td>6309990848</td>
-                    <td>sijalumuru@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Ranjith</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Polaki,SI</td>
-                    <td>6309990849</td>
-                    <td>shopolaki@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Anil Kumar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>saravakota,SI</td>
-                    <td>6309990879</td>
-                    <td>shoskotaskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>V.Venkateswara Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Tekkali,SI-1</td>
-                    <td>6309990945</td>
-                    <td>sitekkali@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Raghunadha Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Tekkali,SI-2</td>
-                    <td>9491929547</td>
-                </tr>
-                <tr>
-                    <td>V.Satyanarayana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kotabommali,SI</td>
-                    <td>6309990861</td>
-                    <td>shokbmskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>S.Rellayya</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kotabommali,SI</td>
-                    <td>8374883692</td>
-                </tr>
-                <tr>
-                    <td>G.Narayana Swami</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Nowpada,SI</td>
-                    <td>6309990862</td>
-                    <td>shonaupadaskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Santhabommali,SI</td>
-                    <td>6309990863</td>
-                    <td>shosbmlskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>SK.Mohammad Ali</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Nandigam,SI</td>
-                    <td>6309990859</td>
-                    <td>shondgm@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Lavanya</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Pathapatnam,SI</td>
-                    <td>6309990878</td>
-                    <td>pathapatnamps@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>P.Ramesh Babu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Meliyaputti,SI</td>
-                    <td>6309990881</td>
-                    <td>meliaputtipolicestation@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>MD.Azad Ahemed</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kothuru,SI</td>
-                    <td>6309990882</td>
-                    <td>shoktrskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>B.Revati</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>kasibugga-1</td>
-                    <td>6309990857</td>
-                    <td>shoksbpsskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>M.Chandara Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kasibugga-2</td>
-                    <td>9494813605</td>
-                </tr>
-                <tr>
-                    <td>B.Nihar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>V.Kothuru</td>
-                    <td>6309990858</td>
-                    <td>shovktrskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>SK.Khadhar Bhasha</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Mandasa PS</td>
-                    <td>6309990865, 9493435691</td>
-                    <td>shomdsskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Smt.B.Hymavathi</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Sompeta</td>
-                    <td>6309990864</td>
-                    <td>shosptskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>L.Chandrasekhar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Baruva</td>
-                    <td>6309990867</td>
-                    <td>shobrvskl@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>G.Rajesh</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kanchili PS</td>
-                    <td>6309990866</td>
-                    <td>sikamchili@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>E.Chinnam Naidu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>ICP Tn PS</td>
-                    <td>6309990868</td>
-                    <td>shoichapuramtownps@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>E.Srinivasa Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>ICP Rural PS</td>
-                    <td>6309990869, 7036383969</td>
-                    <td>shoichapuramruralps@gmail.com</td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Kaviti PS</td>
-                    <td>6309990870</td>
-                    <td>kavitips@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>M.Sudhakar,SI 232</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Traffic PS</td>
-                    <td>9494694956</td>
-                </tr>
-                <tr>
-                    <td>V.Devadanam</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Traffic PS</td>
-                    <td>9440612204</td>
-                </tr>
-                <tr>
-                    <td>S.Somesekhar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Traffic PS</td>
-                    <td>8985919161</td>
-                </tr>
-                <tr>
-                    <td>A.Varadarajulu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Traffic PS</td>
-                    <td>6300448546</td>
-                </tr>
-                <tr>
-                    <td>K.Ramu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>9553063134</td>
-                </tr>
-                <tr>
-                    <td>Kum.A.Chandra Kala,WSI</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>6309990889</td>
-                </tr>
-                <tr>
-                    <td>Smt.K.Laxmi</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>7036685425</td>
-                </tr>
-                <tr>
-                    <td>M.Venkata Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS(Attached CCS PS)</td>
-                    <td>780534555</td>
-                </tr>
-                <tr>
-                    <td>L.Manmadha Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>9492617956</td>
-                </tr>
-                <tr>
-                    <td>G.Prabakara Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>9441163179</td>
-                </tr>
-                <tr>
-                    <td>P.V.Ramana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DISHA PS</td>
-                    <td>8555952030</td>
-                </tr>
-                <tr>
-                    <td>J Rama Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>9010688368</td>
-                </tr>
-                <tr>
-                    <td>B.Rama Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>8106044614</td>
-                </tr>
-                <tr>
-                    <td>T.Rama Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>7036197327</td>
-                </tr>
-                <tr>
-                    <td>P.V.Ramana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>7075404006</td>
-                </tr>
-                <tr>
-                    <td>Gafour</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>9912659678</td>
-                </tr>
-                <tr>
-                    <td>Ch.V.Mohan</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>8947231033</td>
-                </tr>
-                <tr>
-                    <td>Nookaraju</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>8919187851</td>
-                </tr>
-                <tr>
-                    <td>S.S.Dhora</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>CCS</td>
-                    <td>9440470450</td>
-                </tr>
-                <tr>
-                    <td>S.V.Ramana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DSB</td>
-                    <td>8328232345</td>
-                </tr>
-                <tr>
-                    <td>K.Manmadha Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DSB</td>
-                    <td>9440168678</td>
-                </tr>
-                <tr>
-                    <td>KN.Babu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DSB</td>
-                    <td>6304280804</td>
-                </tr>
-                <tr>
-                    <td>V.Nethaji</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DCRB</td>
-                    <td>9441468863</td>
-                </tr>
-                <tr>
-                    <td>D.Vijay Kumar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DCRB</td>
-                    <td>6309990942</td>
-                </tr>
-                <tr>
-                    <td>G.Nagamani</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DCRB</td>
-                    <td>8639443446</td>
-                </tr>
-                <tr>
-                    <td>M.V.Ramana</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Control Room</td>
-                    <td>9394706902</td>
-                </tr>
-                <tr>
-                    <td>K.Sivaji Reddy,SI 601</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Control Room</td>
-                    <td>8500893206</td>
-                </tr>
-                <tr>
-                    <td>D.Renuka WSI</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>Control Room</td>
-                    <td>9440938980</td>
-                </tr>
-                <tr>
-                    <td>V.Gopala Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>6303778161</td>
-                </tr>
-                <tr>
-                    <td>B.Ganesh</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9391945402</td>
-                </tr>
-                <tr>
-                    <td>CH.Rama Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>8096252884</td>
-                </tr>
-                <tr>
-                    <td>Ameer Ali</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9059595841</td>
-                </tr>
-                <tr>
-                    <td>A.Koteswara Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9492922064</td>
-                </tr>
-                <tr>
-                    <td>P.Parinaidu</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>8919779988</td>
-                </tr>
-                <tr>
-                    <td>K.Govinda Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9949387321</td>
-                </tr>
-                <tr>
-                    <td>S.Bala Raju</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9848425028</td>
-                </tr>
-                <tr>
-                    <td>G.Vasudeva Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>8919375640</td>
-                </tr>
-                <tr>
-                    <td>R.Sankara Rao</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td>9440737279</td>
-                </tr>
-                <tr>
-                    <td>K.Krishna Prasad</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>VR</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>Y.Ravikumar</td>
-                    <td>Sub-Inspector of Police</td>
-                    <td>DPTC</td>
-                    <td>8074232643</td>
-                </tr>
-
-            </tbody>
-        </table>
+    <div class="directory-container">
+        <h1 class="directory-title">Police Department Directory</h1>
+        
+        <div class="search-wrapper">
+            <input type="text" id="directorySearch" placeholder="Search by name, rank, or location...">
+            <i class="fas fa-search"></i>
+        </div>
+    
+        <div class="table-wrapper">
+            <table class="directory-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rank</th>
+                        <th>Place of Work</th>
+                        <th>Phone Numbers</th>
+                        <th>Email ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table content will go here -->
+                    <tr>
+                        <td>shri/Smt.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Addl.SP(ADmn.)</td>
+                        <td>Srikakulam</td>
+                        <td>6309990801</td>
+                        <td>addlspsklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.srinivasa Rao</td>
+                        <td>Addl.SP(Crimes)</td>
+                        <td>Srikakulam</td>
+                        <td>6309990803</td>
+                    </tr>
+                    <tr>
+                        <td>Ch.Vivekananda</td>
+                        <td>SDPO</td>
+                        <td>SDPO,Srikakulam</td>
+                        <td>6309990804</td>
+                        <td>sdposrikakulam@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>vacant</td>
+                        <td>Vacant</td>
+                        <td>SDPO,Tekkali</td>
+                        <td>6309990804</td>
+                        <td>sdpotekkali@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Srinivasa Rao,Addl.SP(Crimes)</td>
+                        <td>In-Charge</td>
+                        <td>SDPO,Kasibugga</td>
+                        <td>6309990805</td>
+                        <td>sdpoofficerksb@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Vacant</td>
+                        <td>vacant</td>
+                        <td>DSP,DSB,SKLM</td>
+                        <td>6309990807</td>
+                        <td>dsbsklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Rajasekhar</td>
+                        <td>DSP</td>
+                        <td>DSP,Women PS</td>
+                        <td>6309990810</td>
+                        <td>wpssklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>D.N.V.Prasad</td>
+                        <td>DSP</td>
+                        <td>DSP,DPTC,SKL</td>
+                        <td>6309990943,
+                            9550803662
+                        </td>
+                        <td>dptcsklm32@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Sri.L.seshadri</td>
+                        <td>DSP</td>
+                        <td>DSP,DAR,Etcherla</td>
+                        <td>6309990813
+                            7382011935
+                        </td>
+                        <td>ridaretcherla@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>K.Paidapu naidu</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Srikakulam</td>
+                        <td>6309990814</td>
+                        <td>cisklmco@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Umamaheswara Rao</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>SKLM 2 Tn PS</td>
+                        <td>6309990824</td>
+                        <td>sho2tnskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>M.Avatharam</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>J R Puram</td>
+                        <td>6309990816</td>
+                        <td>cijrpuram@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Satyanarayana</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Amadalavalasa</td>
+                        <td>6309990823</td>
+                        <td>ciamadalavalasa@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>J.Srinivasa Rao</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Narasannapeta</td>
+                        <td>6309990815</td>
+                        <td>cinarsannapeta@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>A.Vijay Kumar</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Tekkali Urban</td>
+                        <td>6309990860</td>
+                        <td>citekkaliups@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>K.srinivasa Rao</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Tekkali Rural</td>
+                        <td>6309990817</td>
+                        <td>inspector.tkl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>N.Sai</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Pathapatnam</td>
+                        <td>6309990822</td>
+                        <td>circleppm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>CH.Prasad</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Kothuru</td>
+                        <td>6309990828</td>
+                        <td>ciktrsskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Eswara rao</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>kasibugga-Rural</td>
+                        <td>6309990818</td>
+                        <td>ciksbrskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>D.Mohana Rao</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Kasibugga-Town</td>
+                        <td>6309990825</td>
+                        <td>shoksbpsskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Mangaraju</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Sompeta</td>
+                        <td>6309990819</td>
+                        <td>cisptskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>m.Chinnam Naidu</td>
+                        <td>Circle Inspector of Police</td>
+                        <td>Ichapuram</td>
+                        <td>6309990827</td>
+                        <td>inspectoricp@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Immanual Raju</td>
+                        <td>Inspector of Police</td>
+                        <td>Special Branch</td>
+                        <td>6309990886</td>
+                        <td>dsbsklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Suryanarayana</td>
+                        <td>Inspector of Police</td>
+                        <td>SB-X</td>
+                        <td>6309990831</td>
+                    </tr>
+                    <tr>
+                        <td>T.Srinu</td>
+                        <td>Inspector of Police</td>
+                        <td>Cyber Cell</td>
+                        <td>6309990947,
+                            7661847783
+                        </td>
+                        <td>cybercrimesrikakulam@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Demullu</td>
+                        <td>Inspector of Police</td>
+                        <td>PCR CI</td>
+                        <td>9491391739</td>
+                        <td>pcrsklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Inspector of Police</td>
+                        <td>CCS CI</td>
+                        <td>6309990835</td>
+                        <td>ccscrikakulam@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>L.Swami Naidu</td>
+                        <td>Inspector of Police</td>
+                        <td>Woman PS</td>
+                        <td>6309990836</td>
+                        <td>wpssklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>V.Nagaraju</td>
+                        <td>Inspector of Police</td>
+                        <td>Traffic PS,CI</td>
+                        <td>6309990809</td>
+                        <td>shotrafficpssklm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Inspector of Police</td>
+                        <td>DPTC CI</td>
+                        <td>6309990834</td>
+                        <td>dptcsklm32@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Somasekhar</td>
+                        <td>Inspector of Police</td>
+                        <td>DCRB CI</td>
+                        <td>6309990833 </td>
+                        <td>dcrbsrikakulam@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Ramanamurthy</td>
+                        <td>Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9959888144</Rd>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>M.Harikrishna</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>SKLM 1 Town,SI-1</td>
+                        <td>6309990842</td>
+                        <td>sho1townpssklm2017@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>N.Krishna Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>SKLM 1 Town,SI-2</td>
+                        <td>6309990946
+                            9908000489
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R.Santhosh</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>SKLM 11 Town,SI-1</td>
+                        <td>6309990843</td>
+                        <td>sho2tnskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>A.Kanaka Raju</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>SKLM 11 Town,SI-2</td>
+                        <td>6309990935
+                            9440024987
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>P.Kishorvarma</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>SKLM Rural PS</td>
+                        <td>6309990845</td>
+                        <td>shosklrskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>R.Janardan Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Gara,SI</td>
+                        <td>6309990846</td>
+                        <td>shogaraskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>S.Chiranjeevi</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>J.R.Puram,SI</td>
+                        <td>6309990850</td>
+                        <td>sijrpuram@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>V.Sandeep kumar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Etcherla,SI</td>
+                        <td>6309990853,
+                            9390237571
+                        </td>
+                        <td>sietcherla@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Y.Madhusana Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>G.Sigadam,SI</td>
+                        <td>6309990877</td>
+                        <td>gsigadamps@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Laxmana Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Laveru,SI</td>
+                        <td>6309990851</td>
+                        <td>silaveruskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>K.Venkatesh</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Amadalavalasa,SI-1</td>
+                        <td>6309990854</td>
+                        <td>siamadalava;asa@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>A.Simhachalam</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Amadalavalasa,SI-2</td>
+                        <td>9618316235</td>
+                    </tr>
+                    <tr>
+                        <td>T.Rajesh</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Sarubujjili,SI</td>
+                        <td>9494670357,
+                            6309990856
+                        </td>
+                        <td>sisarubujjili@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>M.Pravallika</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Burja,SI</td>
+                        <td>6309990855,
+                            9493324011
+                        </td>
+                        <td>siofpoliceburjaps@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>V.Satyanarayana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Ponduru,SI</td>
+                        <td>6309990852</td>
+                        <td>si.ponduru@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Ch.Durgaprasad</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Narasannapeta,SI</td>
+                        <td>6309990847</td>
+                        <td>sinarasannapeta@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Ashok Babu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Jalumuru,SI</td>
+                        <td>6309990848</td>
+                        <td>sijalumuru@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Ranjith</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Polaki,SI</td>
+                        <td>6309990849</td>
+                        <td>shopolaki@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Anil Kumar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>saravakota,SI</td>
+                        <td>6309990879</td>
+                        <td>shoskotaskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>V.Venkateswara Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Tekkali,SI-1</td>
+                        <td>6309990945</td>
+                        <td>sitekkali@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Raghunadha Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Tekkali,SI-2</td>
+                        <td>9491929547</td>
+                    </tr>
+                    <tr>
+                        <td>V.Satyanarayana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kotabommali,SI</td>
+                        <td>6309990861</td>
+                        <td>shokbmskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>S.Rellayya</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kotabommali,SI</td>
+                        <td>8374883692</td>
+                    </tr>
+                    <tr>
+                        <td>G.Narayana Swami</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Nowpada,SI</td>
+                        <td>6309990862</td>
+                        <td>shonaupadaskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Santhabommali,SI</td>
+                        <td>6309990863</td>
+                        <td>shosbmlskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>SK.Mohammad Ali</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Nandigam,SI</td>
+                        <td>6309990859</td>
+                        <td>shondgm@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Lavanya</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Pathapatnam,SI</td>
+                        <td>6309990878</td>
+                        <td>pathapatnamps@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>P.Ramesh Babu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Meliyaputti,SI</td>
+                        <td>6309990881</td>
+                        <td>meliaputtipolicestation@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>MD.Azad Ahemed</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kothuru,SI</td>
+                        <td>6309990882</td>
+                        <td>shoktrskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>B.Revati</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>kasibugga-1</td>
+                        <td>6309990857</td>
+                        <td>shoksbpsskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>M.Chandara Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kasibugga-2</td>
+                        <td>9494813605</td>
+                    </tr>
+                    <tr>
+                        <td>B.Nihar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>V.Kothuru</td>
+                        <td>6309990858</td>
+                        <td>shovktrskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>SK.Khadhar Bhasha</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Mandasa PS</td>
+                        <td>6309990865, 9493435691</td>
+                        <td>shomdsskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Smt.B.Hymavathi</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Sompeta</td>
+                        <td>6309990864</td>
+                        <td>shosptskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>L.Chandrasekhar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Baruva</td>
+                        <td>6309990867</td>
+                        <td>shobrvskl@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>G.Rajesh</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kanchili PS</td>
+                        <td>6309990866</td>
+                        <td>sikamchili@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>E.Chinnam Naidu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>ICP Tn PS</td>
+                        <td>6309990868</td>
+                        <td>shoichapuramtownps@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>E.Srinivasa Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>ICP Rural PS</td>
+                        <td>6309990869, 7036383969</td>
+                        <td>shoichapuramruralps@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Kaviti PS</td>
+                        <td>6309990870</td>
+                        <td>kavitips@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>M.Sudhakar,SI 232</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Traffic PS</td>
+                        <td>9494694956</td>
+                    </tr>
+                    <tr>
+                        <td>V.Devadanam</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Traffic PS</td>
+                        <td>9440612204</td>
+                    </tr>
+                    <tr>
+                        <td>S.Somesekhar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Traffic PS</td>
+                        <td>8985919161</td>
+                    </tr>
+                    <tr>
+                        <td>A.Varadarajulu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Traffic PS</td>
+                        <td>6300448546</td>
+                    </tr>
+                    <tr>
+                        <td>K.Ramu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>9553063134</td>
+                    </tr>
+                    <tr>
+                        <td>Kum.A.Chandra Kala,WSI</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>6309990889</td>
+                    </tr>
+                    <tr>
+                        <td>Smt.K.Laxmi</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>7036685425</td>
+                    </tr>
+                    <tr>
+                        <td>M.Venkata Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS(Attached CCS PS)</td>
+                        <td>780534555</td>
+                    </tr>
+                    <tr>
+                        <td>L.Manmadha Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>9492617956</td>
+                    </tr>
+                    <tr>
+                        <td>G.Prabakara Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>9441163179</td>
+                    </tr>
+                    <tr>
+                        <td>P.V.Ramana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DISHA PS</td>
+                        <td>8555952030</td>
+                    </tr>
+                    <tr>
+                        <td>J Rama Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>9010688368</td>
+                    </tr>
+                    <tr>
+                        <td>B.Rama Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>8106044614</td>
+                    </tr>
+                    <tr>
+                        <td>T.Rama Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>7036197327</td>
+                    </tr>
+                    <tr>
+                        <td>P.V.Ramana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>7075404006</td>
+                    </tr>
+                    <tr>
+                        <td>Gafour</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>9912659678</td>
+                    </tr>
+                    <tr>
+                        <td>Ch.V.Mohan</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>8947231033</td>
+                    </tr>
+                    <tr>
+                        <td>Nookaraju</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>8919187851</td>
+                    </tr>
+                    <tr>
+                        <td>S.S.Dhora</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>CCS</td>
+                        <td>9440470450</td>
+                    </tr>
+                    <tr>
+                        <td>S.V.Ramana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DSB</td>
+                        <td>8328232345</td>
+                    </tr>
+                    <tr>
+                        <td>K.Manmadha Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DSB</td>
+                        <td>9440168678</td>
+                    </tr>
+                    <tr>
+                        <td>KN.Babu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DSB</td>
+                        <td>6304280804</td>
+                    </tr>
+                    <tr>
+                        <td>V.Nethaji</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DCRB</td>
+                        <td>9441468863</td>
+                    </tr>
+                    <tr>
+                        <td>D.Vijay Kumar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DCRB</td>
+                        <td>6309990942</td>
+                    </tr>
+                    <tr>
+                        <td>G.Nagamani</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DCRB</td>
+                        <td>8639443446</td>
+                    </tr>
+                    <tr>
+                        <td>M.V.Ramana</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Control Room</td>
+                        <td>9394706902</td>
+                    </tr>
+                    <tr>
+                        <td>K.Sivaji Reddy,SI 601</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Control Room</td>
+                        <td>8500893206</td>
+                    </tr>
+                    <tr>
+                        <td>D.Renuka WSI</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>Control Room</td>
+                        <td>9440938980</td>
+                    </tr>
+                    <tr>
+                        <td>V.Gopala Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>6303778161</td>
+                    </tr>
+                    <tr>
+                        <td>B.Ganesh</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9391945402</td>
+                    </tr>
+                    <tr>
+                        <td>CH.Rama Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>8096252884</td>
+                    </tr>
+                    <tr>
+                        <td>Ameer Ali</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9059595841</td>
+                    </tr>
+                    <tr>
+                        <td>A.Koteswara Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9492922064</td>
+                    </tr>
+                    <tr>
+                        <td>P.Parinaidu</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>8919779988</td>
+                    </tr>
+                    <tr>
+                        <td>K.Govinda Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9949387321</td>
+                    </tr>
+                    <tr>
+                        <td>S.Bala Raju</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9848425028</td>
+                    </tr>
+                    <tr>
+                        <td>G.Vasudeva Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>8919375640</td>
+                    </tr>
+                    <tr>
+                        <td>R.Sankara Rao</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td>9440737279</td>
+                    </tr>
+                    <tr>
+                        <td>K.Krishna Prasad</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>VR</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>Y.Ravikumar</td>
+                        <td>Sub-Inspector of Police</td>
+                        <td>DPTC</td>
+                        <td>8074232643</td>
+                    </tr>
+    
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-    <br>
-
+                
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Srikakulam Police Department</p>
     </footer>
-    <script src="hamburger.js"></script>
+    <script src="headerandfoot.js"></script>
 </body>
 
 </html>

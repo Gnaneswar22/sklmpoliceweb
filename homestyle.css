@@ -645,10 +645,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4rem 5%;
+    padding: 2% 5%;
     background: #f8f9fa;
     gap: 2rem;
-    margin-top: 120px;
+    
 }
 
 .about-text {
@@ -678,7 +678,7 @@
 .about-slider {
     flex: 1;
     position: relative;
-    height: 400px;
+    height: 300px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);

@@ -1,0 +1,9 @@
+<?php
+function parseLocalTime($timeString) {
+    preg_match('/<local_time>(.*?)<\/local_time>/', $timeString, $matches);
+    if (isset($matches[1])) {
+        return trim(explode(' in ', $matches[1])[0]);
+    }
+    return date('Y-m-d H:i:s'); // Fallback to current server time
+}
+?>

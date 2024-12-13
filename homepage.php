@@ -94,20 +94,19 @@ function getMenuItems($conn, $parent_id = null) {
     }
 }
 
-
 // Get main menu items
 $main_menu_items = getMenuItems($conn);
 ?>
 
 <nav class="navbar">
     <ul class="nav-list" id="nav-list">
-        <li><a href="#home">Home</a></li>
+        <li><a href="homepage.php">Home</a></li>
         <li class="dropdown-parent">
-            <a href="#about">About Us</a>
+            <a href="aboutus.html">About Us</a>
             <ul class="dropdown">
                 <li><a href="history.html">History</a></li>
-                <li><a href="#">Organisation Chart</a></li>
-                <li><a href="#">Awards</a></li>
+                <li><a href="organisation.html">Organisation Chart</a></li>
+                <li><a href="awards.html">Awards</a></li>
             </ul>
         </li>
         <li class="dropdown-parent">
@@ -116,7 +115,7 @@ $main_menu_items = getMenuItems($conn);
                 <li><a href="law.html">Law & Order</a></li>
                 <li><a href="traffic.html">Traffic</a></li>
                 <li><a href="tel:100">Dial 100</a></li>
-                <li><a href="#">AHTU</a></li>
+                <li><a href="Ahtu.html">AHTU</a></li>
             </ul>
         </li>
         <li class="dropdown-parent">
@@ -127,6 +126,8 @@ $main_menu_items = getMenuItems($conn);
                 <li><a href="domestic.html">Domestic Violence</a></li>
                 <li><a href="accident.html">Accident Analysis</a></li>
                 <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
+                <li>
+                <a href="services.html">knowmore</a></li>
             </ul>
         </li>
         <li><a href="contacts.html">Contact Us</a></li>
@@ -176,6 +177,7 @@ function getHeroSlides($conn) {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
+        error_log("Error fetching hero slides: " . $e->getMessage());
         return [];
     }
 }
@@ -189,9 +191,20 @@ $hero_slides = getHeroSlides($conn);
         <?php if (!empty($hero_slides)): ?>
             <?php foreach ($hero_slides as $slide): ?>
                 <div class="slide">
-                    <img src="<?php echo htmlspecialchars($slide['image_path']); ?>" 
-                         alt="<?php echo htmlspecialchars($slide['alt_text']); ?>">
-                    <div class="dark-overlay"></div>
+                    <?php
+                    // Construct the correct image path
+                    $image_path = 'admin_panel/' . $slide['image_path'];
+                    // Debug information
+                    error_log("Image Path: " . $image_path);
+                    ?>
+                    <img src="<?php echo htmlspecialchars($image_path); ?>" 
+                         alt="<?php echo htmlspecialchars($slide['alt_text']); ?>"
+                         onerror="this.src='images/img.jpg'; console.log('Image failed to load');">
+                    
+                    <?php if ($slide['dark_overlay']): ?>
+                        <div class="dark-overlay"></div>
+                    <?php endif; ?>
+                    
                     <div class="slide-content content-overlay">
                         <div class="title-wrapper">
                             <h1 class="title"><?php echo htmlspecialchars($slide['title']); ?></h1>
@@ -199,7 +212,6 @@ $hero_slides = getHeroSlides($conn);
                         <div class="subtitle-wrapper">
                             <p class="subtitle">
                                 <?php 
-                                // Replace {span} and {/span} with proper <span> tags
                                 $formatted_subtitle = str_replace(
                                     ['{span}', '{/span}'], 
                                     ['<span>', '</span>'], 
@@ -214,7 +226,7 @@ $hero_slides = getHeroSlides($conn);
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <!-- Fallback content if no slides are found in the database -->
+            <!-- Fallback slide -->
             <div class="slide">
                 <img src="images/img.jpg" alt="Srikakulam Police Station">
                 <div class="dark-overlay"></div>
@@ -238,6 +250,7 @@ $hero_slides = getHeroSlides($conn);
 
     <div class="slide-indicators"></div>
 </section>
+
 <?php
 require_once 'config.php';
 
@@ -285,19 +298,19 @@ $emergency_numbers = getEmergencyNumbers($conn);
     <section class="services">
         <h2>Services for Citizens</h2>
         <div class="service-items">
-            <a href="#" class="service-item">
+            <a href="know.html" class="service-item">
                 <img src="images/police-station.png" alt="Police Station" class="service-icon">
                 <h3>POLICE STATION</h3>
                 <p>Locate your nearest police station</p>
             </a>
 
-            <a href="#" class="service-item">
+            <a href="emergency.php" class="service-item">
                 <img src="images/emergency.png" alt="Emergency Contacts" class="service-icon">
                 <h3>Emergency Contacts</h3>
                 <p>Dial-100/101/108/181</p>
             </a>
 
-            <a href="#" class="service-item">
+            <a href="cybercell.html" class="service-item">
                 <img src="images/cyber.png" alt="Cyber Cell" class="service-icon">
                 <h3>CYBER CELL</h3>
                 <p>Report cyber crimes</p>
@@ -360,13 +373,14 @@ $slider_images = getSliderImages($conn);
     
     <div class="about-slider">
         <div class="slides">
-            <?php foreach ($slider_images as $index => $image): ?>
-                <div class="slide <?php echo $index === 0 ? 'active' : ''; ?>">
-                    <img src="<?php echo htmlspecialchars($image['image_path']); ?>" 
-                         alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
-                </div>
-            <?php endforeach; ?>
+    <?php foreach ($slider_images as $index => $image): ?>
+        <div class="slide <?php echo $index === 0 ? 'active' : ''; ?>">
+            <img src="<?php echo BASE_URL . '/' . htmlspecialchars($image['image_path']); ?>" 
+                 alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
         </div>
+    <?php endforeach; ?>
+</div>
+
         <div class="slider-nav">
             <?php foreach ($slider_images as $index => $image): ?>
                 <span class="dot <?php echo $index === 0 ? 'active' : ''; ?>"></span>
@@ -542,7 +556,7 @@ $gallery_items = getGalleryItems($conn);
                 </div>
             <?php endforeach; ?>
         </div>
-        <a href="#" class="view-all-btn">View All</a>
+        <a href="gallery.php" class="view-all-btn">View All</a>
     </div>
 </section>
 
@@ -796,7 +810,7 @@ setInterval(() => {
                 <!-- Facebook Feed -->
                 <div class="feed-container">
                     <iframe
-                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSrikakulamPolice"
+                        src="https://www.facebook.com/profile.php?id=100068435118920&__cft__[0]=AZVUlz7oG5BD50EdPWwOPefD1cATmsUvCgnXPz3OUBlfo2ManeDsuRoC_OrQRx-B023XM4ganxMw-yk8AUwLXxS3aBdnJR6-P_TJvjqgY4X9gSNfHb_KVmO8fkRGV_mQyFyTf1-FDhxC4LL-PYQyUY9FgU7QzHtxaTVGY35HwI6_HFp6u8NUObBJa50MwtoqYx8&__tn__=-UC%2CP-R"
                         width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
                         allowfullscreen="true">
                     </iframe>
@@ -804,7 +818,7 @@ setInterval(() => {
 
                 <!-- Twitter Feed -->
                 <div class="feed-container">
-                    <a class="twitter-timeline" data-height="500" href="https://twitter.com/SPSrikakulam">
+                    <a class="twitter-timeline" data-height="500" href="https://x.com/SRIKAKULMPOLICE">
                         Tweets by Srikakulam Police
                     </a>
                 </div>

@@ -8,122 +8,265 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="headerfoot.css">
     <style>
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
+        /* Base container styles */
+.container {
+    width: 90%; /* Changed from 80% for better mobile display */
+    max-width: 1200px; /* Added max-width for larger screens */
+    margin: 0 auto;
+    padding: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-top: 10rem; /* Reduced from 10rem for better mobile viewing */
+}
 
-        .helpline, .contact-info {
-            background-color: #e0f7fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+/* Card styles */
+.helpline, .contact-info {
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
 
-        .helpline:hover, .contact-info:hover {
-            transform: scale(1.05);
-        }
+/* Hover effects - disabled on touch devices */
+@media (hover: hover) {
+    .helpline:hover, .contact-info:hover {
+        transform: scale(1.05);
+    }
+    
+    a img:hover {
+        transform: scale(1.1);
+    }
+}
 
-        h2, h3 {
-            text-align: center;
-            color: #0a9396;
-            margin-bottom: 20px;
-        }
+/* Typography */
+h2, h3 {
+    text-align: center;
+    color: #0a9396;
+    margin-bottom: 20px;
+    word-wrap: break-word; /* Added for text wrapping */
+}
 
-        p{
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        a img {
-            display: block;
-            margin: 0 auto;
-            transition: transform 0.3s ease;
-        }
+p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 16px; /* Base font size */
+}
 
-        a img:hover {
-            transform: scale(1.1);
-        }
+/* Image styles */
+a img {
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+}
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+/* For tablets */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin-top: 5rem;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .helpline, .contact-info {
+        padding: 15px;
+    }
+}
+
+/* For mobile phones */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+        margin-top: 3.5rem;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .helpline, .contact-info {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}
+
+/* For very small devices */
+@media screen and (max-width: 320px) {
+    .container {
+        margin-top: 1rem;
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+}
+
+/* For larger screens */
+@media screen and (min-width: 1200px) {
+    .container {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 17px;
+    }
+}
+
+/* For high-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .helpline, .contact-info {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Reduce motion if preferred */
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        animation: none;
+    }
+
+    .helpline, .contact-info, a img {
+        transition: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .helpline, .contact-info {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    a img {
+        max-width: 500px;
+    }
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
 
     <div class="container">
         <section>
             <h2>Women's Corner</h2>
             <h3>Dedicated to Serve and Protect</h3>
             <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://disha-sos.en.softonic.com/android&ved=2ahUKEwiCroKI_uKIAxXxxDgGHebUCGMQFnoECCgQAQ&usg=AOvVaw0rYL2W92mn3_HxU7FR_M5S">
-                <img src="images/disha.jpg" alt="Disha app" width="250" height="250">
+                <img src="images.jpg" alt="app" width="250" height="250">
             </a>
             <p>Welcome to the Women's Corner of Srikakulam Police Department. We are committed to ensuring the safety and security of women in our region. Our team is available 24/7 to assist women in distress, and we offer a range of services specifically tailored to support women's safety and well-being.</p>
             <p>If you or someone you know is facing harassment, domestic violence, or any other crime, please do not hesitate to reach out to us. We are here to help.</p>
@@ -132,6 +275,7 @@
         <section>
             <h3>Helpline Numbers</h3>
             <div class="helpline">
+
                 <p><strong>Women's Helpline:</strong> 1091</p>
                 <p><strong>Domestic Violence Helpline:</strong> 181</p>
                 <p><strong>Child Helpline:</strong> 1098</p>
@@ -164,6 +308,6 @@
     <footer>
         <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
     </footer>
-    <script src="hamburger.js"></script>
+    <script src="headerandfoot.js"></script>
 </body>
 </html>

@@ -8,109 +8,453 @@
     <link rel="stylesheet" href="headerfoot.css">
     <style>
         
-        .content {
-            background: white;
+           /* Modern CSS Reset */
+           *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary-color: #4a90e2;
+            --primary-dark: #357abd;
+            --secondary-color: #e74c3c;
+            --secondary-dark: #c0392b;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --text-color: #2c3e50;
+            --text-light: #ecf0f1;
+            --background-light: #f8f9fa;
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            animation: fadeIn 0.8s ease-out;
         }
-        h3 {
-            color: red;
+
+        /* Header Styles */
+        .header1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--text-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            margin-top: 10rem; /* Default margin for desktop */
+            transform-origin: top;
+            animation: slideDown 0.5s ease-out;
         }
-   
-      
+        
+        .header1 h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            color: var(--text-light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform var(--transition-speed);
+            animation: pulse 2s infinite;
+        }
+
+        .emergency-banner:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed),
+                        box-shadow var(--transition-speed);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        /* Resource List */
+        .resource-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .resource-list li {
+            background: var(--background-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .resource-list li:hover {
+            transform: scale(1.02);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        /* Emergency Button */
+        .emergency-button {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            animation: bounce 1s infinite;
+        }
+
+        .emergency-button:hover {
+            background: var(--secondary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Contact Numbers */
+        .contact-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header1 h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .emergency-button {
+                width: 100%;
+                padding: 0.8rem;
+            }
+
+            .header1 {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-light: #1a1a1a;
+                --text-color: #ecf0f1;
+            }
+
+            .section {
+                background: #2c3e50;
+            }
+
+            .resource-list li {
+                background: #34495e;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .emergency-button {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+            }
+        }
+      /* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+    .header1 {
+        margin-top: 5rem; /* Reduced margin for tablets */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header1 {
+        margin-top: 3rem; /* Further reduced margin for mobile */
+        padding: 1.5rem; /* Optional: Reduced padding for mobile */
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .header1 {
+        margin-top: 2rem; /* Minimal margin for very small screens */
+        padding: 1rem;
+    }
+}
     </style>
 </head>
 <body>
 
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-   
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-   
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-   
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                               Report</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
 
-<div class="content">
-    <h3>Understanding Domestic Violence</h3>
-    <p>Domestic violence includes physical, emotional, psychological, and financial abuse. It can affect anyone, regardless of age, gender, or socioeconomic status.</p>
-</div>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
 
-<div class="content">
-    <h3>Available Resources</h3>
-    <ul>
-        <li><strong>Emergency Helpline:</strong> Call 100 for immediate assistance.</li>
-        <li><strong>Women's Helpline:</strong> Call 181 for support and resources specific to women.</li>
-        <li><strong>Counseling Services:</strong> Access professional counseling through local NGOs and support groups.</li>
-        <li><strong>Legal Assistance:</strong> Contact legal aid services for guidance on your rights and options.</li>
-    </ul>
-</div>
+    <div class="container">
+        <div class="header1">
+            <h1>Domestic Violence Support & Resources</h1>
+            <p>Immediate help and support for those affected by domestic violence</p>
+        </div>
 
-<div class="content">
-    <h3>How to Report Domestic Violence</h3>
-    <p>If you or someone you know is facing domestic violence:</p>
-    <ol>
-        <li>Call the emergency helpline: <strong>100</strong></li>
-        <li>Visit the nearest police station to file a report.</li>
-        <li>Fill out the online reporting form on our official website.</li>
-    </ol>
-</div>
+        <div class="emergency-banner">
+            <p>Emergency Helpline: <span class="contact-number">100</span> | Women's Helpline: <span class="contact-number">181</span></p>
+        </div>
+
+        <div class="section">
+            <h2>Filing a Complaint</h2>
+            <div class="complaint-process">
+                <ol>
+                    <li>Visit the nearest police station or call emergency services</li>
+                    <li>File a First Information Report (FIR)</li>
+                    <li>Request immediate protection if needed</li>
+                    <li>Connect with a Protection Officer</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Legal Protections</h2>
+            <ul class="resource-list">
+                <li>
+                    <h3>Protection Orders</h3>
+                    <p>Restraining orders against abusers</p>
+                </li>
+                <li>
+                    <h3>Residence Orders</h3>
+                    <p>Secure your right to stay in shared household</p>
+                </li>
+                <li>
+                    <h3>Monetary Relief</h3>
+                    <p>Compensation for expenses and losses</p>
+                </li>
+                <li>
+                    <h3>Custody Orders</h3>
+                    <p>Protection of children's interests</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Support Services</h2>
+            <ul class="resource-list">
+                <li>
+                    <strong>Legal Aid Services</strong>
+                    <p>Free legal assistance and guidance</p>
+                </li>
+                <li>
+                    <strong>Medical Services</strong>
+                    <p>Emergency medical care and documentation</p>
+                </li>
+                <li>
+                    <strong>Counseling Services</strong>
+                    <p>Professional psychological support</p>
+                </li>
+                <li>
+                    <strong>Shelter Homes</strong>
+                    <p>Safe accommodation for victims</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Important Laws</h2>
+            <ul class="resource-list">
+                <li>Section 498A IPC: Cruelty by husband or relatives</li>
+                <li>Section 506 IPC: Criminal intimidation</li>
+                <li>Protection of Women from Domestic Violence Act, 2005</li>
+                <li>Dowry Prohibition Act, 1961</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Documentation Checklist</h2>
+            <ul class="resource-list">
+                <li>Medical records and reports</li>
+                <li>Police complaints and FIR copies</li>
+                <li>Photographs of injuries or damage</li>
+                <li>Written accounts of incidents</li>
+                <li>Witness statements</li>
+            </ul>
+        </div>
+
+        <div class="emergency-banner">
+            <h3>Need Immediate Help?</h3>
+            <button class="emergency-button">Call Emergency Services</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
+    </footer>
+    <script>
+        // Emergency button functionality
+        document.querySelector('.emergency-button').addEventListener('click', function() {
+            window.location.href = 'tel:100';
+        });
+
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 
 
 
-<footer>
-    <p>&copy; 2024 Srikakulam Police Department. All rights reserved.</p>
-</footer>
-<script src="hamburger.js"></script>
+
+<script src="headerandfoot.js"></script>
 </body>
 </html>

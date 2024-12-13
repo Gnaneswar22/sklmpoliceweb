@@ -14,202 +14,391 @@
     <style>
  
 
-        .customNavigation a{
-
--webkit-user-select: none;
-
--khtml-user-select: none;
-
--moz-user-select: none;
-
--ms-user-select: none;
-
-user-select: none;
-
--webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-background-color: #fff;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-border: 1px solid #ddd;
-border-radius: 10px;
-
-}
-.table-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 20px auto;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 20px;
+        /* Awards Section Styles */
+.awards-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.image-container {
-  flex: 1;
-  min-width: 300px;
-  padding: 15px;
-  text-align: center;
+/* Section Title and Description */
+.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
 }
 
-.text-container {
-  flex: 1;
-  min-width: 300px;
-  padding: 15px;
-  text-align: center;
+.title-text {
+    font-size: 2.5rem;
+    color: #0a9396;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.section-description {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+/* Awards Container */
+.awards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 0 1.5rem;
+}
+
+/* Award Card */
+.award-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(10, 147, 150, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.award-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(10, 147, 150, 0.2);
+}
+
+/* Image Styles */
+.award-image-wrapper {
+    position: relative;
+    padding-top: 60%;
+    overflow: hidden;
 }
 
 .award-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.style2 {
-  color: #040404;
-  font-weight: bold;
-  font-size: 36px;
-  text-align: center;
-  margin: 30px 0;
+/* Content Styles */
+.award-content {
+    padding: 2rem;
 }
 
-.style4 {
-  color: #090909;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 10px 0;
+.award-title {
+    color: #0a9396;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
-/* Media Queries */
+.award-category {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.award-year {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: rgba(10, 147, 150, 0.1);
+    color: #0a9396;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Award Details */
+.award-details {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(10, 147, 150, 0.1);
+}
+
+.award-details p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.achievement-list {
+    list-style: none;
+    padding: 0;
+}
+
+.achievement-list li {
+    color: #555;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.achievement-list li::before {
+    content: '→';
+    color: #0a9396;
+    position: absolute;
+    left: 0;
+}
+
+/* Hover Effects */
+.award-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.award-card:hover .award-overlay {
+    opacity: 1;
+}
+
+.award-overlay i {
+    color: #ffffff;
+    font-size: 3rem;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.award-card:hover .award-overlay i {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .awards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media screen and (max-width: 768px) {
-  .table-container {
-      width: 95%;
-      flex-direction: column;
-  }
+    .title-text {
+        font-size: 2rem;
+    }
+    
+    .section-description {
+        font-size: 1rem;
+    }
 
-  .image-container, .text-container {
-      width: 100%;
-  }
+    .awards-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 
-  .style2 {
-      font-size: 28px;
-  }
-
-  .style4 {
-      font-size: 20px;
-  }
+    .award-content {
+        padding: 1.5rem;
+    }
 }
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .awards-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    .award-card {
+        background: #2d2d2d;
+    }
+
+    .section-description,
+    .award-details p,
+    .achievement-list li {
+        color: #e0e0e0;
+    }
+
+    .award-year {
+        background: rgba(10, 147, 150, 0.2);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 </style>
 
 </head>
 <body>
-    <header>
-        <!-- Left Logo -->
-        <div>
-               <img src="images/Appolice.png" alt="Left Logo" class="logo">
-           </div>
-       
-           <!-- Center Heading -->
-           <h1 class="header-title">Srikakulam Police Department</h1>
-       
-           <!-- Right Logo -->
-           <div>
-               <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-           </div>
-       
-           <!-- Hamburger Menu -->
-           <div class="hamburger" onclick="toggleMenu()">
-               <i class="fas fa-bars"></i>
-           </div>
-       </header>
-       <!-- Navigation Bar -->
-       <nav>
-           <ul>
-               <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-               <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                   <ul>
-                       <li><a href="history.html">History</a></li>
-                       <li><a href="organisation.html">Organisation Chart</a></li>
-                       <li><a href="awards.html">Awards</a></li>
-                       <li><a href="officers.php">Our Team</a></li>
-                       <li><a href="gallery.php">Gallery</a></li>
-                   </ul>
-               </li>
-               <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-                   <ul>
-                       <li><a href="law.html">Law & Order</a></li>
-                       <li><a href="traffic.html">Traffic</a></li>
-                       <li><a href="tel:100">Dial 100</a></li>
-                       <li><a href="AHTU.html">AHTU</a></li>
-                   </ul>
-               </li>
-               <li><a href="womenscorner.html"><i class="fas fa-female"></i> Women’s Corner</a></li>
-               <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                   <ul>
-                       <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">LostReport</a></li>
-                       <li><a href="fir.html">View FIR</a></li>
-                       <li><a href="domestic.html">Domestic Violence</a></li>
-                       <li><a href="accident.html">Accident Analysis</a></li>
-                       <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                               Speaker Permission</a></li>
-                               <li><a href="services.html">knowmore</a></li>
-                   </ul>
-               </li>
-               <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-           </ul>
-       </nav>
-   <br>
+    <section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
+
 	
-   <div class="style2">A W A R D S</div>
-
-   <div class="table-container">
-       <div class="image-container">
-           <img src="images/aw1.jpg" alt="SKOCH Award" class="award-image">
-       </div>
-       <div class="text-container">
-           <p class="style4">SKOCH</p>
-           <p class="style4">TRANSFERS MODULE</p>
-           <p class="style4">2019</p>
-       </div>
-   </div>
-
-   <div class="table-container">
-       <div class="image-container">
-           <img src="images/aw2.jpg" alt="Governance Now Award" class="award-image">
-       </div>
-       <div class="text-container">
-           <p class="style4">GOVERNANCE NOW</p>
-           <p class="style4">E-BEAT SYSTEM</p>
-           <p class="style4">2020</p>
-       </div>
-   </div>
-
-   <div class="table-container">
-       <div class="image-container">
-           <img src="images/aw3.jpg" alt="Technology Sabha Award" class="award-image">
-       </div>
-       <div class="text-container">
-           <p class="style4">TECHNOLOGY SABHA</p>
-           <p class="style4">CAMPUS COPS</p>
-           <p class="style4">2022</p>
-       </div>
-   </div>
-
-   <div class="table-container">
-       <div class="image-container">
-           <img src="images/aw4.jpg" alt="SKOCH Award" class="award-image">
-       </div>
-       <div class="text-container">
-           <p class="style4">SKOCH</p>
-           <p class="style4">COURT MONITORING SYSTEM</p>
-           <p class="style4">2023</p>
-       </div>
-   </div>
-</table>
+    <section class="awards-section">
+        <h2 class="section-title">
+            <span class="title-text">Excellence in Law Enforcement</span>
+        </h2>
+        <p class="section-description">Recognizing our commitment to innovative policing and public safety</p>
+    
+        <div class="awards-container">
+            <div class="award-card" data-aos="fade-up">
+                <div class="award-image-wrapper">
+                    <img src="images/aw1.jpg" alt="SKOCH Award" class="award-image">
+                    <div class="award-overlay">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">SKOCH Award</h3>
+                    <p class="award-category">Transfers Module</p>
+                    <span class="award-year">2019</span>
+                    <div class="award-details">
+                        <p>Recognized for implementing a transparent and efficient police personnel transfer system</p>
+                        <ul class="achievement-list">
+                            <li>Automated transfer process</li>
+                            <li>Reduced processing time by 60%</li>
+                            <li>Enhanced transparency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="award-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="award-image-wrapper">
+                    <img src="images/aw2.jpg" alt="Governance Now Award" class="award-image">
+                    <div class="award-overlay">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">Governance Now</h3>
+                    <p class="award-category">E-Beat System</p>
+                    <span class="award-year">2020</span>
+                    <div class="award-details">
+                        <p>Excellence in digital transformation of police patrolling systems</p>
+                        <ul class="achievement-list">
+                            <li>Real-time patrol tracking</li>
+                            <li>Improved response time</li>
+                            <li>Digital documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="award-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="award-image-wrapper">
+                    <img src="images/aw3.jpg" alt="Technology Sabha Award" class="award-image">
+                    <div class="award-overlay">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">Technology Sabha</h3>
+                    <p class="award-category">Campus Cops</p>
+                    <span class="award-year">2022</span>
+                    <div class="award-details">
+                        <p>Innovative program connecting law enforcement with educational institutions</p>
+                        <ul class="achievement-list">
+                            <li>Campus safety initiatives</li>
+                            <li>Student outreach programs</li>
+                            <li>Emergency response protocols</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="award-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="award-image-wrapper">
+                    <img src="images/aw4.jpg" alt="SKOCH Award" class="award-image">
+                    <div class="award-overlay">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">SKOCH</h3>
+                    <p class="award-category">Court Monitoring System</p>
+                    <span class="award-year">2023</span>
+                    <div class="award-details">
+                        <p>Digital transformation in judicial case management</p>
+                        <ul class="achievement-list">
+                            <li>Automated case tracking</li>
+                            <li>Reduced paperwork by 80%</li>
+                            <li>Improved case resolution time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 <footer>
     <p>&copy; 2024 Srikakulam Police Department. All Rights Reserved.</p>
 </footer>
-<script src="hamburger.js"></script>
+<script src="headerandfoot.js"></script>
 </body>
 </html>

@@ -148,68 +148,65 @@
 </head>
 <body>
 <header>
-    <!-- Left Logo -->
-    <div>
-        <img src="images/Appolice.png" alt="Left Logo" class="logo">
-    </div>
+<section class="header-section">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/Appolice.png" alt="Left Logo" class="logo">
+            </div>
+            <h1 class="header-title">Srikakulam Police Department</h1>
+            <div class="logo-container">
+                <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
 
-    <!-- Center Heading -->
-    <h1 class="header-title">Srikakulam Police Department</h1>
-
-    <!-- Right Logo -->
-    <div>
-        <img src="images/Sklmlogo.png" alt="Right Logo" class="logo">
-    </div>
-
-    <!-- Hamburger Menu -->
-    <div class="hamburger" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </div>
-</header>
-<!-- Navigation Bar -->
-<nav>
-    <ul>
-        <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-            <ul>
-                <li><a href="history.html">History</a></li>
-                <li><a href="organisation.html">Organisation Chart</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="officers.php">Our Team</a></li>
-                <li><a href="gallery.php">Gallery</a></li>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="#about">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="#">Organisation Chart</a></li>
+                        <li><a href="#">Awards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="#">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                    </ul>
+                </li>
+                <li><a href="contacts.html">Contact Us</a></li>
             </ul>
-        </li>
-        <li><a href="#wings"><i class="fas fa-shield-alt"></i> Wings</a>
-            <ul>
-                <li><a href="law.html">Law & Order</a></li>
-                <li><a href="traffic.html">Traffic</a></li>
-                <li><a href="tel:100">Dial 100</a></li>
-                <li><a href="#">AHTU</a></li>
-            </ul>
-        </li>
-        <li><a href="#"><i class="fas fa-female"></i> Women’s Corner</a></li>
-        <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-            <ul>
-                <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
-                        Report</a></li>
-                <li><a href="fir.html">View FIR</a></li>
-                <li><a href="domestic.html">Domestic Violence</a></li>
-                <li><a href="accident.html">Accident Analysis</a></li>
-                <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
-                        Speaker Permission</a></li>
-                        <li><a href="services.html">Knowmore</a></li>
-            </ul>
-        </li>
-        <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
-    </ul>
-</nav>
-
+        </nav>
+    </section>
 
         <?php
 $servername = "localhost";
 $username = "root"; // Default XAMPP username
 $password = ""; // Default XAMPP password is empty
-$dbname = "srikakulam_police";
+$dbname = "srikakulam_police_department";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
