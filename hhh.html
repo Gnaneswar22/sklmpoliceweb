@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolkata Police Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 1920px;
+            height: 573px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            visibility: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay-1, .overlay-2 {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .overlay-1 {
+            left: -50%;
+            animation: slideInOverlay1 1.5s forwards;
+            z-index: 2;
+        }
+
+        .overlay-2 {
+            left: -50%;
+            animation: slideInOverlay2 1.5s forwards;
+            z-index: 1;
+        }
+
+        .slide-text {
+            position: absolute;
+            left: 35%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            color: #0a9396;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .slide-text h1 {
+            font-size: 3rem;
+            opacity: 0;
+            animation: slideInText 1s forwards;
+            animation-delay: 0.3s;
+        }
+
+        .slide-text p {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: slideInText 1s forwards;
+            animation-delay: 1s;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 24px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        @keyframes slideInOverlay1 {
+            0% { left: -50%; }
+            100% { left: 0; }
+        }
+
+        @keyframes slideInOverlay2 {
+            0% { left: 50%; }
+            100% { left: 0; }
+        }
+
+        @keyframes slideInText {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1920px) {
+            .slider-container {
+                width: 100%;
+                height: calc(573 * (100vw / 1920))px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slide">
+            <img src="images/sp.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/policepared.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/station.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/1.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="images/sklmmap.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <button class="nav-button prev">&lt;</button>
+        <button class="nav-button next">&gt;</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderContainer = document.querySelector('.slider-container');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            let currentSlide = 0;
+            let isAnimating = false;
+            let autoPlayInterval;
+
+            function preloadImages() {
+                slides.forEach(slide => {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        const preloadImg = new Image();
+                        preloadImg.src = img.src;
+                    }
+                });
+            }
+
+            function resetAnimations(slide) {
+                if (!slide) return;
+                
+                const elements = {
+                    overlay1: slide.querySelector('.overlay-1'),
+                    overlay2: slide.querySelector('.overlay-2'),
+                    h1: slide.querySelector('h1'),
+                    p: slide.querySelector('p')
+                };
+
+                Object.values(elements).forEach(element => {
+                    if (element) {
+                        element.style.animation = 'none';
+                        element.offsetHeight;
+                    }
+                });
+
+                requestAnimationFrame(() => {
+                    if (elements.overlay1) elements.overlay1.style.animation = 'slideInOverlay1 1.5s forwards';
+                    if (elements.overlay2) elements.overlay2.style.animation = 'slideInOverlay2 1.5s forwards';
+                    if (elements.h1) {
+                        elements.h1.style.animation = 'slideInText 1s forwards';
+                        elements.h1.style.animationDelay = '0.6s';
+                    }
+                    if (elements.p) {
+                        elements.p.style.animation = 'slideInText 1s forwards';
+                        elements.p.style.animationDelay = '0.6s';
+                    }
+                });
+            }
+
+            function showSlide(index) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                        resetAnimations(slide);
+                    }
+                });
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 1500);
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+                resetAutoPlay();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+                resetAutoPlay();
+            }
+
+            function resetAutoPlay() {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = setInterval(nextSlide, 5000);
+            }
+
+            function initSlider() {
+                preloadImages();
+                slides[0].classList.add('active');
+                resetAnimations(slides[0]);
+                resetAutoPlay();
+
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') prevSlide();
+                    if (e.key === 'ArrowRight') nextSlide();
+                });
+
+                sliderContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+                sliderContainer.addEventListener('mouseleave', resetAutoPlay);
+            }
+
+            initSlider();
+        });
+    </script>
+</body>
+</html>

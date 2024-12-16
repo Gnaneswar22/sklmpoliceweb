@@ -9,6 +9,7 @@
     <style>
                 
         .highlights {
+            margin-top: 50px;
             text-align: center;
             padding: 1.5rem;
         }

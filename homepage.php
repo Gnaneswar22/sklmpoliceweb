@@ -11,13 +11,7 @@ function safeQuery($conn, $query) {
     }
 }
 
-// Fetch navigation items
-$nav_query = "SELECT * FROM nav_menu_items WHERE parent_id IS NULL ORDER BY order_position";
-$main_menu_items = safeQuery($conn, $nav_query);
 
-// Fetch hero slides
-$slides_query = "SELECT * FROM hero_slides WHERE is_active = 1 ORDER BY order_position";
-$hero_slides = safeQuery($conn, $slides_query);
 
 // Fetch emergency numbers
 $emergency_query = "SELECT * FROM emergency_numbers WHERE is_active = 1";
@@ -51,6 +45,9 @@ $initiatives = safeQuery($conn, $initiatives_query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srikakulam Police Department</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ 
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="homestyle.css">
@@ -75,181 +72,108 @@ $initiatives = safeQuery($conn, $initiatives_query);
             </div>
         </header>
 
-        <?php
-require_once 'config.php';
-
-// Function to get menu items
-function getMenuItems($conn, $parent_id = null) {
-    try {
-        $stmt = $conn->prepare("
-            SELECT * FROM nav_menu_items 
-            WHERE parent_id IS :parent_id 
-            AND is_active = 1 
-            ORDER BY order_position
-        ");
-        $stmt->execute(['parent_id' => $parent_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        return [];
-    }
-}
-
-// Get main menu items
-$main_menu_items = getMenuItems($conn);
-?>
-
-<nav class="navbar">
-    <ul class="nav-list" id="nav-list">
-        <li><a href="homepage.php">Home</a></li>
-        <li class="dropdown-parent">
-            <a href="aboutus.html">About Us</a>
-            <ul class="dropdown">
-                <li><a href="history.html">History</a></li>
-                <li><a href="organisation.html">Organisation Chart</a></li>
-                <li><a href="awards.html">Awards</a></li>
-            </ul>
-        </li>
-        <li class="dropdown-parent">
-            <a href="#wings">Wings</a>
-            <ul class="dropdown">
-                <li><a href="law.html">Law & Order</a></li>
-                <li><a href="traffic.html">Traffic</a></li>
-                <li><a href="tel:100">Dial 100</a></li>
-                <li><a href="Ahtu.html">AHTU</a></li>
-            </ul>
-        </li>
-        <li class="dropdown-parent">
-            <a href="#services">Services</a>
-            <ul class="dropdown">
-                <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost Report</a></li>
-                <li><a href="fir.html">View FIR</a></li>
-                <li><a href="domestic.html">Domestic Violence</a></li>
-                <li><a href="accident.html">Accident Analysis</a></li>
-                <li><a href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud Speaker Permission</a></li>
-                <li>
-                <a href="services.html">knowmore</a></li>
-            </ul>
-        </li>
-        <li><a href="contacts.html">Contact Us</a></li>
-        
-        <!-- Additional items from database -->
-        <?php foreach ($main_menu_items as $item): 
-            // Skip items that are already in static menu
-            if (in_array($item['title'], ['Home', 'About Us', 'Wings', 'Services', 'Contact Us'])) continue;
-            
-            $submenu_items = getMenuItems($conn, $item['id']);
-            $has_submenu = !empty($submenu_items);
-        ?>
-            <li <?php if ($has_submenu) echo 'class="dropdown-parent"'; ?>>
-                <a href="<?php echo htmlspecialchars($item['link']); ?>">
-                    <?php echo htmlspecialchars($item['title']); ?>
-                </a>
-                
-                <?php if ($has_submenu): ?>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
+                <li><a href="homepage.php">Home</a></li>
+                <li class="dropdown-parent">
+                    <a href="#aboutus">About Us</a>
                     <ul class="dropdown">
-                        <?php foreach ($submenu_items as $submenu): ?>
-                            <li>
-                                <a href="<?php echo htmlspecialchars($submenu['link']); ?>">
-                                    <?php echo htmlspecialchars($submenu['title']); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="organisation.html">Organisation Chart</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                        <li><a href="officers.html">Our Team</a></li>
                     </ul>
-                <?php endif; ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</nav>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#wings">Wings</a>
+                    <ul class="dropdown">
+                        <li><a href="law.html">Law & Order</a></li>
+                        <li><a href="traffic.html">Traffic</a></li>
+                        <li><a href="tel:100">Dial 100</a></li>
+                        <li><a href="AHTU.html">AHTU</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-parent">
+                    <a href="#services">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="https://ceir.sancharsaathi.gov.in/Request/CeirUserBlockRequestDirect.jsp">Lost
+                                Report</a></li>
+                        <li><a href="fir.html">View FIR</a></li>
+                        <li><a href="domestic.html">Domestic Violence</a></li>
+                        <li><a href="accident.html">Accident Analysis</a></li>
+                        <li><a
+                                href="https://services.india.gov.in/service/detail/apply-online-for-use-of-loud-speakers-1">Loud
+                                Speaker Permission</a></li>
+                                <li><a href="services.html">knowmore</a></li>
+                    </ul>
+                </li>
+                <li><a href="womenscorner.html">womenscorner</a></li>
+        <li><a href="contacts.html">Contact Us</a></li>
+       
+        
+       
+        </nav>
 
     </section>
+
+
     <!-- Hero Section -->
-    <?php
-require_once 'config.php';
-
-// Function to get hero slides
-function getHeroSlides($conn) {
-    try {
-        $stmt = $conn->prepare("
-            SELECT * FROM hero_slides 
-            WHERE is_active = 1 
-            ORDER BY order_position
-        ");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        error_log("Error fetching hero slides: " . $e->getMessage());
-        return [];
-    }
-}
-
-// Fetch slides from the database
-$hero_slides = getHeroSlides($conn);
-?>
-
-<section class="hero-section">
-    <div class="slider">
-        <?php if (!empty($hero_slides)): ?>
-            <?php foreach ($hero_slides as $slide): ?>
-                <div class="slide">
-                    <?php
-                    // Construct the correct image path
-                    $image_path = 'admin_panel/' . $slide['image_path'];
-                    // Debug information
-                    error_log("Image Path: " . $image_path);
-                    ?>
-                    <img src="<?php echo htmlspecialchars($image_path); ?>" 
-                         alt="<?php echo htmlspecialchars($slide['alt_text']); ?>"
-                         onerror="this.src='images/img.jpg'; console.log('Image failed to load');">
-                    
-                    <?php if ($slide['dark_overlay']): ?>
-                        <div class="dark-overlay"></div>
-                    <?php endif; ?>
-                    
-                    <div class="slide-content content-overlay">
-                        <div class="title-wrapper">
-                            <h1 class="title"><?php echo htmlspecialchars($slide['title']); ?></h1>
-                        </div>
-                        <div class="subtitle-wrapper">
-                            <p class="subtitle">
-                                <?php 
-                                $formatted_subtitle = str_replace(
-                                    ['{span}', '{/span}'], 
-                                    ['<span>', '</span>'], 
-                                    $slide['subtitle']
-                                );
-                                echo $formatted_subtitle; 
-                                ?>
-                            </p>
-                        </div>
-                        <p class="tagline"><?php echo htmlspecialchars($slide['tagline']); ?></p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <!-- Fallback slide -->
-            <div class="slide">
-                <img src="images/img.jpg" alt="Srikakulam Police Station">
-                <div class="dark-overlay"></div>
-                <div class="slide-content content-overlay">
-                    <div class="title-wrapper">
-                        <h1 class="title">Srikakulam Police Station</h1>
-                    </div>
-                    <div class="subtitle-wrapper">
-                        <p class="subtitle">Serving <span>With Pride</span> Since 1956</p>
-                    </div>
-                    <p class="tagline">PROTECT • SERVE • UNITE</p>
-                </div>
+     
+    <div class="slider-container">
+        <div class="slide">
+            <img src="images/sp.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
             </div>
-        <?php endif; ?>
+        </div>
+
+        <div class="slide">
+            <img src="images/policepared.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/station.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/1.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/sklmmap.jpg" alt="Kolkata Police">
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="slide-text">
+                <h1>Srikakulam Police</h1>
+                <p>Serving City Of Joy Since 1856</p>
+            </div>
+        </div>
+
+        <button class="nav-button prev">&lt;</button>
+        <button class="nav-button next">&gt;</button>
     </div>
 
-    <div class="nav-buttons">
-        <button class="nav-btn prev-btn">❮</button>
-        <button class="nav-btn next-btn">❯</button>
-    </div>
-
-    <div class="slide-indicators"></div>
-</section>
 
 <?php
 require_once 'config.php';
@@ -806,31 +730,104 @@ setInterval(() => {
             </div>
 
             <!-- Social Media Feeds -->
-            <div class="social-feeds">
-                <!-- Facebook Feed -->
-                <div class="feed-container">
-                    <iframe
-                        src="https://www.facebook.com/profile.php?id=100068435118920&__cft__[0]=AZVUlz7oG5BD50EdPWwOPefD1cATmsUvCgnXPz3OUBlfo2ManeDsuRoC_OrQRx-B023XM4ganxMw-yk8AUwLXxS3aBdnJR6-P_TJvjqgY4X9gSNfHb_KVmO8fkRGV_mQyFyTf1-FDhxC4LL-PYQyUY9FgU7QzHtxaTVGY35HwI6_HFp6u8NUObBJa50MwtoqYx8&__tn__=-UC%2CP-R"
-                        width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                        allowfullscreen="true">
-                    </iframe>
-                </div>
+           <!-- Social Media Feeds Section -->
+<section class="social-feeds-section">
+    <!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" 
+    nonce="YOUR_NONCE">
+</script>
 
-                <!-- Twitter Feed -->
-                <div class="feed-container">
-                    <a class="twitter-timeline" data-height="500" href="https://x.com/SRIKAKULMPOLICE">
-                        Tweets by Srikakulam Police
-                    </a>
-                </div>
-
-                <!-- YouTube Feed -->
-                <div class="feed-container">
-                    <iframe width="100%" height="500"
-                        src="https://www.youtube.com/embed?listType=user_uploads&list=SrikakulamPolice" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                    </iframe>
-                </div>
+    <div class="social-feeds">
+        <!-- Facebook Feed -->
+          <!-- Facebook Feed - Corrected -->
+          <div class="feed-container facebook-feed">
+            <!-- Facebook Page Plugin -->
+            <div class="fb-page" 
+                data-href="https://www.facebook.com/profile.php?id=100068435118920"
+                data-tabs="timeline"
+                data-width="500"
+                data-height="500"
+                data-small-header="false"
+                data-adapt-container-width="true"
+                data-hide-cover="false"
+                data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/profile.php?id=100068435118920" 
+                    class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/profile.php?id=100068435118920">Srikakulam Police</a>
+                </blockquote>
             </div>
+        </div>
+
+
+        <!-- Twitter/X Feed -->
+        <div class="feed-container twitter-feed">
+            <a class="twitter-timeline"
+               href="https://twitter.com/SRIKAKULMPOLICE"
+               data-width="500"
+               data-height="500"
+               data-theme="light">
+                Tweets by Srikakulam Police
+            </a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <!-- YouTube Feed -->
+
+        <div class="feed-container youtube-feed">
+            <iframe 
+                width="500" 
+                height="500"
+                src="http://www.youtube.com/@appolice6367"
+                title="Srikakulam Police YouTube Channel"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+    
+    </div>
+
+<script>
+// Load YouTube IFrame API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// Create YouTube Player
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '500',
+        width: '500',
+        playerVars: {
+            listType: 'playlist',
+            list: 'https://www.youtube.com/@appolice6367/videos', // Replace with your playlist ID
+            autoplay: 0,
+            controls: 1,
+            showinfo: 1,
+            rel: 0
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    document.getElementById('youtube-feed').classList.remove('loading');
+}
+
+function onPlayerStateChange(event) {
+    // Handle player state changes if needed
+}
+</script>
+
+</section>
+
         </div>
     </section>
 
@@ -845,14 +842,14 @@ setInterval(() => {
             <div class="footer-section">
                 <h3 class="footer-heading">Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="homepage.php">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact Us</a></li>
                 </ul>
             </div>
     
             <!-- Contact Info Section -->
-            <div class="footer-section">
+            <div class="footer-section" style="color: #fff;">
                 <h3 class="footer-heading">Contact Info</h3>
                 <p>Email: <a href="mailto:info@policedepartment.com">info@policedepartment.com</a></p>
                 <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
@@ -872,86 +869,169 @@ setInterval(() => {
     <script>
 // Wait for DOM to be fully loaded before initializing
 document.addEventListener('DOMContentLoaded', function() {
-    initHeroSlider();
+    initshowSlide();
     initEmergencyHelpline();
     initPressTicker();
-    initNavigationMenu();
+    
     initNewsPopup();
 });
 
 // 1. Hero Section Slider Implementation
-function initHeroSlider() {
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderContainer = document.querySelector('.slider-container');
     const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelector('.slide-indicators');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const TOTAL_SLIDES = 5; // Fixed number of slides
     let currentSlide = 0;
-    let slideInterval;
+    let isAnimating = false;
+    let autoPlayInterval;
 
-    function createIndicators() {
-        slides.forEach((_, index) => {
-            const indicator = document.createElement('div');
-            indicator.classList.add('indicator');
-            if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
-            indicators.appendChild(indicator);
+    // Update clock function with current time
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const dateStr = now.toISOString().split('T')[0];
+
+        document.querySelectorAll('.digital-clock').forEach(clock => {
+            const timeElements = {
+                hours: clock.querySelector('.hours'),
+                minutes: clock.querySelector('.minutes'),
+                seconds: clock.querySelector('.seconds'),
+                date: clock.querySelector('.date')
+            };
+            
+            if (timeElements.hours) timeElements.hours.textContent = hours;
+            if (timeElements.minutes) timeElements.minutes.textContent = minutes;
+            if (timeElements.seconds) timeElements.seconds.textContent = seconds;
+            if (timeElements.date) timeElements.date.textContent = dateStr;
         });
     }
 
-    function updateSlide() {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[currentSlide].classList.add('active');
-        
-        document.querySelectorAll('.indicator').forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentSlide);
+    // Show specific slide
+    function showSlide(index) {
+        if (isAnimating || index < 0 || index >= TOTAL_SLIDES) return;
+        isAnimating = true;
+
+        // Hide all slides first
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
         });
+
+        // Show and animate current slide
+        slides[index].style.display = 'block';
+        slides[index].classList.add('active');
+        resetAnimations(slides[index]);
+
+        currentSlide = index;
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 1500);
     }
 
+    // Navigation functions
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateSlide();
+        const nextIndex = (currentSlide + 1) % TOTAL_SLIDES;
+        showSlide(nextIndex);
+        resetAutoPlay();
     }
 
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateSlide();
+        const prevIndex = (currentSlide - 1 + TOTAL_SLIDES) % TOTAL_SLIDES;
+        showSlide(prevIndex);
+        resetAutoPlay();
     }
 
-    function goToSlide(index) {
-        currentSlide = index;
-        updateSlide();
-        resetInterval();
+    // Reset autoplay timer
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 5000);
     }
 
-    function resetInterval() {
-        clearInterval(slideInterval);
-        startInterval();
-    }
+    // Reset slide animations
+    function resetAnimations(slide) {
+        if (!slide) return;
+        
+        const elements = {
+            overlay1: slide.querySelector('.overlay-1'),
+            overlay2: slide.querySelector('.overlay-2'),
+            h1: slide.querySelector('h1'),
+            p: slide.querySelector('p'),
+            clock: slide.querySelector('.digital-clock')
+        };
 
-    function startInterval() {
-        slideInterval = setInterval(nextSlide, 5000);
+        // Reset animations
+        Object.values(elements).forEach(element => {
+            if (element) {
+                element.style.animation = 'none';
+                element.offsetHeight; // Force reflow
+            }
+        });
+
+        // Apply animations
+        requestAnimationFrame(() => {
+            if (elements.overlay1) {
+                elements.overlay1.style.animation = 'slideInOverlay1 1.5s forwards';
+            }
+            if (elements.overlay2) {
+                elements.overlay2.style.animation = 'slideInOverlay2 1.5s forwards';
+            }
+            if (elements.h1) {
+                elements.h1.style.animation = 'slideInText 1s forwards';
+                elements.h1.style.animationDelay = '1.2s';
+            }
+            if (elements.p) {
+                elements.p.style.animation = 'slideInText 1s forwards';
+                elements.p.style.animationDelay = '1.4s';
+            }
+            if (elements.clock) {
+                elements.clock.style.animation = 'fadeIn 1s forwards';
+                elements.clock.style.animationDelay = '1.5s';
+            }
+        });
     }
 
     // Initialize slider
-    createIndicators();
-    updateSlide();
-    startInterval();
+    function initSlider() {
+        // Hide all slides initially
+        slides.forEach(slide => {
+            slide.style.display = 'none';
+        });
 
-    // Event Listeners
-    prevBtn?.addEventListener('click', () => {
-        prevSlide();
-        resetInterval();
-    });
+        // Show first slide
+        showSlide(0);
+        updateClock();
+        
+        // Set up intervals
+        setInterval(updateClock, 1000);
+        resetAutoPlay();
 
-    nextBtn?.addEventListener('click', () => {
-        nextSlide();
-        resetInterval();
-    });
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
 
-    const heroSection = document.querySelector('.hero-section');
-    heroSection?.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    heroSection?.addEventListener('mouseleave', () => startInterval());
-}
+        // Pause autoplay on hover
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', resetAutoPlay);
+    }
+
+    // Start the slider
+    initSlider();
+});
+
 
 // 2. Emergency Helpline Implementation
 function initEmergencyHelpline() {
@@ -1024,51 +1104,7 @@ function initPressTicker() {
 }
 
 // 4. Navigation Menu Implementation
-function initNavigationMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navbar = document.querySelector('.navbar');
-    const dropdownParents = document.querySelectorAll('.dropdown-parent');
 
-    function toggleMenu() {
-        menuToggle?.classList.toggle('active');
-        navbar?.classList.toggle('active');
-        document.body.style.overflow = navbar?.classList.contains('active') ? 'hidden' : '';
-    }
-
-    menuToggle?.addEventListener('click', toggleMenu);
-
-    dropdownParents.forEach(parent => {
-        const link = parent.querySelector('a');
-        link?.addEventListener('click', (e) => {
-            e.preventDefault();
-            parent.classList.toggle('active');
-            
-            dropdownParents.forEach(otherParent => {
-                if (otherParent !== parent) {
-                    otherParent.classList.remove('active');
-                }
-            });
-        });
-    });
-
-    // Close menu on outside click and ESC key
-    document.addEventListener('click', (e) => {
-        if (navbar?.classList.contains('active') && 
-            !navbar.contains(e.target) && 
-            !menuToggle?.contains(e.target)) {
-            toggleMenu();
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (navbar?.classList.contains('active')) {
-                toggleMenu();
-            }
-            dropdownParents.forEach(parent => parent.classList.remove('active'));
-        }
-    });
-}
 
 // 5. News Popup Implementation
 function initNewsPopup() {
@@ -1162,6 +1198,42 @@ setInterval(updateLocalTime, 1000);
 
 // Initial time update
 updateLocalTime();
+
+
+
+
+
+
+
+
+
+
+// Add this function at the beginning of your PHP file
+function optimizeImage($imagePath) {
+    $info = getimagesize($imagePath);
+    $quality = 60; // Reduce quality for faster loading
+    $maxWidth = 1200; // Maximum width for hero images
+    
+    if ($info[0] > $maxWidth) {
+        $image = imagecreatefromjpeg($imagePath);
+        $newImage = imagescale($image, $maxWidth);
+        imagejpeg($newImage, $imagePath, $quality);
+    }
+}
+
+
+// Add this to track loading performance
+window.addEventListener('load', () => {
+    const timing = window.performance.timing;
+    const pageLoadTime = timing.loadEventEnd - timing.navigationStart;
+    console.log(`Page load time: ${pageLoadTime}ms`);
+});
+
+
+
+
+
+
 </script>
 
 </body>
