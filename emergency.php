@@ -49,15 +49,19 @@ function deleteEmergencyContact($conn, $id) {
   <title>Srikakulam Police Department</title>
   <style>
     .container {
+      
+      margin-top: 500px;
       padding: 2em;
       max-width: 900px;
       margin: auto;
     }
     .emergency-numbers {
+      margin-top: 100px;
       list-style-type: none;
       padding: 0;
     }
     .emergency-numbers li {
+      margin-top: 500px;
         color:black;
         font-size: 18px;
         font-weight:bold;
@@ -149,31 +153,27 @@ function deleteEmergencyContact($conn, $id) {
         </nav>
     </section>
 
-<div class="container">
+    <div class="container">
   <h2>Emergency Contact Numbers</h2>
   <ul class="emergency-numbers">
-    <li>
-      <span>Police Emergency:</span>
-      <a href="tel:100"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Fire Services:</span>
-      <a href="tel:101"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Ambulance:</span>
-      <a href="tel:108"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Women’s Helpline:</span>
-      <a href="tel:181"><span>DIAL</span></a>
-    </li>
-    <li>
-      <span>Child Helpline:</span>
-      <a href="tel:1098"><span>DIAL</span></a>
-    </li>
+    <?php
+    // Fetch all emergency contacts from the database
+    $contacts = getEmergencyContacts($conn);
+
+    if ($contacts->num_rows > 0) {
+        while ($row = $contacts->fetch_assoc()) {
+            echo '<li>';
+            echo '<span>' . htmlspecialchars($row['service_name']) . ':</span>';
+            echo '<a href="tel:' . htmlspecialchars($row['phone_number']) . '"><span>DIAL</span></a>';
+            echo '</li>';
+        }
+    } else {
+        echo '<li>No emergency contacts available.</li>';
+    }
+    ?>
   </ul>
 </div>
+
 <script src="hamburger.js"></script>
 
 

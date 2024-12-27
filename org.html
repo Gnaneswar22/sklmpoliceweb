@@ -1,35 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>JSCharting Test</title>
-    <meta charset="utf-8" />
-    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive District Map</title>
     <style>
-      #chartDiv {
-        width: 820px;
-        height: 460px;
-        margin: 20px auto;
-      }
+        .map-container {
+            position: relative;
+            width: 800px;
+            margin: 0 auto;
+        }
+        
+        .region {
+            fill: #ccc;
+            stroke: #fff;
+            stroke-width: 1px;
+            transition: fill 0.3s;
+        }
+        
+        .region:hover {
+            fill: #ff9900;
+            cursor: pointer;
+        }
+        
+        .popup {
+            position: absolute;
+            display: none;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .popup img {
+            max-width: 200px;
+            max-height: 150px;
+        }
+        
+        .popup-content {
+            text-align: center;
+        }
+        
+        .popup h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
     </style>
-  </head>
-  <body>
-    <div id="chartDiv"></div>
+</head>
+<body>
+    <div class="map-container">
+        <!-- SVG Map -->
+        <svg viewBox="0 0 800 600">
+            <!-- Each region as a path -->
+            <path class="region" id="tekkali" d="M400,200 L450,250..." data-name="Tekkali UPS"/>
+            <path class="region" id="meliaputti" d="M300,150 L350,200..." data-name="Meliaputti PS"/>
+            <!-- Add more paths for other regions -->
+        </svg>
+        
+        <!-- Popup container -->
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <h3></h3>
+                <img src="images/sklmmap1.jpg" alt="Region Image">
+            </div>
+        </div>
+    </div>
+
     <script>
-      var config = {
-        type: 'organizational down',
-        defaultPoint: {
-          annotation: { label_text: 'Sample Node' }
-        },
-        series: [
-          {
-            points: [
-              { name: 'Root Node' },
-              { name: 'Child Node', parent: 'Root Node' }
-            ]
-          }
-        ]
-      };
-      JSC.chart('chartDiv', config);
+        // Image data for each region
+        const regionData = {
+            'tekkali': {
+                name: 'Tekkali UPS',
+                image: 'path/to/tekkali-image.jpg'
+            },
+            'meliaputti': {
+                name: 'Meliaputti PS',
+                image: 'path/to/meliaputti-image.jpg'
+            }
+            // Add data for other regions
+        };
+
+        const regions = document.querySelectorAll('.region');
+        const popup = document.getElementById('popup');
+        const popupImage = popup.querySelector('img');
+        const popupTitle = popup.querySelector('h3');
+
+        regions.forEach(region => {
+            region.addEventListener('mouseenter', (e) => {
+                const regionId = region.id;
+                const data = regionData[regionId];
+                
+                if (data) {
+                    popupTitle.textContent = data.name;
+                    popupImage.src = data.image;
+                    popup.style.display = 'block';
+                    
+                    // Position popup near cursor
+                    const rect = region.getBoundingClientRect();
+                    popup.style.left = e.pageX + 10 + 'px';
+                    popup.style.top = e.pageY + 10 + 'px';
+                }
+            });
+
+            region.addEventListener('mouseleave', () => {
+                popup.style.display = 'none';
+            });
+        });
+
+        // Update popup position on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (popup.style.display === 'block') {
+                popup.style.left = e.pageX + 10 + 'px';
+                popup.style.top = e.pageY + 10 + 'px';
+            }
+        });
     </script>
-  </body>
+</body>
 </html>

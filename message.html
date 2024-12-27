@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>SP Message - Srikakulam Police</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.message-page {
+    min-height: 50vh;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.message-container {
+    width: 95%;
+    max-width: 1300px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.message-header {
+    background: linear-gradient(45deg, #0a9396, #283593);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.message-header h1 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    animation: slideDown 1s ease forwards;
+}
+
+.message-content {
+    display: flex;
+    padding: 2rem;
+    gap: 3rem;
+    align-items: center;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.title {
+    color: #0a9396;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.subtitle {
+    color: #283593;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.message-text {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0;
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.7s;
+}
+
+.sp-image {
+    flex: 0 0 300px;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.sp-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(20px);
+    animation: floatUp 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.sp-image::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid #1a237e;
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0;
+    animation: borderFade 0.8s ease forwards;
+    animation-delay: 1.2s;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes borderFade {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hover Effects */
+.sp-image img:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .message-content {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .sp-image {
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .text-content {
+        text-align: center;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="message-page">
+        <div class="message-container">
+            <div class="message-header">
+                <h1>Message from Superintendent of Police</h1>
+            </div>
+            <div class="message-content">
+                <div class="text-content">
+                    <h2 class="title">Sri.K.V.Maheswara Reddy,I.P.S</h2>
+                    <h3 class="subtitle">Superintendent of Police, Srikakulam</h3>
+                  
+                            <div class="message-text">
+                                <p>
+                                    It is my distinct honor to welcome you to the official website of Srikakulam Police Department.
+                                </p>
+                                
+                                <p>
+                                    As the Superintendent of Police, I am proud to lead a force that combines traditional values with modern policing methods. Our department is dedicated to ensuring the safety and security of Srikakulam's citizens through effective law enforcement, proactive crime prevention, and community engagement.
+                                </p>
+                    
+                                <p>
+                                    In today's rapidly evolving technological landscape, we face numerous challenges. To address these, we have implemented a comprehensive modernization program that includes:
+                                </p>
+                    
+                                <ul class="initiatives-list">
+                                    <li>Advanced surveillance systems for enhanced city security</li>
+                                    <li>Modern traffic management solutions</li>
+                                    <li>Specialized cyber crime prevention and investigation unit</li>
+                                    <li>Technology-driven emergency response systems</li>
+                                </ul>
+                    
+                                <p>
+                                    Beyond law enforcement, our commitment extends to various community outreach programs that strengthen the bond between the police and public:
+                                </p>
+                    
+                                <div class="community-initiatives">
+                                    <ul>
+                                        <li>Women's safety initiatives</li>
+                                        <li>Senior citizen support programs</li>
+                                        <li>Youth engagement activities</li>
+                                        <li>Community awareness campaigns</li>
+                                    </ul>
+                                </div>
+                    
+                                <p>
+                                    Our force is constantly evolving to meet new challenges while maintaining our core values of integrity, professionalism, and public service. We remain committed to providing prompt, efficient, and courteous service to all citizens of Srikakulam.
+                                </p>
+                    
+                                <p>
+                                    Your feedback and suggestions are valuable to us as we strive to enhance our services and strengthen our relationship with the community.
+                                </p>
+                    
+                                <div class="signature-block">
+                                    <p>With warm regards,</p>
+                                    <h4>Sri.K.V.Maheswara Reddy,I.P.S</h4>
+                                    <p>Superintendent of Police</p>
+                                    <p>Srikakulam District</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-image">
+                            <img src="images/2.jpg" alt="Superintendent of Police">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

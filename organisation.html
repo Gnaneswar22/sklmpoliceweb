@@ -7,178 +7,385 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Police Department Organisation Chart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-/* Base styles */
-* {
+  <style>* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
 .header-section {
-    position: relative;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+position: relative;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+background: white;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 2rem;
-    background: white;
+display: flex;
+align-items: center;
+padding: 0.5rem 2rem;
+background: #0a9396;
+flex-wrap: nowrap;
+justify-content: space-between;
+}
+
+.logo-container {
+display: flex;
+align-items: center;
 }
 
 .logo {
-    height: 80px;
+    height: 130px;
     width: auto;
+   padding: 10px;
+    position: relative;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .header-title {
-    font-size: 1.8rem;
-    color: #1a237e;
-    text-align: center;
+text-align: center;
+color: white;
+margin: 0;
+flex: 1;
 }
 
-/* Navigation Styles */
+
+
+
+/* Navbar styles */
 .navbar {
-    background: #0a9396;
+background: #0a9396;
+width: 100%;
+padding: 0;
+position: relative;
+display: block;
+
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+.logo {
+height: 80px;
+margin: 0 5px;
+}
+
+.top-line {
+font-size: 1.4rem;
+}
+
+.bottom-line {
+font-size: 1.4rem;
+}
+
+}
+
+@media screen and (max-width: 480px) {
+.header {
+padding: 0.5rem;
+}
+
+.logo {
+height: 60px;
+padding-top: 5px;
+}
+
+.top-line {
+font-size: 1.2rem;
+}
+
+.bottom-line {
+font-size: 1rem;
+}
+
+
+}
+
+
+/* Desktop and Tablet */
+@media screen and (min-width: 1024px) {
+    .header {
+        padding: 0.5rem 1rem;
+    }
+    
+    .logo {
+        margin-right: 50px;
+        margin-left: 50px;
+        height: 110px;
+    }
+    
+    .header-title {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 767px) {
+    .header {
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        height: 50px;
+        margin: 0 10px;
+        padding-top: 5px;
+    }
+    
+    .header-title {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 480px) {
+
+.header-title {
+display: block;
+text-align: center;
+padding: 10px;
+line-height: 1.2;
+margin: 0;
+color: white;
+}
+.logo {
+        height: 60px;
+        margin: 0 5px;
+        padding-top: 5px;
+    }
+.top-line {
+display: block;
+font-size: 22px; /* Fixed size for mobile */
+font-weight: 700;
+color: #ffffff;
+margin-bottom: 5px;
+text-transform: uppercase;
+}
+
+.bottom-line {
+display: block;
+font-size: 20px; /* Slightly smaller for second line */
+font-weight: 700;
+color: #ffffff;
+text-transform: uppercase;
+}
+}
+
+/* Extra small devices (phones) */
+@media screen and (max-width: 375px) {
+.top-line {
+font-size: 20px;
+}
+
+.bottom-line {
+font-size: 18px;
+}
 }
 
 .nav-list {
     list-style: none;
+    position: relative;
     display: flex;
     justify-content: center;
-    max-width: 1200px;
+    align-items: center;
     margin: 0 auto;
+    padding: 0;
+    max-width: 1200px;
+   
 }
 
 .nav-list li {
     position: relative;
 }
 
-/* Enhanced Hover Effect for Desktop */
-.nav-list li a {
+/* Basic link styles */
+.nav-list > li > a {
     color: white;
     text-decoration: none;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     display: block;
-    position: relative;
+    font-size: 16px;
     transition: all 0.3s ease;
+    position: relative;
+}
+  
+/* Enhanced Dropdown styles */
+.dropdown {
+position: absolute;
+top: 90%;
+left: 0;
+background: #ffffff;
+min-width: 140px;
+opacity: 0;
+visibility: hidden;
+transform: translateY(10px);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+border-radius: 8px;
+z-index: 1000;
+list-style: none;
+margin: 0;
 }
 
-.nav-list li a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #ffffff;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
+.dropdown-parent:hover .dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
 }
 
-.nav-list li a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.3s ease;
-    z-index: -1;
+/* Dropdown list items */
+.dropdown li {
+margin: 10px;
+width: auto;
+position: relative;
+opacity: 0;
+transform-origin: center;
+animation: swingIn 0.5s ease forwards;
+transition: background-color 0.3s ease;
 }
 
-.nav-list li a:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+.dropdown li:hover {
+
+background-color: rgba(232, 228, 228, 0.915); /* Light gray background on hover */
 }
 
-.nav-list li a:hover::after {
-    transform: scaleY(1);
+.dropdown li:nth-child(1) { animation-delay: 0.05s; }
+.dropdown li:nth-child(2) { animation-delay: 0.1s; }
+.dropdown li:nth-child(3) { animation-delay: 0.15s; }
+.dropdown li:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes swingIn {
+0% {
+opacity: 0;
+transform: perspective(400px) rotateX(-90deg);
+filter: blur(3px);
+}
+50% {
+transform: perspective(400px) rotateX(20deg);
+filter: blur(1px);
+}
+70% {
+transform: perspective(400px) rotateX(-10deg);
+}
+100% {
+opacity: 1;
+transform: perspective(400px) rotateX(0deg);
+filter: blur(0);
+}
 }
 
-.nav-list li a:hover {
-    color: #ffffff;
+/* Updated link styles */
+.dropdown li a {
+color: black;
+background-color: transparent; /* Changed to transparent to show li background */
+padding: 10px 15px;
+display: block;
+text-decoration: none;
+transition: all 0.3s ease;
+font-size: 14px;
+position: relative;
+overflow: hidden;
+border-radius: 6px;
 }
 
-/* Mobile Menu Toggle */
+.dropdown li:hover a {
+color: #2e2d2d; /* Slightly darker text on hover */
+}
+
+/* Remove the previous hover background effect */
+.dropdown li a::before {
+display: none;
+} 
+/* Mobile menu toggle */
 .menu-toggle {
     display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
 }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    background: #0a9396;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Mobile Responsive Design */
-@media screen and (max-width: 768px) {
-    .header {
-        padding: 0.5rem 1rem;
-    }
-
-    .logo {
-        height: 40px;
-    }
-
-    .header-title {
-        font-size: 1.2rem;
+/* Responsive Design */
+@media screen and (max-width: 968px) {
+    .navbar {
+        position: fixed;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
     }
 
     .menu-toggle {
         display: flex;
-    }
-
-    .navbar {
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        padding: 15px;
         position: fixed;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
+        right: 20px;
+        top: 130px;
+        z-index: 1001;
         background: #0a9396;
-        padding-top: 80px;
-        transition: 0.3s ease-in-out;
+        border-radius: 4px;
     }
 
-    .navbar.active {
-        left: 0;
+    .bar {
+        width: 30px;
+        height: 3px;
+        background: white;
+        transition: all 0.3s ease;
     }
 
     .nav-list {
+        position: fixed;
+        top: 120px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 120px);
+        background: #0a9396;
         flex-direction: column;
-        align-items: center;
-        gap: 0;
+        align-items: flex-start;
+        padding-top: 20px;
+        transition: 0.3s ease-in-out;
+        overflow-y: auto;
+        z-index: 1000;
     }
 
-    .nav-list li {
-        width: 100%;
-        text-align: center;
+    .nav-list.active {
+        right: 0;
     }
 
-    .nav-list li a {
-        padding: 1.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Mobile dropdown styles */
+    .dropdown {
+        position: static;
+        width:100%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: none;
+        padding: 0;
     }
 
+    .dropdown-parent.active .dropdown {
+        display: block;
+        animation: slideDown 0.3s ease-out forwards;
+    }
+
+    .dropdown li a {
+        padding-left: 5rem;
+     color: black;
+    }
+
+    .dropdown li a:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Mobile menu toggle animation */
     .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+        transform: translateY(9px) rotate(45deg);
     }
 
     .menu-toggle.active .bar:nth-child(2) {
@@ -186,105 +393,137 @@
     }
 
     .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown indicators */
+    .dropdown-parent > a::after {
+        content: '▼';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-parent.active > a::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* Remove desktop hover effects on mobile */
+    .nav-list > li > a::before,
+    .nav-list > li > a::after,
+    .dropdown li a::before {
+        display: none;
     }
 }
-/* Dropdown Styles */
-.dropdown-parent {
-position: relative;
+
+/* Additional animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.dropdown {
-position: absolute;
-top: 100%;
-left: 0;
-background: #0a9396;;
-min-width: 200px;
-opacity: 0;
-visibility: hidden;
-transform: translateY(10px);
-transition: all 0.3s ease;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-z-index: 1000;
-list-style: none;
-}
-
-.dropdown li {
-width: 100%;
-}
-
-.dropdown li a {
-padding: 0.8rem 1.5rem;
-display: block;
-color: white;
-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-font-size: 0.95rem;
-}
-
-/* Hover Effects for Dropdown */
-.dropdown-parent:hover .dropdown {
-opacity: 1;
-visibility: visible;
-transform: translateY(0);
-}
-
-.dropdown li a:hover {
-background: rgba(255, 255, 255, 0.1);
-padding-left: 2rem;
-}
-
-/* Mobile Responsive Dropdown */
 @media screen and (max-width: 768px) {
-.dropdown {
-position: static;
-opacity: 1;
-visibility: visible;
-transform: none;
-width: 100%;
-display: none;
-background: rgba(0, 0, 0, 0.1);
-box-shadow: none;
+    .navbar {
+        top: 100px;
+    }
+
+    .menu-toggle {
+        top: 110px;
+    }
+
+    .nav-list {
+        top: 100px;
+        height: calc(100vh - 100px);
+    }
 }
 
-.dropdown-parent.active .dropdown {
-display: block;
+@media screen and (max-width: 480px) {
+    .navbar {
+        top: 60px;
+        padding: 0;
+    }
+
+    .menu-toggle {
+        top: 70px;
+        right: 10px;
+    }
+
+    .nav-list {
+        top: 80px;
+        width: 50%;
+        height: calc(100vh - 50px);
+    }
+}
+.menu-toggle {
+    display: none;
 }
 
-.dropdown li a {
-padding-left: 3rem;
+@media screen and (max-width: 1024px) {
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px; /* Reduced gap */
+        cursor: pointer;
+        padding: 8px; /* Reduced padding */
+        position: fixed;
+        right: 15px;
+        top: 130px;
+        z-index: 1001;
+        border-radius: 3px;
+        width: 35px; /* Set specific width */
+        height: 35px; /* Set specific height */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bar {
+        width: 22px; /* Reduced width */
+        height: 2px; /* Reduced height */
+      color: black;
+        transition: all 0.3s ease;
+    }
+
+    /* Updated toggle animation */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg); /* Adjusted translation */
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg); /* Adjusted translation */
+    }
 }
 
-.dropdown li a:hover {
-background: rgba(255, 255, 255, 0.05);
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        top: 110px;
+        right: 10px;
+    }
 }
 
-/* Add arrow indicator for mobile dropdowns */
-.dropdown-parent > a::after {
-content: '▼';
-font-size: 0.8em;
-margin-left: 8px;
-}
+@media screen and (max-width: 480px) {
+    .menu-toggle {
+        top: 90px;
+        right: 8px;
+        width: 30px; /* Even smaller for mobile */
+        height: 30px;
+    }
 
-.dropdown-parent.active > a::after {
-content: '▲';
-}
-}
-/* Enhanced Animations and Effects */
-@keyframes fadeInScale {
-0% { opacity: 0; transform: scale(0.95); }
-100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes floatingEffect {
-0% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-100% { transform: translateY(0); }
-}
-
-@keyframes glowingText {
-0% { text-shadow: 0 0 5px rgba(255,255,255,0.8); }
-50% { text-shadow: 0 0 20px rgba(255,255,255,0.8); }
-100% { text-shadow: 0 0 5px rgba(255,255,255,0.8); }
+    .bar {
+        width: 18px; /* Even smaller bars for mobile */
+    }
 }
 /* Footer Styles */
 footer {
@@ -1130,227 +1369,260 @@ footer:hover {
 
 
 
-/* Card Popup Styling */
 .popup-card {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 350px;
     background: white;
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    max-width: 400px;
-    width: 90%;
 }
 
-/* Overlay background */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-image {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 999;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-/* Close button with effects */
-.close-btn {
+.card-details {
+    width: 100%;
+    text-align: center;
+}
+
+.card-title {
+    color: #002855;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.detail-value {
+    color: #666;
+    margin-left: 5px;
+}
+
+.call-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #002855;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.cancel-btn {
     position: absolute;
     top: 10px;
     right: 10px;
     width: 30px;
     height: 30px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: #f0f0f0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.close-btn::before,
-.close-btn::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 2px;
-    background-color: #333;
-    transition: all 0.3s ease;
-}
-
-.close-btn::before {
-    transform: rotate(45deg);
-}
-
-.close-btn::after {
-    transform: rotate(-45deg);
-}
-
-.close-btn:hover {
-    background: #ff4444;
-    transform: rotate(180deg);
-}
-
-.close-btn:hover::before,
-.close-btn:hover::after {
-    background-color: white;
-}
-
-/* Card image with effects */
-.card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.card-image:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Card content styling */
-.card-title {
     font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
 }
 
-.card-description {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-/* Desktop (1024px and above) */
-@media (min-width: 1024px) {
+/* Responsive Design */
+@media screen and (max-width: 768px) {
     .popup-card {
-        padding: 25px;
+        width: 90%;
+        max-width: 350px;
     }
+}
 
-    .card-image {
-        height: 220px;
-    }
-
+@media screen and (max-width: 480px) {
     .card-title {
         font-size: 20px;
     }
+}
 
-    .card-description {
-        font-size: 16px;
+
+/* Full size image container */
+.profile-img-container {
+    width: 100%;
+    height: 100%; /* Increased height for full image */
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.profile-img {
+    width: 500px;
+    height: 500px;
+    object-fit: contain; /* Changed to contain to show full image without cropping */
+    display: block;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .popup-card {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .profile-img-container {
+        height: 400px; /* Adjusted for mobile */
     }
 }
 
-/* Tablet (768px to 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .popup-card {
-        padding: 20px;
-        max-width: 380px;
-    }
-
-    .card-image {
-        height: 190px;
+@media screen and (max-width: 480px) {
+    .profile-img-container {
+        height: 300px; /* Further adjusted for smaller screens */
     }
 }
 
-/* Mobile Large (480px to 767px) */
-@media (min-width: 480px) and (max-width: 767px) {
-    .popup-card {
-        padding: 15px;
-        max-width: 340px;
-    }
 
-    .card-image {
-        height: 180px;
-    }
-
-    .close-btn {
-        width: 28px;
-        height: 28px;
-    }
+.popup-card.show {
+    display: block;
 }
 
-/* Mobile Medium (360px to 479px) */
-@media (min-width: 360px) and (max-width: 479px) {
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.title-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    color: #002855;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.card-details {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    color: #666;
+}
+
+.call-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #002855;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.call-btn:hover {
+    background: #003878;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: #ff0000;
+    transform: rotate(90deg);
+}
+
+@media screen and (max-width: 768px) {
     .popup-card {
-        padding: 12px;
+        width: 90%;
         max-width: 300px;
     }
-
-    .card-image {
-        height: 160px;
-    }
-
-    .card-title {
-        font-size: 16px;
-    }
-
-    .card-description {
-        font-size: 13px;
-    }
-
-    .close-btn {
-        width: 26px;
-        height: 26px;
-    }
+}
+.call-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #002855;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
-/* Mobile Small (359px and below) */
-@media (max-width: 359px) {
-    .popup-card {
-        padding: 10px;
-        max-width: 280px;
-    }
-
-    .card-image {
-        height: 150px;
-    }
-
-    .card-title {
-        font-size: 15px;
-        margin-bottom: 8px;
-    }
-
-    .card-description {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-
-    .close-btn {
-        width: 24px;
-        height: 24px;
-    }
-
-    .close-btn::before,
-    .close-btn::after {
-        width: 16px;
-    }
+.call-btn:hover {
+    background: #003878;
+    transform: translateY(-2px);
 }
 
-/* Landscape Mode */
-@media (max-height: 600px) and (orientation: landscape) {
-    .popup-card {
-        height: 90vh;
-        overflow-y: auto;
-    }
-
-    .card-image {
-        height: 140px;
-    }
+.call-btn:active {
+    transform: translateY(1px);
 }
 
-
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .call-btn {
+        padding: 15px 35px; /* Larger touch target for mobile */
+        width: 80%; /* Wider button on mobile */
+        font-size: 18px;
+    }
+}
 
 
 
@@ -1772,6 +2044,7 @@ footer:hover {
 }
 
 
+
   </style>
    
 </head>
@@ -1847,25 +2120,52 @@ footer:hover {
                 <div class="circle" onclick="toggleInfoBoxes()">
                     <div class="circle-content">
                         <p class="sptext">SUPERINTENDENT OF POLICE</p>
-                     
                         <div class="icon-circle">
-                            <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
-                            <div class="popup-image">
-                                <img src="images/spsir.jpg.jpg" alt="Popup Image">
+                            <img src="images/spsir.jpg.jpg" alt="SP Image" class="circle-img">
+                            <div class="popup-card">
+                                <button class="cancel-btn">×</button>
+                                <div class="card-content">
+                                    <div class="profile-img-container">
+                                        <img src="images/spsir.jpg.jpg" alt="SP Image" class="profile-img">
+                                    </div>
+                                    <div class="title-section">
+                                        <h2 class="card-title">Superintendent<br>of<br>Police</h2>
+                                    </div>
+                                    <div class="card-details">
+                                        <div class="detail-item">
+                                            <div class="detail-label">Name:</div>
+                                            <div class="detail-value">Sri. G.R. Radhika, IPS</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Contact:</div>
+                                            <div class="detail-value">6309990804</div>
+                                        </div>
+                                    </div>
+                                    <a href="tel:+916309990804" class="call-btn" onclick="makeCall(event, '+916309990804')">
+                                        Call Now
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                        
                         <p>SRIKAKULAM</p>
                     </div>
+                    
                 </div>
                 
 
 
 <div class="info-box info1" onclick="toggleNodeList(event, this)">
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/admin.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
-            <p style="color:black;">Name : UMA MAHESWARA REDDY</p>
+            <img src="images/organisationchart/admin.jpg" alt="Popup Image">
+            <div class="card-details">
+                <h3 class="card-title">Additional SP (Admin)</h3>
+                <p class="card-name">Name: Sri. UMA MAHESWARA REDDY</p>
+                <p class="card-contact">Contact: 6309990805</p>
+                <a href="tel:6309990805" class="contact-btn">Call Now</a>
+            </div>
         </div>
     </div>
     <p>ADDL .SP (ADMIN)</p>
@@ -1889,9 +2189,11 @@ footer:hover {
 <div class="info-box info2" onclick="toggleNodeList(event, this)">
   
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/addl_crime.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+            <img src="images/organisationchart/addl_crime.jpg" alt="Popup Image">
+            <p style="color:black;">NAME:Ch.Vivekananda </p>
+            <a href="tel:6309990804">Contact :6309990804</a>
         </div>
     </div>
     <p>ADDL .SP (CRIME)</p>
@@ -1937,12 +2239,14 @@ footer:hover {
    
 
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/sklm_sub_div.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+            <img src="images/organisationchart/sklm_sub_div.jpg" alt="Popup Image">
+            <p style="color:black;">NAME:Ch.Vivekananda </p>
+            <a href="tel:6309990804">Contact :6309990804</a>
         </div>    
     </div>
-    <p> SPDO SRIKAKULAM</p>
+    <p>SPDO SRIKAKULAM</p>
     <ul class="node-list">
         <li>
             <span class="node" onclick="toggleSubNodes(event, this)">Srikakulam Rural Circle </span>
@@ -1985,10 +2289,11 @@ footer:hover {
   
 
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/ksb_sub_div.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
-
+            <img src="images/organisationchart/ksb_sub_div.jpg" alt="Popup Image">
+            <p style="color:black;">NAME: V.V.Appa Rao </p>
+            <a href="tel:6309990805">Contact :6309990805</a>
         </div>
     </div>
     <p>SPDO KASIBUGGA</p>
@@ -2028,9 +2333,11 @@ footer:hover {
  
 
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/tkl_sub_div.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+            <img src="images/organisationchart/tkl_sub_div.jpg" alt="Popup Image">
+            <p style="color:black;">NAME: D.S.R.V.S.N Murthy </p>
+            <a href="tel:6309990811">Contact :6309990811</a>
         </div>    
     </div>
     <p>SPDO TEKKALI</p>
@@ -2082,9 +2389,11 @@ footer:hover {
   
 
     <div class="icon-circle">
-        <img src="images/spsir.jpg.jpg" alt="Superintendent Office">
+        <img src="images/organisationchart/spl_branch.jpg" alt="Superintendent Office">
         <div class="popup-image">
-            <img src="images/spsir.jpg.jpg" alt="Popup Image">
+            <img src="images/organisationchart/spl_branch.jpg" alt="Popup Image">
+            <p style="color:black;">NAME:Ch.Vivekananda </p>
+            <a href="tel:6309990804">Contact :6309990804</a>
         </div>    
     </div>
     <p>DSP WMN PS ,DSP SC & ST Cell , DSP SB</p>
@@ -2223,83 +2532,145 @@ function toggleSubNodes(event, nodeElement) {
         }
     });
 }
-
-//images//
-
-document.addEventListener("DOMContentLoaded", () => {
-    const popupImages = document.querySelectorAll(".icon-circle");
-    let currentlyOpenPopup = null;
-
-    // Create overlay element
-    const overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    document.body.appendChild(overlay);
-
-    popupImages.forEach((popup) => {
-        popup.addEventListener("click", (e) => {
+document.addEventListener('DOMContentLoaded', function() {
+    const iconCircles = document.querySelectorAll('.icon-circle');
+    
+    // Handle opening popups
+    iconCircles.forEach(icon => {
+        icon.addEventListener('click', function(e) {
             e.stopPropagation();
-            
-            // Get image and details
-            const imgSrc = popup.querySelector('img').src;
-            const title = popup.getAttribute('data-title') || 'Image Title';
-            const description = popup.getAttribute('data-description') || 'Image Description';
-
-            // Create and show card popup
-            showCardPopup(imgSrc, title, description);
+            closeAllPopups();
+            const popup = this.querySelector('.popup-card');
+            if (popup) {
+                popup.classList.add('show');
+            }
         });
     });
 
-    function showCardPopup(imgSrc, title, description) {
-        // Create popup card
-        const popupCard = document.createElement('div');
-        popupCard.className = 'popup-card';
-        
-        // Create close button
-        const closeBtn = document.createElement('div');
-        closeBtn.className = 'close-btn';
-        closeBtn.innerHTML = '×';
-        
-        // Create card content
-        popupCard.innerHTML = `
-            <div class="close-btn">×</div>
-            <img src="${imgSrc}" alt="${title}" class="card-image">
-            <h3 class="card-title">${title}</h3>
-            <p class="card-description">${description}</p>
-        `;
-
-        // Show overlay and popup
-        overlay.style.display = 'block';
-        document.body.appendChild(popupCard);
-        popupCard.style.display = 'block';
-
-        // Close button functionality
-        const closeButton = popupCard.querySelector('.close-btn');
-        closeButton.addEventListener('click', () => {
-            closeCardPopup(popupCard);
+    // Handle cancel button clicks
+    document.querySelectorAll('.cancel-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const popup = this.closest('.popup-card');
+            if (popup) {
+                popup.classList.remove('show');
+            }
         });
-
-        // Close on overlay click
-        overlay.addEventListener('click', () => {
-            closeCardPopup(popupCard);
-        });
-
-        // Store current popup
-        currentlyOpenPopup = popupCard;
-    }
-
-    function closeCardPopup(popupCard) {
-        overlay.style.display = 'none';
-        popupCard.remove();
-        currentlyOpenPopup = null;
-    }
+    });
 
     // Close on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && currentlyOpenPopup) {
-            closeCardPopup(currentlyOpenPopup);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllPopups();
+        }
+    });
+
+    function closeAllPopups() {
+        document.querySelectorAll('.popup-card.show').forEach(popup => {
+            popup.classList.remove('show');
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove any existing event listeners
+    const iconCircles = document.querySelectorAll('.icon-circle');
+    const cancelButtons = document.querySelectorAll('.cancel-btn');
+
+    // Function to close all popups
+    function closeAllPopups() {
+        document.querySelectorAll('.popup-card').forEach(popup => {
+            popup.style.display = 'none';
+        });
+    }
+
+    // Handle icon clicks
+    iconCircles.forEach(icon => {
+        icon.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // First close all popups
+            closeAllPopups();
+            
+            // Then show the clicked one
+            const popup = this.querySelector('.popup-card');
+            if (popup) {
+                popup.style.display = 'block';
+            }
+        };
+    });
+
+    // Handle cancel button clicks
+    cancelButtons.forEach(button => {
+        button.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeAllPopups();
+        };
+    });
+
+    // Close on clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.popup-card') && !e.target.closest('.icon-circle')) {
+            closeAllPopups();
+        }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllPopups();
         }
     });
 });
+
+function makeCall(event, phoneNumber) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Check if device supports tel: protocol
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.location.href = `tel:${phoneNumber}`;
+    } else {
+        // For desktop, show a message or handle differently
+        alert(`Please dial this number: ${phoneNumber}`);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing popup code
+    const iconCircles = document.querySelectorAll('.icon-circle');
+    
+    iconCircles.forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const popup = this.querySelector('.popup-card');
+            if (popup) {
+                popup.classList.add('show');
+            }
+        });
+    });
+
+    document.querySelectorAll('.cancel-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const popup = this.closest('.popup-card');
+            if (popup) {
+                popup.classList.remove('show');
+            }
+        });
+    });
+
+    // Add click handler for call buttons
+    document.querySelectorAll('.call-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const phoneNumber = this.getAttribute('href').replace('tel:', '');
+            makeCall(e, phoneNumber);
+        });
+    });
+});
+
+
     </script>
   <script src="headerandfoot.js"></script>
 </body>

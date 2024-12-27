@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Gallery</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+    min-height: 100vh;
+    padding: 20px;
+    animation: gradientBG 15s ease infinite;
+    background-size: 400% 400%;
+    position: relative;
+}
+
+.background-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.background-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.1;
+    filter: brightness(1.5);
+    animation: logoMove 15s linear infinite;
+}
+
+@keyframes logoMove {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    25% { transform: translateX(50%) rotate(90deg); }
+    50% { transform: translateX(-50%) rotate(180deg); }
+    75% { transform: translateX(50%) rotate(270deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease;
+}
+
+.folders {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    animation: fadeIn 1s ease;
+}
+
+.folder {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.folder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3));
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.folder:hover::before {
+    transform: translateX(100%);
+}
+
+.folder:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    background: linear-gradient(45deg, #ff6b6b, #ffc5c5);
+    color: white;
+}
+
+.folder i {
+    font-size: 60px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.folder:nth-child(1) i { color: #E91E63; }
+.folder:nth-child(2) i { color: #2196F3; }
+.folder:nth-child(3) i { color: #FF9800; }
+.folder:nth-child(4) i { color: #4CAF50; }
+
+.folder:hover i {
+    transform: rotate(360deg) scale(1.2);
+    color: white;
+}
+
+.folder h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.folder p {
+    font-size: 1.1em;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.folder:hover p {
+    color: white;
+}
+
+.media-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.media-item {
+    width: 100%;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: scaleIn 0.5s ease;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.media-item img,
+.media-item video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+}
+
+.media-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.back-button {
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #FF416C, #FF4B2B);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #FF4B2B, #FF416C);
+}
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    position: relative;
+    animation: zoomIn 0.3s ease;
+    padding: 20px;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.6);
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    animation: pulseButton 2s infinite;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 0, 0, 0.9);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.lightbox-nav button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.lightbox-nav button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes pulseButton {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+        .officer-card img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-button {
+            display: block;
+            margin: 10px auto 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        :root {
+    --primary-color: #0a9396;
+    --secondary-color: #0a9396;
+    --background-color: white;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --card-shadow: 0 4px 15px rgba(10, 147, 150, 0.15);
+    --hover-shadow: 0 8px 25px rgba(10, 147, 150, 0.25);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.top-officers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1400px;
+}
+
+.top-officer-card {
+    width: 300px;
+    background: var(--background-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-top: 10rem;
+}
+
+.officer-image-container {
+    width: 100%;
+    height: 400px;
+    position: static;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.officer-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(10, 147, 150, 0.9), transparent);
+    padding: 20px;
+    color: white;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.image-overlay h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.image-overlay p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Hover Effects */
+.officer-image-container:hover img {
+    transform: scale(1.1);
+}
+
+.officer-image-container:hover .image-overlay {
+    transform: translateY(-10px);
+}
+
+/* Profile Modal */
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-content {
+    background: var(--background-color);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: var(--hover-shadow);
+}
+
+.profile-modal.active .profile-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.profile-details {
+    padding: 30px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateX(10px);
+    background: rgba(10, 147, 150, 0.05);
+}
+
+.detail-item i {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover i {
+    transform: rotate(360deg);
+    background: var(--secondary-color);
+}
+
+.detail-item p {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-modal .profile-content {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .profile-content {
+        width: 95%;
+    }
+
+    .profile-header {
+        padding: 20px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-header p {
+        font-size: 1.1rem;
+    }
+
+    .detail-item {
+        padding: 12px;
+    }
+
+    .detail-item i {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-header {
+        padding: 15px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .profile-header p {
+        font-size: 1rem;
+    }
+
+    .detail-item {
+        padding: 10px;
+    }
+
+    .detail-item i {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .detail-item p {
+        font-size: 0.9rem;
+    }
+}
+/* Regular Officers Section */
+.officers-section {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.rank-section {
+    margin-bottom: 60px;
+}
+
+.rank-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.officers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.officer-card {
+    width: 100%;
+    max-width: 250px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.officer-card .officer-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.officer-info {
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.officer-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.officer-station {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Hover Effects */
+.officer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.officer-card:hover .officer-image {
+    transform: scale(1.1);
+}
+
+.officer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(10, 147, 150, 0) 0%,
+        rgba(10, 147, 150, 0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.officer-card:hover::before {
+    opacity: 1;
+}
+
+.officer-card:hover .officer-info {
+    background: transparent;
+}
+
+.officer-card:hover .officer-name,
+.officer-card:hover .officer-station {
+    color: white;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.officer-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Stagger animation for grid items */
+.officers-grid .officer-card:nth-child(1) { animation-delay: 0.1s; }
+.officers-grid .officer-card:nth-child(2) { animation-delay: 0.2s; }
+.officers-grid .officer-card:nth-child(3) { animation-delay: 0.3s; }
+.officers-grid .officer-card:nth-child(4) { animation-delay: 0.4s; }
+/* Continue for more items if needed */
+
+/* Profile Modal for Regular Officers */
+.officer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.officer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .rank-title {
+        font-size: 1.8rem;
+    }
+
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .officers-section {
+        padding: 30px 15px;
+    }
+
+    .rank-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+
+    .officer-card .officer-image {
+        height: 220px;
+    }
+
+    .officer-info {
+        padding: 10px;
+    }
+
+    .officer-name {
+        font-size: 1rem;
+    }
+
+    .officer-station {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .officers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+
+    .officer-card .officer-image {
+        height: 180px;
+    }
+
+    .rank-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Loading Animation */
+.officer-card img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.officer-card img.loaded {
+    opacity: 1;
+}
+
+/* Scroll Animation */
+.officer-card {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.officer-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Additional Hover Effects */
+.officer-card::after {
+    content: 'View Profile';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.officer-card:hover::after {
+    opacity: 1;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .officer-card {
+        animation: none;
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+/* Profile Modal Common Styles */
+.profile-modal, .officer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 147, 150, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Profile Content Styles */
+.profile-content, .modal-content {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(10, 147, 150, 0.25);
+}
+
+/* Profile Header with Image */
+.profile-header1 {
+    background: linear-gradient(135deg, #0a9396, #0a9396);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+/* Fixed Profile Image Container */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* Modal Active States */
+.profile-modal.active, .officer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-modal.active .profile-content,
+.officer-modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Profile Text Content */
+.profile-header h2 {
+    font-size: 1.8rem;
+    margin: 15px 0 5px;
+    font-weight: 600;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-header {
+        padding: 30px 15px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-header p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header {
+        padding: 25px 15px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .profile-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Loading Animation for Profile Image */
+.profile-image img {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Hover Effect on Profile Image */
+.profile-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Additional Profile Modal Styles */
+.profile-details {
+    padding: 30px;
+    background: white;
+}
+
+/* Close Button Styles */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0a9396;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: #0a9396;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <h1 class="title">Mobile Gallery</h1>
+        <button class="back-button hidden">← Back</button>
+
+        <div class="folders">
+            <div class="folder" data-folder="media">
+                <img src="your-folder-icon.png" alt="Media" style="width: 80px;">
+                <h3>Media</h3>
+                <p>30 items</p>
+            </div>
+            <div class="folder" data-folder="officers">
+                <img src="your-folder-icon.png" alt="Officers" style="width: 80px;">
+                <h3>Officers</h3>
+                <p>24 items</p>
+            </div>
+        </div>
+
+        <div class="images hidden" data-folder="media">
+            <div class="image-card">
+                <img src="media1.jpg" alt="Media Image 1">
+            </div>
+            <div class="image-card">
+                <img src="media2.jpg" alt="Media Image 2">
+            </div>
+        </div>
+
+        <div class="images hidden" data-folder="officers">
+            <h2 class="rank-title">IPS</h2>
+            <div class="top-officers">
+                <div class="top-officer-card">
+                    <div class="officer-image-container">
+                        <img src="images/dgp1.jpeg" alt="DGP">
+                        <div class="image-overlay">
+                            <h3>Sri Ch. Dwaraka Tirumala Rao</h3>
+                            <p>Director General of Police</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="top-officer-card">
+                    <div class="officer-image-container">
+                        <img src="images/2.jpg" alt="SP">
+                        <div class="image-overlay">
+                            <h3>Sri K.V.Maheswara Reddy</h3>
+                            <p>Superintendent of Police</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="top-officer-card">
+                    <div class="officer-image-container">
+                        <img src="images/DSP SIR  SB.jpg" alt="DSP">
+                        <div class="image-overlay">
+                            <h3>Sri Ch.vivekananda</h3>
+                            <p>Deputy Superintendent(Special Branch)</p>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+            
+
+            <section class="officers-section">
+                <div class="rank-section">
+                    <h2 class="rank-title">CIRCLE INSPECTORS</h2>
+                    <div class="officers-grid">
+                            <div class="officer-card">
+                                <img src="images/CIS/CI PRASAD- ktohuru Circle.jpg" alt="CI PRASAD" class="officer-image">
+                                <h3 class="officer-name">CI PRASAD</h3>
+                                <p class="officer-station">Kotturu Circle</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Dadi Mohan rao-Kasibugga PS.jpeg" alt="Dadi Mohan Rao"
+                                    class="officer-image">
+                                <h3 class="officer-name">Dadi Mohan Rao</h3>
+                                <p class="officer-station">Kasibugga PS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Demullu-CI- Controle Room.jpeg" alt="Demullu" class="officer-image">
+                                <h3 class="officer-name">Demullu</h3>
+                                <p class="officer-station">Control Room</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/K Srinvasa Rao-CI Tekkali Rural Circle.jpeg" alt="K Srinivasa Rao"
+                                    class="officer-image">
+                                <h3 class="officer-name">K Srinivasa Rao</h3>
+                                <p class="officer-station">Tekkali Rural Circle</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Mangaraju- CI - Sompeta.jpeg" alt="Mangaraju" class="officer-image">
+                                <h3 class="officer-name">Mangaraju</h3>
+                                <p class="officer-station">Sompeta</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Nagaraju- CI Traffic.jpeg" alt="Nagaraju" class="officer-image">
+                                <h3 class="officer-name">Nagaraju</h3>
+                                <p class="officer-station">Traffic</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Sai-Pathapatnam CI.jpeg" alt="Sai" class="officer-image">
+                                <h3 class="officer-name">Sai</h3>
+                                <p class="officer-station">Pathapatnam</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Satyanarayana-CI-Amadalavalasa.jpeg" alt="Satyanarayana"
+                                    class="officer-image">
+                                <h3 class="officer-name">Satyanarayana</h3>
+                                <p class="officer-station">Amadalavalasa</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Srinivasa Rao- Narasannapeta Circle.jpeg" alt="Srinivasa Rao"
+                                    class="officer-image">
+                                <h3 class="officer-name">Srinivasa Rao</h3>
+                                <p class="officer-station">Narasannapeta Circle</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Swamy Naidu-CI- Disha.jpeg" alt="Swamy Naidu" class="officer-image">
+                                <h3 class="officer-name">Swamy Naidu</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Umamaheswara Rao-CI- SKL II town.jpeg" alt="Umamaheswara Rao"
+                                    class="officer-image">
+                                <h3 class="officer-name">Umamaheswara Rao</h3>
+                                <p class="officer-station">SKL II Town</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/CIS/Vijay Kumar- CI.JPG" alt="Vijay Kumar" class="officer-image">
+                                <h3 class="officer-name">Vijay Kumar</h3>
+                                <p class="officer-station">General</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="rank-section">
+                        <h2 class="rank-title">SUB-INSPECTORS</h2>
+                        <div class="officers-grid">
+                            <div class="officer-card">
+                                <img src="images/SIS/1- M. Hari Krishna- Srikakulam I Town.jpg" alt="M. Hari Krishna"
+                                    class="officer-image">
+                                <h3 class="officer-name">M. Hari Krishna</h3>
+                                <p class="officer-station">Srikakulam I Town</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/2- R. Janardhana Rao- Gara.jpg" alt="R. Janardhana Rao"
+                                    class="officer-image">
+                                <h3 class="officer-name">R. Janardhana Rao</h3>
+                                <p class="officer-station">Gara</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Ameer Ali -VR.jpg" alt="Ameer Ali" class="officer-image">
+                                <h3 class="officer-name">Ameer Ali</h3>
+                                <p class="officer-station">VR</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Anil Kumar- Saravakota.jpeg" alt="Anil Kumar" class="officer-image">
+                                <h3 class="officer-name">Anil Kumar</h3>
+                                <p class="officer-station">Saravakota</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Ashok babu-Jalumuru.JPG" alt="Ashok Babu" class="officer-image">
+                                <h3 class="officer-name">Ashok Babu</h3>
+                                <p class="officer-station">Jalumuru</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Aziz ahammad- Kothuru.jpeg" alt="Aziz Ahammad" class="officer-image">
+                                <h3 class="officer-name">Aziz Ahammad</h3>
+                                <p class="officer-station">Kotturu</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Basha- Mandasa.jpg" alt="Basha" class="officer-image">
+                                <h3 class="officer-name">Basha</h3>
+                                <p class="officer-station">Mandasa</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Chandra kala-WPS.jpg" alt="Chandra Kala" class="officer-image">
+                                <h3 class="officer-name">Chandra Kala</h3>
+                                <p class="officer-station">WPS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Chandra Sekhar- Baruva.jpeg" alt="Chandra Sekhar" class="officer-image">
+                                <h3 class="officer-name">Chandra Sekhar</h3>
+                                <p class="officer-station">Baruva</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Chinnamnaidu-ICP Town SI.jpg" alt="Chinnamnaidu" class="officer-image">
+                                <h3 class="officer-name">Chinnamnaidu</h3>
+                                <p class="officer-station">ICP Town</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Chiranjeevi- Etcherla.jpg" alt="Chiranjeevi" class="officer-image">
+                                <h3 class="officer-name">Chiranjeevi</h3>
+                                <p class="officer-station">Etcherla</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Devadanam-Traffic.jpeg" alt="Devadanam" class="officer-image">
+                                <h3 class="officer-name">Devadanam</h3>
+                                <p class="officer-station">Traffic</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/DURGA PRASAD- Narasannapeta.jpg" alt="Durga Prasad" class="officer-image">
+                                <h3 class="officer-name">Durga Prasad</h3>
+                                <p class="officer-station">Narasannapeta</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/G. Laxmana Rao-SI Laveru.jpeg" alt="G. Laxmana Rao" class="officer-image">
+                                <h3 class="officer-name">G. Laxmana Rao</h3>
+                                <p class="officer-station">Laveru</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/G. Rajesh- Kanchili.JPG" alt="G. Rajesh" class="officer-image">
+                                <h3 class="officer-name">G. Rajesh</h3>
+                                <p class="officer-station">Kanchili</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Gafuoor- SI-CCS.JPG" alt="Gafuoor" class="officer-image">
+                                <h3 class="officer-name">Gafuoor</h3>
+                                <p class="officer-station">CCS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Ganesh- VR.jpg" alt="Ganesh" class="officer-image">
+                                <h3 class="officer-name">Ganesh</h3>
+                                <p class="officer-station">VR</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Hymavathi - Sompeta.jpg" alt="Hymavathi" class="officer-image">
+                                <h3 class="officer-name">Hymavathi</h3>
+                                <p class="officer-station">Sompeta</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Kanakaraju- Srikakulam II Town.jpeg" alt="Kanakaraju"
+                                    class="officer-image">
+                                <h3 class="officer-name">Kanakaraju</h3>
+                                <p class="officer-station">Srikakulam II Town</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Kishore Varma-SKL Rural.jpeg" alt="Kishore Varma" class="officer-image">
+                                <h3 class="officer-name">Kishore Varma</h3>
+                                <p class="officer-station">SKL Rural</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Krishna SI- Srikkulam i Town.jpg" alt="Krishna" class="officer-image">
+                                <h3 class="officer-name">Krishna</h3>
+                                <p class="officer-station">Srikakulam I Town</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Krishnaprasad- VR.jpeg" alt="Krishnaprasad" class="officer-image">
+                                <h3 class="officer-name">Krishnaprasad</h3>
+                                <p class="officer-station">VR</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Lakshmi- SI- Disha.jpg" alt="Lakshmi" class="officer-image">
+                                <h3 class="officer-name">Lakshmi</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Lakshmi- Tekkali.jpg" alt="Lakshmi" class="officer-image">
+                                <h3 class="officer-name">Lakshmi</h3>
+                                <p class="officer-station">Tekkali</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Lavanya- Pathapatnam.jpg" alt="Lavanya" class="officer-image">
+                                <h3 class="officer-name">Lavanya</h3>
+                                <p class="officer-station">Pathapatnam</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Madhusudhana Rao-GSDM.JPG" alt="Madhusudhana Rao" class="officer-image">
+                                <h3 class="officer-name">Madhusudhana Rao</h3>
+                                <p class="officer-station">GSDM</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Manmadha Rao-Disha.jpg" alt="Manmadha Rao" class="officer-image">
+                                <h3 class="officer-name">Manmadha Rao</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Manmadha SI- SB.jpg" alt="Manmadha" class="officer-image">
+                                <h3 class="officer-name">Manmadha</h3>
+                                <p class="officer-station">SB</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Mohan Rao- SB.JPG" alt="Mohan Rao" class="officer-image">
+                                <h3 class="officer-name">Mohan Rao</h3>
+                                <p class="officer-station">SB</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Narayanaswamy- nowpada.jpeg" alt="Narayanaswamy" class="officer-image">
+                                <h3 class="officer-name">Narayanaswamy</h3>
+                                <p class="officer-station">Nowpada</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Netaji- DCRB.jpg" alt="Netaji" class="officer-image">
+                                <h3 class="officer-name">Netaji</h3>
+                                <p class="officer-station">DCRB</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Nihar-VKothru.jpeg" alt="Nihar" class="officer-image">
+                                <h3 class="officer-name">Nihar</h3>
+                                <p class="officer-station">VKotturu</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Prabhkar - SI- Disha.jpeg" alt="Prabhakar" class="officer-image">
+                                <h3 class="officer-name">Prabhakar</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Pravallika- Burja.jpg" alt="Pravallika" class="officer-image">
+                                <h3 class="officer-name">Pravallika</h3>
+                                <p class="officer-station">Burja</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/PV RAMNA -CCS.jpg" alt="PV Ramna" class="officer-image">
+                                <h3 class="officer-name">PV Ramna</h3>
+                                <p class="officer-station">CCS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Ragavendra Rao - Tekkali.jpg" alt="Ragavendra Rao" class="officer-image">
+                                <h3 class="officer-name">Ragavendra Rao</h3>
+                                <p class="officer-station">Tekkali</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Rajesh- Sarubujjili.jpeg" alt="Rajesh" class="officer-image">
+                                <h3 class="officer-name">Rajesh</h3>
+                                <p class="officer-station">Sarubujjili</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/RAMA RAO- CCS.jpg" alt="Rama Rao" class="officer-image">
+                                <h3 class="officer-name">Rama Rao</h3>
+                                <p class="officer-station">CCS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Rama Rao- VKTR.JPG" alt="Rama Rao" class="officer-image">
+                                <h3 class="officer-name">Rama Rao</h3>
+                                <p class="officer-station">VKTR</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Ramesh Babu- MPTY.jpeg" alt="Ramesh Babu" class="officer-image">
+                                <h3 class="officer-name">Ramesh Babu</h3>
+                                <p class="officer-station">MPTY</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/RAmu-SI- Disha.jpeg" alt="Ramu" class="officer-image">
+                                <h3 class="officer-name">Ramu</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Revathi- Kasibugga SI.jpg" alt="Revathi" class="officer-image">
+                                <h3 class="officer-name">Revathi</h3>
+                                <p class="officer-station">Kasibugga</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Rmana-Disha.jpeg" alt="Ramana" class="officer-image">
+                                <h3 class="officer-name">Ramana</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Sandeep- Etcherla.JPG" alt="Sandeep" class="officer-image">
+                                <h3 class="officer-name">Sandeep</h3>
+                                <p class="officer-station">Etcherla</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/SATYANARAYANA- Kotabommai.jpg" alt="Satyanarayana" class="officer-image">
+                                <h3 class="officer-name">Satyanarayana</h3>
+                                <p class="officer-station">Kotabommali</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Satyanarayana-Etcherla.JPG" alt="Satyanarayana" class="officer-image">
+                                <h3 class="officer-name">Satyanarayana</h3>
+                                <p class="officer-station">Etcherla</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/simhachalam -VR.jpeg" alt="Simhachalam" class="officer-image">
+                                <h3 class="officer-name">Simhachalam</h3>
+                                <p class="officer-station">VR</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Simhachalam- SI -2 Amadalavalasa.jpeg" alt="Simhachalam"
+                                    class="officer-image">
+                                <h3 class="officer-name">Simhachalam</h3>
+                                <p class="officer-station">2 Amadalavalasa</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/SK Mahammad ALi- Nandigam-1.jpg" alt="SK Mahammad Ali"
+                                    class="officer-image">
+                                <h3 class="officer-name">SK Mahammad Ali</h3>
+                                <p class="officer-station">Nandigam</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Somasekhar-Traffic PS.jpeg" alt="Somasekhar" class="officer-image">
+                                <h3 class="officer-name">Somasekhar</h3>
+                                <p class="officer-station">Traffic</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Srinivas- ICP Rural.jpg" alt="Srinivas" class="officer-image">
+                                <h3 class="officer-name">Srinivas</h3>
+                                <p class="officer-station">ICP Rural</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Sudhakar- Traffic PS.jpg" alt="Sudhakar" class="officer-image">
+                                <h3 class="officer-name">Sudhakar</h3>
+                                <p class="officer-station">Traffic PS</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/U. Varadarajulu-Control room.jpeg" alt="U. Varadarajulu"
+                                    class="officer-image">
+                                <h3 class="officer-name">U. Varadarajulu</h3>
+                                <p class="officer-station">Control Room</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Varadarajulu- Traffic.jpg" alt="Varadarajulu" class="officer-image">
+                                <h3 class="officer-name">Varadarajulu</h3>
+                                <p class="officer-station">Traffic</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Venkata Rao- DIsha.jpg" alt="Venkata Rao" class="officer-image">
+                                <h3 class="officer-name">Venkata Rao</h3>
+                                <p class="officer-station">Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Venkata Rao- SI Disha.jpeg" alt="Venkata Rao" class="officer-image">
+                                <h3 class="officer-name">Venkata Rao</h3>
+                                <p class="officer-station">SI Disha</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Venkatesh- Tekkali.JPG" alt="Venkatesh" class="officer-image">
+                                <h3 class="officer-name">Venkatesh</h3>
+                                <p class="officer-station">Tekkali</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Vijay Kumar- DCRB skl.JPG" alt="Vijay Kumar" class="officer-image">
+                                <h3 class="officer-name">Vijay Kumar</h3>
+                                <p class="officer-station">DCRB SKLM</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Y. Ravi Kumar- DPTC.JPG" alt="Y. Ravi Kumar" class="officer-image">
+                                <h3 class="officer-name">Y. Ravi Kumar</h3>
+                                <p class="officer-station">DPTC</p>
+                            </div>
+                            <div class="officer-card">
+                                <img src="images/SIS/Yaseen- Hiramandalam.jpg" alt="Yaseen" class="officer-image">
+                                <h3 class="officer-name">Yaseen</h3>
+                                <p class="officer-station">Hiramandalam</p>
+                            </div>
+                        </div>
+                    </div>
+
+    <div class="folder" data-folder="media">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Initiatives</h3>
+        <p>32 items</p>
+    </div>
+    <div class="folder" data-folder="officer">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Events</h3>
+        <p>18 items</p>
+    </div>
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const folders = document.querySelectorAll('.folder');
+            const imagesContainers = document.querySelectorAll('.images');
+            const backButton = document.querySelector('.back-button');
+
+            folders.forEach(folder => {
+                folder.addEventListener('click', () => {
+                    const targetFolder = folder.dataset.folder;
+
+                    folders.forEach(f => f.style.display = 'none');
+                    backButton.classList.remove('hidden');
+
+                    imagesContainers.forEach(container => {
+                        if (container.dataset.folder === targetFolder) {
+                            container.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            backButton.addEventListener('click', () => {
+                folders.forEach(folder => folder.style.display = 'grid');
+                backButton.classList.add('hidden');
+
+                imagesContainers.forEach(container => {
+                    container.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
