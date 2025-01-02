@@ -3102,14 +3102,14 @@ font-size: 16px;
 
 /* Main Footer Styles */
 .main-footer {
-    background-color: #1a1a1a;
+    background-color: #0a9396;
     color: #ffffff;
-    padding: 40px 0 0 0;
+    padding: 50px 0 0 0;
     font-family: Arial, sans-serif;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -3154,9 +3154,9 @@ font-size: 16px;
     transition: all 0.3s ease;
 }
 
-.facebook { background-color: #3b5998; }
-.twitter { background-color: #1da1f2; }
-.youtube { background-color: #ff0000; }
+.main-footer .facebook { background-color: #3b5998; }
+.main-footer .twitter { background-color: #1da1f2; }
+.main-footer .youtube { background-color: #ff0000; }
 
 .social-icon:hover {
     transform: translateY(-3px);
@@ -3189,8 +3189,8 @@ font-size: 16px;
 .footer-menu-trigger {
     width: 100%;
     padding: 10px 15px;
-    background-color: #333;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     text-align: left;
@@ -3213,11 +3213,11 @@ font-size: 16px;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #2a2a2a;
+    background-color: #ffffff;
     border-radius: 4px;
     padding: 10px 0;
     z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(121, 112, 112, 0.1);
 }
 
 .footer-menu:hover .footer-menu-items {
@@ -3226,7 +3226,7 @@ font-size: 16px;
 }
 
 .footer-menu-items a {
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
     padding: 8px 15px;
     font-size: 14px;
@@ -3234,7 +3234,7 @@ font-size: 16px;
 }
 
 .footer-menu-items a:hover {
-    background-color: #404040;
+    background-color: #c7bebea5;
 }
 
 /* Geolocation Section */
@@ -3268,7 +3268,7 @@ font-size: 16px;
 
 /* Footer Bottom */
 .footer-bottom {
-    background-color: #0f0f0f;
+    background-color: #0a9396;
     padding: 15px 0;
     margin-top: 40px;
 }
@@ -3282,7 +3282,7 @@ font-size: 16px;
 
 .copyright {
     font-size: 14px;
-    color: #888;
+    color: #ffffff;
 }
 
 /* Responsive Design */
